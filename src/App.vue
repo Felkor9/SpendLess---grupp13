@@ -14,7 +14,7 @@ export default {
 
 <template>
 	<Navbar />
+	<RouterView />
 	<HelloWorld msg="Hello World!" />
 	<CitiesList />
-	<RouterView />
 </template>
