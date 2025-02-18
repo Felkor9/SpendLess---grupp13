@@ -1,12 +1,8 @@
-gu<script>
-import CitiesList from "./components/CitiesList.vue"
-import HelloWorld from "./components/HelloWorld.vue"
+<script>
 import Navbar from "./components/Navbar.vue"
 
 export default {
 	components: {
-		CitiesList,
-		HelloWorld,
 		Navbar,
 	},
 }
@@ -15,8 +11,6 @@ export default {
 <template>
 	<Navbar />
 	<RouterView />
-	<HelloWorld msg="Hello World!" />
-	<CitiesList />
 </template>
 <style>
 	body {

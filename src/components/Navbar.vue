@@ -1,6 +1,6 @@
 <template>
     <nav>
-    <img src="/assets/hamburgerMeny.svg" alt="" id="hamburgerIcon" @click="toggleMenu">
+    <img src="/assets/hamburgerMeny.svg" alt="ikon för hamburgarmeny" id="hamburgerIcon" @click="toggleMenu">
     <ul v-if="hamburgerMenu">
         <li>
             <router-link to="/">Home</router-link>
