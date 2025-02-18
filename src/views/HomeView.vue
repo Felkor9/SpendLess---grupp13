@@ -9,9 +9,12 @@
 <button>Skapa konto</button>
 </div>
 </form>
+<ItemsObject />
 </template>
 
-<script>
+<script setup>
+import ItemsObject from '../components/ItemsObject.vue';
+
 
 </script>
 
