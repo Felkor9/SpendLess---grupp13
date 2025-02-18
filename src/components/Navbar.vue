@@ -1,11 +1,11 @@
 <template>
     <nav>
     <img src="/assets/hamburgerMeny.svg" alt="ikon för hamburgarmeny" id="hamburgerIcon" @click="toggleMenu">
-    <ul v-if="hamburgerMenu">
-        <li>
+    <ul v-if="hamburgerMenu" id="">
+        <li class="ListItemCategory">
             <router-link to="/">Home</router-link>
         </li>
-        <li>
+        <li class="listItemCategory">
             <router-link to="/about">About</router-link>
         </li>
     </ul>
