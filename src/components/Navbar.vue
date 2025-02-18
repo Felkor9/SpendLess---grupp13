@@ -13,10 +13,12 @@
 
 </template>
 <script setup>
+//Här importerar vi lite gött
 import { ref } from 'vue'
 
-const hamburgerMenu = ref(false)
 
+//funtion för hamburgarmenyn
+const hamburgerMenu = ref(false)
 const toggleMenu = () => {
     hamburgerMenu.value = !hamburgerMenu.value
 }
