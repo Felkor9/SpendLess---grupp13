@@ -21,6 +21,7 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	z-index: 1;
 }
 #containerForAccounts button{
 	width: 80px;
