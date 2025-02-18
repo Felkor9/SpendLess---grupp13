@@ -7,8 +7,10 @@
 </script>
 
 <template>
-  <img alt="" src="/assets/fox.jpeg" />
-  <p>{{ msg }}</p>
+<form>
+<label for="search">Sök efter vara</label>
+<input type="submit" value="Submit">
+</form>
 </template>
 
 <style>

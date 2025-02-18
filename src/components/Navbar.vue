@@ -1,7 +1,7 @@
 <template>
     <nav>
-    <img src="/assets/hamburgerMeny.svg" alt="" id="hamburgerIcon" @click="hamburgerMenu">
-    <ul>
+    <img src="/assets/hamburgerMeny.svg" alt="" id="hamburgerIcon" @click="toggleMenu">
+    <ul v-if="hamburgerMenu">
         <li>
             <router-link to="/">Home</router-link>
         </li>
@@ -15,8 +15,10 @@
 <script setup>
 import { ref } from 'vue'
 
-function hamburgerMenu() {
-    togglemenu
+const hamburgerMenu = ref(false)
+
+const toggleMenu = () => {
+    hamburgerMenu.value = !hamburgerMenu.value
 }
 
 </script>
@@ -28,12 +30,16 @@ display: flex;
   justify-content: space-around;
   font-size: 20px;
   padding: 5px;
+  position: relative;
 }
 
 #hamburgerIcon{
     width: 30px;
     height: 30px;
     cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 @media screen and (min-width: 480px){
