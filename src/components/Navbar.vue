@@ -1,6 +1,8 @@
 <template>
     <nav>
     <img src="/assets/hamburgerMeny.svg" alt="ikon för hamburgarmeny" id="hamburgerIcon" @click="toggleMenu">
+    <img src="/assets/spendLess-Ikonv1.png" alt="" id="spendLessIcon">
+    <img src="/assets/userIcon.svg" alt="" id="userIcon">
     </nav>
     <div>
     <ul v-if="hamburgerMenu" id="UnOrderedListCategory">
@@ -34,9 +36,12 @@ const toggleMenu = () => {
 nav {
 display: flex;
   justify-content: space-around;
+  align-items: center;
   font-size: 20px;
   padding: 5px;
   position: relative;
+  width: 100vw;
+  height: 50px;
 }
 
 #hamburgerIcon{
@@ -44,8 +49,24 @@ display: flex;
     height: 30px;
     cursor: pointer;
     position: absolute;
-    top: 0;
+    margin-left: 10px;
+    top: 1;
     left: 0;
+}
+
+#spendLessIcon{
+    width: 50px;
+    height: 30px;
+}
+
+#userIcon{
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-right: 10px;
 }
 
 #UnOrderedListCategory{

@@ -9,6 +9,14 @@
 <button>Skapa konto</button>
 </div>
 </form>
+<label for="category">Välj kategori</label>
+<select name="category" id="category">
+<option value="Husdjur">Husdjur</option>
+<option value="Fordon">Fordon</option>
+<option value="Hobby">Hobby</option>
+<option value="Kläder">Kläder</option>
+</select>
+
 <ItemsObject />
 </template>
 
