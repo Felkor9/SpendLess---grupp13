@@ -14,8 +14,8 @@ export default {
 </template>
 <style>
 	body {
-	background-color: #8186d2;
-	color: white;
+	background-color: white;
+	color: black;
 	font-family: Arial, Helvetica, sans-serif;
 	}
 

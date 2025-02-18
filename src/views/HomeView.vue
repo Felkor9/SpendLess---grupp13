@@ -3,7 +3,7 @@
 	<form>
 <label for="search">Sök efter vara</label>
 <input type="text" id="searchbox" placeholder="Sök vara">
-<input type="submit" value="Submit">
+<input type="submit" value="Sök">
 <div id="containerForAccounts">
 <button>Logga in</button>
 <button>Skapa konto</button>
@@ -28,5 +28,13 @@
 	margin-top: 10px;
 	cursor: pointer;
 	font-size: 10px;
+}
+
+input[type=submit] {
+cursor: pointer;
+width: 80px;
+height: 30px;
+margin-top: 10px;
+font-size: 10px;
 }
 </style>
