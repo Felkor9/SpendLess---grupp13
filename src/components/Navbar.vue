@@ -12,6 +12,12 @@
         <li class="listItemCategory">
             <router-link to="/about">About</router-link>
         </li>
+		<li class="listItemCategory">
+            <router-link to="/myaccount">Mitt konto</router-link>
+        </li>
+		<li class="listItemCategory">
+            <router-link to="/newproduct">Lägg upp annons</router-link>
+        </li>
     </ul>
 
     </div>
@@ -72,10 +78,10 @@ nav {
 #UnOrderedListCategory {
 	z-index: 2;
 	margin: 0;
-	margin-top: 25px;
+	margin-top: 10px;
 	padding: 0;
 	width: 20vw;
-	height: 25vh;
+	height: auto;
 	background-color: rgb(255, 255, 255);
 	position: absolute;
 	top: 50;
