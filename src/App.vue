@@ -19,13 +19,8 @@ export default {
 }
 </script>
 <style>
-	body {
-	background-color: white;
-	color: black;
-	font-family: Arial, Helvetica, sans-serif;
-	}
-
-	p {
-	color: black;
+	footer{
+		position: absolute;
+		bottom: 0;
 	}
 </style>
