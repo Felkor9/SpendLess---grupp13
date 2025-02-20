@@ -1,14 +1,21 @@
 <template>
 	<h1>Home</h1>
-	<form>
-		<label for="search">Sök efter vara</label>
-		<input type="text" id="searchbox" placeholder="Sök vara" />
-		<input type="submit" value="Sök" />
-		<div id="containerForAccounts">
-			<button>Logga in</button>
-			<button>Skapa konto</button>
-		</div>
-	</form>
+	<BContainer fluid="md">
+		<BRow class="my-1">
+			<BCol sm="1">
+				<label for="search">Sök efter vara</label>
+			</BCol>
+			<BCol sm="2">
+				<BFormInput v-model="text" placeholder="Sökfält" />
+			</BCol>
+			<BCol sm="1"><BButton type="secondary">Sök</BButton> </BCol>
+		</BRow>
+	</BContainer>
+	<div id="containerForAccounts">
+		<BButton variant="primary">Logga in</BButton>
+		<BButton variant="info">Skapa konto</BButton>
+	</div>
+
 	<label for="category">Välj kategori</label>
 	<select v-for="category in category" name="category" id="category">
 		{{
@@ -24,6 +31,7 @@
 </template>
 
 <script setup>
+import {BCol} from "bootstrap-vue-next"
 import ItemsObject from "../components/ItemsObject.vue"
 
 // defineProps: ({
@@ -39,13 +47,13 @@ import ItemsObject from "../components/ItemsObject.vue"
 	align-items: center;
 	z-index: 1;
 }
-#containerForAccounts button {
-	width: 80px;
+
+/* #containerForAccounts button {
+	/* width: 80px;
 	height: 30px;
-	margin-top: 10px;
-	cursor: pointer;
-	font-size: 10px;
-}
+	margin-top: 10px; */
+/* cursor: pointer; */
+/* }  */
 
 input[type="submit"] {
 	cursor: pointer;
