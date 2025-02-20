@@ -26,9 +26,9 @@
 <script setup>
 import ItemsObject from "../components/ItemsObject.vue"
 
-defineProps: ({
-	kategori: string,
-})
+// defineProps: ({
+// 	kategori: string,
+// })
 </script>
 
 <style scoped>
