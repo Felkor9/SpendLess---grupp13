@@ -15,83 +15,82 @@
     </ul>
 
     </div>
+<!-- <BNavbar v-b-color-mode="dark" variant="primary">
+    <BNavbarBrand tag="h1" class="mb-0">NavBar</BNavbarBrand>
+    <BnavbarToggle id="nav-offcanvas" title="offcanvas" placement="end" is-nav/>
+</BNavbar> -->
 
 </template>
 <script setup>
 //Här importerar vi lite gött
-import { ref } from 'vue'
-
+import {ref} from "vue"
 
 //funtion för hamburgarmenyn
 const hamburgerMenu = ref(false)
 const toggleMenu = () => {
-    hamburgerMenu.value = !hamburgerMenu.value
+	hamburgerMenu.value = !hamburgerMenu.value
 }
-
 </script>
 
 <style scoped>
-
 nav {
-display: flex;
-  justify-content: space-around;
-  align-items: center;
-  font-size: 20px;
-  padding: 5px;
-  position: relative;
-  width: 100vw;
-  height: 50px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	font-size: 20px;
+	padding: 5px;
+	position: relative;
+	width: 100vw;
+	height: 50px;
 }
 
-#hamburgerIcon{
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-    position: absolute;
-    margin-left: 10px;
-    top: 1;
-    left: 0;
+#hamburgerIcon {
+	width: 30px;
+	height: 30px;
+	cursor: pointer;
+	position: absolute;
+	margin-left: 10px;
+	top: 1;
+	left: 0;
 }
 
-#spendLessIcon{
-    width: 50px;
-    height: 30px;
+#spendLessIcon {
+	width: 50px;
+	height: 30px;
 }
 
-#userIcon{
-    width: 50px;
-    height: 50px;
-    cursor: pointer;
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin-right: 10px;
+#userIcon {
+	width: 50px;
+	height: 50px;
+	cursor: pointer;
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin-right: 10px;
 }
 
-#UnOrderedListCategory{
- z-index: 2;
- margin: 0;
- margin-top: 25px;
- padding: 0;
- width: 20vw;
- height: 25vh;
- background-color: rgb(255, 255, 255);
- position: absolute;
- top: 50;
- display: flex;
- flex-direction: column;
- align-items: center;
+#UnOrderedListCategory {
+	z-index: 2;
+	margin: 0;
+	margin-top: 25px;
+	padding: 0;
+	width: 20vw;
+	height: 25vh;
+	background-color: rgb(255, 255, 255);
+	position: absolute;
+	top: 50;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
-.listItemCategory{
-    z-index: 2;
-    list-style-type: none;
-    margin: 10px;
-    padding: 5px;
+.listItemCategory {
+	z-index: 2;
+	list-style-type: none;
+	margin: 10px;
+	padding: 5px;
 }
 
-@media screen and (min-width: 480px){
-
+@media screen and (min-width: 480px) {
 }
-
-  </style>
+</style>
