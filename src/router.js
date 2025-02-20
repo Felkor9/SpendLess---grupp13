@@ -6,6 +6,8 @@ import AboutView from "./views/AboutView.vue"
 
 import MyAccountView from "./views/MyAccountView.vue"
 
+import NewProductView from "./views/NewProductView.vue"
+
 export default createRouter({
 	history: createWebHashHistory(),
 	routes: [
@@ -20,6 +22,10 @@ export default createRouter({
 		{
 			component: MyAccountView,
 			path: "/myaccount",
+		},
+		{
+			component: NewProductView,
+			path: "/newproduct",
 		},
 	],
 })

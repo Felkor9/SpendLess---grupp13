@@ -1,7 +1,9 @@
 <template>
+
 	<Navbar />
 	<RouterView />
 	<Footer />
+
 </template>
 <script>
 
@@ -19,6 +21,8 @@ export default {
 }
 </script>
 <style>
+
+
 	footer{
 		position: absolute;
 		bottom: 0;

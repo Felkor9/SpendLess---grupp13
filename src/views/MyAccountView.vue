@@ -1,4 +1,5 @@
 <template>
+	<div id="bigWrapper">
 	<BContainer fluid>
 		<BCol cols="4">
 			<h1>Skapa konto</h1>
@@ -61,10 +62,18 @@
 			<BButton variant="danger">Skapa konto</BButton>
 		</BCol>
 	</BContainer>
+</div>
 </template>
 
 <script setup>
 import {BCol} from "bootstrap-vue-next"
 import {ref} from "vue"
 </script>
-<style scoped></style>
+<style scoped>
+#bigWrapper{
+	min-height: 80vh;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+</style>

@@ -20,6 +20,9 @@
 			<li class="listItemCategory">
 				<router-link to="/myaccount">Mitt konto</router-link>
 			</li>
+			<li class="listItemCategory">
+				<router-link to="/newproduct">Lägg upp annons</router-link>
+			</li>
 		</ul>
 	</div>
 	<!-- <BNavbar v-b-color-mode="dark" variant="primary">
