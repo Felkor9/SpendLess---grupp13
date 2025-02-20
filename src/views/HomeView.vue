@@ -25,6 +25,10 @@
 
 <script setup>
 import ItemsObject from "../components/ItemsObject.vue"
+
+defineProps: ({
+	kategori: string,
+})
 </script>
 
 <style scoped>
