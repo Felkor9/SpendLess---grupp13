@@ -10,22 +10,30 @@
 			</BCol>
 			<BCol sm="1"><BButton type="secondary">Sök</BButton> </BCol>
 		</BRow>
+		<br>
+		<label for="category">Välj kategori</label>
+		<BRow>
+			<BCol cols="6" sm="2">
+		<BFormSelect v-model="selected" :options="ex1Options" />
+	</BCol>
+	</BRow>
 	</BContainer>
 	<div id="containerForAccounts">
 		<BButton variant="primary">Logga in</BButton>
 		<BButton variant="info">Skapa konto</BButton>
 	</div>
 
-	<label for="category">Välj kategori</label>
-	<select v-for="category in category" name="category" id="category">
-		{{
+	
+	<!-- <select  name="category" id="category"> -->
+		<!-- {{
 			item.category
-		}}
-		<!-- <option value="Husdjur">Husdjur</option>
+		}} -->
+	<!-- 	<option value="Husdjur">Husdjur</option>
 <option value="Fordon">Fordon</option>
 <option value="Hobby">Hobby</option>
-<option value="Kläder">Kläder</option> -->
-	</select>
+<option value="Kläder">Kläder</option>
+	</select> -->
+
 
 	<ItemsObject />
 </template>
@@ -37,6 +45,18 @@ import ItemsObject from "../components/ItemsObject.vue"
 // defineProps: ({
 // 	kategori: string,
 // })
+
+
+const ex1Options = [
+  {value: null, text: 'Husdjur'},
+  {value: 'a', text: 'Fordon'},
+  {value: 'b', text: 'Hobby'},
+  {value: 'b', text: 'Kläder'},
+  {value: 'd', text: 'Växter'},
+  {value: 'd', text: 'Heminredning'},
+  {value: 'd', text: 'Sport'},
+ 
+]
 </script>
 
 <style scoped>
