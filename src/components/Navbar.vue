@@ -15,10 +15,6 @@
     </ul>
 
     </div>
-<!-- <BNavbar v-b-color-mode="dark" variant="primary">
-    <BNavbarBrand tag="h1" class="mb-0">NavBar</BNavbarBrand>
-    <BnavbarToggle id="nav-offcanvas" title="offcanvas" placement="end" is-nav/>
-</BNavbar> -->
 
 </template>
 <script setup>
