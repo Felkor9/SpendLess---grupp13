@@ -58,5 +58,6 @@ import { BCol } from 'bootstrap-vue-next';
 #sectionFooter{
     margin-top: 50px;
     min-height: 5vh;
+    padding-top: 40px;
 }
 </style>
