@@ -7,7 +7,7 @@
 			<BFormGroup
 				label="Namn på produkt"
 				label-for="input-1"
-               
+
                 :state="state"
 			>
 			</BFormGroup>
@@ -28,7 +28,7 @@
             <BFormSelect v-model="selected" :options="productCategory" />
             <BFormSelectOption :value="null" disabled> </BFormSelectOption>
 			</BFormGroup>
-			
+
             </BCol>
         </BRow>
         <BRow >
@@ -39,9 +39,9 @@
             <BFormRadio v-model="selected" name="some-radios" value="A" class="radioButton">Nyskick </BFormRadio>
             <BFormRadio v-model="selected" name="some-radios" value="B" class="radioButton">Begangnat </BFormRadio>
             <BFormRadio v-model="selected" name="some-radios" value="C" class="radioButton">Slitet </BFormRadio>
-		</div>	
+		</div>
         </BFormGroup>
-			
+
             </BCol>
         </BRow>
 
@@ -53,7 +53,7 @@
 import {ref} from 'vue'
 
 const productCategory = [
-{value: 'null', text: 'Välj en kategori'},  
+{value: 'null', text: 'Välj en kategori'},
 {value: 'a', text: 'Växter'},
 {value: 'a', text: 'Elektronik'},
 {value: 'b', text: 'Heminredning'},
@@ -89,11 +89,9 @@ const selected = ref(null)
 	padding-right: 20px;
     display: flex;
     justify-content: center;
-   
+
   /* align-content: center; */
     /* flex-direction: column; */
 }
 
 </style>
-
-
