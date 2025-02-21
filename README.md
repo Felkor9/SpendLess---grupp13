@@ -1,4 +1,4 @@
-# Agilt Grupparbete - 💲pendless
+# Agilt Grupparbete - $pendless
 
 <sub>Evelina . Felix . Hampus . Michelle</sub>
 
