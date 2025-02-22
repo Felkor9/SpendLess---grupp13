@@ -1,21 +1,22 @@
 <template>
-	<h1>Hej från objekt</h1>
 	<div class="itemWrapper">
 		<div id="itemCard" v-for="item in items" :key="item.id">
 			<img :src="item.img" alt="" class="itemImage" />
 			<ul>
 				<li>
-					<p>{{ item.namn }}</p>
+					<p class="itemText">{{ item.namn }}</p>
 				</li>
 				<li>
-					<p>{{ item.pris }}</p>
+					<p class="itemText" >{{ item.adress }}</p>
 				</li>
 				<li>
-					<p>{{ item.adress }}</p>
+					<p class="itemText"> <strong>{{ item.pris }} :- </strong></p>
 				</li>
 			</ul>
 		</div>
 	</div>
+
+
 </template>
 <script setup>
 import {ref} from "vue"
@@ -25,7 +26,7 @@ const objekt = ref("")
 const items = ref([
 	{
 		id: 1,
-		namn: "Tröja",
+		namn: "Tröja från nike, inköpt 2023 från london",
 		skick: "bra",
 		storlek: "L",
 		img: "../assets/fox.jpeg",
@@ -131,6 +132,89 @@ const items = ref([
 		beskrivning: "Väldigt fin tröja från Nike",
 		säljare: "Hampus",
 	},
+	{
+		id: 9,
+		namn: "Bil",
+		skick: "bra",
+		storlek: "L",
+		img: "../assets/fox.jpeg",
+		adress: "göteborg",
+		kategori: "kläder",
+		pris: 299,
+		beskrivning: "Väldigt fin tröja från Nike",
+		säljare: "Hampus",
+	},
+	{
+		id: 9,
+		namn: "Bil",
+		skick: "bra",
+		storlek: "L",
+		img: "../assets/fox.jpeg",
+		adress: "göteborg",
+		kategori: "kläder",
+		pris: 299,
+		beskrivning: "Väldigt fin tröja från Nike",
+		säljare: "Hampus",
+	},
+	{
+		id: 9,
+		namn: "Bil",
+		skick: "bra",
+		storlek: "L",
+		img: "../assets/fox.jpeg",
+		adress: "göteborg",
+		kategori: "kläder",
+		pris: 299,
+		beskrivning: "Väldigt fin tröja från Nike",
+		säljare: "Hampus",
+	},
+	{
+		id: 9,
+		namn: "Bil",
+		skick: "bra",
+		storlek: "L",
+		img: "../assets/fox.jpeg",
+		adress: "göteborg",
+		kategori: "kläder",
+		pris: 299,
+		beskrivning: "Väldigt fin tröja från Nike",
+		säljare: "Hampus",
+	},
+	{
+		id: 9,
+		namn: "Bil",
+		skick: "bra",
+		storlek: "L",
+		img: "../assets/fox.jpeg",
+		adress: "göteborg",
+		kategori: "kläder",
+		pris: 299,
+		beskrivning: "Väldigt fin tröja från Nike",
+		säljare: "Hampus",
+	},
+	{
+		id: 9,
+		namn: "Bil",
+		skick: "bra",
+		storlek: "L",
+		img: "../assets/fox.jpeg",
+		adress: "göteborg",
+		kategori: "kläder",
+		pris: 299,
+		beskrivning: "Väldigt fin tröja från Nike",
+		säljare: "Hampus",
+	},{
+		id: 9,
+		namn: "Bil",
+		skick: "bra",
+		storlek: "L",
+		img: "../assets/fox.jpeg",
+		adress: "göteborg",
+		kategori: "kläder",
+		pris: 299,
+		beskrivning: "Väldigt fin tröja från Nike",
+		säljare: "Hampus",
+	},
 ])
 </script>
 
@@ -139,18 +223,44 @@ const items = ref([
 	height: auto;
 	width: 100dvw;
 	display: flex;
+	justify-content: center;
+	align-items: center;
 	flex-wrap: wrap;
+	/* margin: 10px; */
+	margin-right: 30px;
+	padding: 8px;
 }
 
 #itemCard {
-	border: 1px solid black;
-	width: 100px;
-	height: 120px;
-	font-size: 10px;
+	/* box-shadow: 2px 2px 2px 1px; */
+	width: 150px;
+	height: 350px;
+	/* font-size: 20px; */
+	margin-bottom: 20px;
+	margin-right: 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	object-fit: cover;
+}
+
+.itemText{
+	font-size: 18px;
+	margin: 0;
+
 }
 
 .itemImage {
-	height: 50px;
-	width: 50px;
+	height: 170px;
+	width: 100%;
+}
+
+ul{
+	list-style-type: none;
+	width: 100%;
+	padding: 0;
+}
+li{
+	width: 100%;
 }
 </style>

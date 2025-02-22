@@ -1,24 +1,21 @@
 <template>
-	<h1>Home</h1>
+	<!-- <h1>Home</h1> -->
 	<div id="bigWrapper">
-	<BContainer fluid="md">
+	<BContainer fluid class="containerSearch">
 		<BRow class="my-1">
-			<BCol sm="1">
-				<label for="search">Sök efter vara</label>
+			<BCol cols="12">
+				<label for="search" class="labelForSearch">Välkommen till SpendLess!</label>
 			</BCol>
-			<BCol sm="2">
-				<BFormInput v-model="text" placeholder="Sökfält" />
+			<BCol cols="12">
+				<BFormInput v-model="text" placeholder="Vad letar du efter idag?" class="inputSearch"/>
 			</BCol>
-			<BCol sm="1"><BButton type="secondary">Sök</BButton> </BCol>
+			<BCol  cols="12"><BButton variant="success" class="inputButton">Sök</BButton> </BCol>
 		</BRow>
 	</BContainer>
-	<div id="containerForAccounts">
-		<BButton variant="primary">Logga in</BButton>
-		<BButton variant="info">Skapa konto</BButton>
-	</div>
-  <BRow>
+
+  <BRow id="categoryitem">
 		<BCol cols="4">
-	<BFormSelect v-model="selected" :options="productCategory" placeholder="välj kategori"/>
+	<BFormSelect v-model="selected" :options="productCategory" placeholder="välj kategori" class="categoryChooser"/>
 	<BFormSelectOption :value="null" disabled> </BFormSelectOption>
 	</BCol>
 	</BRow>
@@ -32,9 +29,9 @@
 <option value="Hobby">Hobby</option>
 <option value="Kläder">Kläder</option> -->
 	<!-- </select> -->
-
+	<div id="containerForObject">
 	<ItemsObject />
-
+	</div>
 	</div>
 </template>
 
@@ -59,11 +56,19 @@ const selected = ref(null)
 // })
 </script>
 
+
 <style scoped>
+*{
+	box-sizing: border-box;
+}
 #bigWrapper{
 	min-height: 80vh;
-	padding-left: 20px;
-	padding-right: 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 0;
+	box-sizing: border-box;
 }
 
 #containerForAccounts {
@@ -72,6 +77,69 @@ const selected = ref(null)
 	justify-content: center;
 	align-items: center;
 	z-index: 1;
+}
+
+.containerSearch{
+	background-image: url(/assets/coffee-3989866_1280.jpg);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: 100%;
+	min-height: 300px;
+	/* width: 100vw; */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	/* margin: 0; */
+}
+
+.labelForSearch{
+	color: white;
+	font-size: 25px;
+	font-weight: 900;
+	/* font-family:'Times New Roman', Times, serif; */
+
+}
+
+.inputSearch{
+	font-size: 23px;
+	padding-inline: 20px;
+	font-family: 'Times New Roman', Times, serif;
+	border-radius: 0;
+}
+
+.categoryChooser{
+	min-width: 200px;
+}
+
+.inputButton{
+	margin-top: 10px;
+	width: 100px;
+	padding: 10px;
+	height: 50px;
+
+
+}
+
+.my-1{
+	display: flex;
+	/* justify-content: flex-start; */
+	flex-direction: column;
+	/* align-items: flex-start; */
+	width: 100vw;
+}
+
+#categoryitem{
+	/* display: flex; */
+	/* background-color: black; */
+	width: 100vw;
+	margin-top: 10px;
+
+}
+
+#containerForObject{
+	width: 100vw;
+	padding: 10px;
 
 }
 
@@ -82,11 +150,11 @@ const selected = ref(null)
 /* cursor: pointer; */
 /* }  */
 
-input[type="submit"] {
+/* input[type="submit"] {
 	cursor: pointer;
 	width: 80px;
 	height: 30px;
 	margin-top: 10px;
 	font-size: 10px;
-}
+} */
 </style>
