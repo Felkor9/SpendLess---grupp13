@@ -53,8 +53,8 @@
 				<BFormGroup label="Upprepa lösenord" label-for="input-4"></BFormGroup>
 				<BFormInput
 					id="input-3"
-					v-model.trim="value"
-					:state="password"
+					v-model.trim="repeatValue"
+					:state="repeatPassword"
 					type="password"
 					placeholder="Upprepa lösenord"
 					required
@@ -79,9 +79,13 @@ import {BCol} from "bootstrap-vue-next"
 import {ref, computed} from "vue"
 
 const value = ref("")
+const repeatValue = ref("")
 
 // Funktion för lösenordets minimumlängd
 const password = computed(() => (value.value?.length > 7 ? true : false))
+const repeatPassword = computed(() =>
+	repeatValue.value?.length > 7 ? true : false
+)
 </script>
 
 <style scoped>
