@@ -61,7 +61,7 @@ const selected = ref(null)
 *{
 	box-sizing: border-box;
 }
-#bigWrapper{
+/* #bigWrapper{
 	min-height: 80vh;
 	display: flex;
 	flex-direction: column;
@@ -69,7 +69,7 @@ const selected = ref(null)
 	justify-content: center;
 	padding: 0;
 	box-sizing: border-box;
-}
+} */
 
 #containerForAccounts {
 	display: flex;
