@@ -30,11 +30,6 @@
 					>Lägg upp annons</router-link
 				>
 			</li>
-			<li class="listItemCategory">
-				<router-link to="/selectedproduct" class="routerLink"
-					>SelectedProduct</router-link
-				>
-			</li>
 		</ul>
 	</div>
 

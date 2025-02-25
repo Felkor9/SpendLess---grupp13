@@ -31,7 +31,7 @@ export default createRouter({
 		},
 		{
 			component: SelectedProductView,
-			path: "/selectedproduct",
+			path: "/selectedproduct/:id",
 		},
 	],
 })
