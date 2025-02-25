@@ -1,35 +1,51 @@
 <template>
-    <nav>
-    <img src="/assets/hamburgerMeny.svg" alt="ikon för hamburgarmeny" id="hamburgerIcon" @click="toggleMenu">
-    <img src="/assets/spendLess-Ikonv1.png" alt="" id="spendLessIcon">
-    <img src="/assets/userIcon.svg" alt="" id="userIcon" @click="toggleProfile">
-    </nav>
-    <div>
-    <ul v-if="hamburgerMenu" id="UnOrderedListCategory" class="bg-light">
-        <li class="listItemCategory">
-            <router-link to="/" class="routerLink">Home</router-link>
-        </li>
-        <li class="listItemCategory">
-            <router-link to="/about" class="routerLink">About</router-link>
-        </li>
-		<li class="listItemCategory">
-            <router-link to="/myaccount" class="routerLink">Mitt konto</router-link>
-        </li>
-		<li class="listItemCategory">
-            <router-link to="/newproduct" class="routerLink">Lägg upp annons</router-link>
-        </li>
-    </ul>
-    </div>
+	<nav>
+		<img
+			src="/assets/hamburgerMeny.svg"
+			alt="ikon för hamburgarmeny"
+			id="hamburgerIcon"
+			@click="toggleMenu"
+		/>
+		<img src="/assets/spendLess-Ikonv1.png" alt="" id="spendLessIcon" />
+		<img
+			src="/assets/userIcon.svg"
+			alt=""
+			id="userIcon"
+			@click="toggleProfile"
+		/>
+	</nav>
+	<div>
+		<ul v-if="hamburgerMenu" id="UnOrderedListCategory" class="bg-light">
+			<li class="listItemCategory">
+				<router-link to="/" class="routerLink">Home</router-link>
+			</li>
+			<li class="listItemCategory">
+				<router-link to="/about" class="routerLink">About</router-link>
+			</li>
+			<li class="listItemCategory">
+				<router-link to="/myaccount" class="routerLink">Mitt konto</router-link>
+			</li>
+			<li class="listItemCategory">
+				<router-link to="/newproduct" class="routerLink"
+					>Lägg upp annons</router-link
+				>
+			</li>
+			<li class="listItemCategory">
+				<router-link to="/selectedproduct" class="routerLink"
+					>SelectedProduct</router-link
+				>
+			</li>
+		</ul>
+	</div>
 
-	<BContainer id="containerForAccounts" v-if="profileMenu" class="bg-light" >
+	<BContainer id="containerForAccounts" v-if="profileMenu" class="bg-light">
 		<BButton variant="primary" size="sm" class="buttonLogIn">Logga in</BButton>
 		<BButton variant="info" size="sm" class="buttonLogIn">Skapa konto</BButton>
 	</BContainer>
-<!-- <BNavbar v-b-color-mode="dark" variant="primary">
+	<!-- <BNavbar v-b-color-mode="dark" variant="primary">
     <BNavbarBrand tag="h1" class="mb-0">NavBar</BNavbarBrand>
     <BnavbarToggle id="nav-offcanvas" title="offcanvas" placement="end" is-nav/>
 </BNavbar> -->
-
 </template>
 <script setup>
 //Här importerar vi lite gött
@@ -45,7 +61,6 @@ const profileMenu = ref(false)
 const toggleProfile = () => {
 	profileMenu.value = !profileMenu.value
 }
-
 </script>
 
 <style scoped>
@@ -58,7 +73,6 @@ nav {
 	position: relative;
 	width: 100vw;
 	height: 80px;
-
 }
 
 #hamburgerIcon {
@@ -86,7 +100,7 @@ nav {
 	margin-right: 10px;
 }
 
-.buttonLogIn{
+.buttonLogIn {
 	margin: 5px;
 	width: 150px;
 	height: 50px;
@@ -109,8 +123,7 @@ nav {
 	box-shadow: 2px 2px 10px grey;
 }
 
-
-#containerForAccounts{
+#containerForAccounts {
 	z-index: 2;
 	margin: 0;
 	padding: 0;
@@ -136,8 +149,7 @@ nav {
 	border-bottom: 1px solid black;
 }
 
-
-.routerLink{
+.routerLink {
 	color: black;
 	text-decoration: none;
 }
