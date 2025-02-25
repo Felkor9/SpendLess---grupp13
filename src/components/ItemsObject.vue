@@ -1,16 +1,16 @@
 <template>
 	<div class="itemWrapper">
-		<div id="itemCard" v-for="item in items" :key="item.id">
-			<img :src="item.img" alt="" class="itemImage" />
+		<div id="itemCard" v-for="object in objects" :key="objects.id">
+			<img :src="object.img" alt="" class="itemImage" />
 			<ul>
 				<li>
-					<p class="itemText">{{ item.namn }}</p>
+					<p class="itemText">{{ object.namn }}</p>
 				</li>
 				<li>
-					<p class="itemText" >{{ item.adress }}</p>
+					<p class="itemText" >{{ object.adress }}</p>
 				</li>
 				<li>
-					<p class="itemText"> <strong>{{ item.pris }} :- </strong></p>
+					<p class="itemText"> <strong>{{ object.pris }} :- </strong></p>
 				</li>
 			</ul>
 		</div>
@@ -19,10 +19,34 @@
 
 </template>
 <script setup>
-import {ref} from "vue"
+import { ref, onMounted } from 'vue';
 
-const objekt = ref("")
+const objects = ref([]);
 
+function fetchJsonData() {
+  fetch('/ItemsObjectData.json') // Se till att filen finns i "public"-mappen
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Nätverksfel vid hämtning av JSON');
+      }
+      return response.json();
+    })
+    .then(data => {
+      objects.value = data; // Uppdatera refens .value
+      console.log(objects.value); // Logga datan EFTER att den har laddats
+    })
+    .catch(error => console.error('Fel vid hämtning:', error));
+}
+
+// Anropa funktionen automatiskt när komponenten laddas
+onMounted(() => {
+  fetchJsonData();
+});
+
+
+
+
+<<<<<<< HEAD
 const items = ref([
 	{
 		id: 1,
@@ -216,6 +240,8 @@ const items = ref([
 		säljare: "Hampus",
 	},
 ])
+=======
+>>>>>>> 85fba7d82f124eb9b0facdf6e2939b7ee2eee150
 </script>
 
 <style scoped>
