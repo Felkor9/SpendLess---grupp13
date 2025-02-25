@@ -46,7 +46,6 @@ onMounted(() => {
 
 
 
-<<<<<<< HEAD
 const items = ref([
 	{
 		id: 1,
@@ -240,8 +239,6 @@ const items = ref([
 		säljare: "Hampus",
 	},
 ])
-=======
->>>>>>> 85fba7d82f124eb9b0facdf6e2939b7ee2eee150
 </script>
 
 <style scoped>
