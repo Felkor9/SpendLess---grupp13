@@ -51,25 +51,105 @@ const productCategory = [
 
 const selected = ref(null)
 
-// defineProps: ({
-// 	kategori: string,
-// })
+
 </script>
 
 
 <style scoped>
+
+/* CSS för desktop här */
+
+@media screen and (min-width: 850px) {
+
 *{
 	box-sizing: border-box;
 }
-/* #bigWrapper{
-	min-height: 80vh;
+
+
+#containerForAccounts {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	z-index: 1;
+}
+
+.containerSearch{
+	background-image: url(/assets/coffee-3989866_1280.jpg);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: 100%;
+	min-height: 300px;
+	/* width: 100vw; */
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	padding: 0;
+	/* margin: 0; */
+}
+
+.labelForSearch{
+	color: white;
+	font-size: 25px;
+	font-weight: 900;
+	/* font-family:'Times New Roman', Times, serif; */
+
+}
+
+.inputSearch{
+	font-size: 23px;
+	padding-inline: 20px;
+	font-family: 'Times New Roman', Times, serif;
+	border-radius: 0;
+}
+
+.categoryChooser{
+	min-width: 200px;
+}
+
+.inputButton{
+	margin-top: 10px;
+	width: 100px;
+	padding: 10px;
+	height: 50px;
+
+
+}
+
+.my-1{
+	display: flex;
+	/* justify-content: flex-start; */
+	flex-direction: column;
+	/* align-items: flex-start; */
+	width: 100vw;
+}
+
+#categoryitem{
+	/* display: flex; */
+	/* background-color: black; */
+	width: 100vw;
+	margin-top: 10px;
+
+}
+
+#containerForObject{
+	width: 100vw;
+	padding: 10px;
+
+}
+
+
+
+}
+
+/* här börjar css för mobil */
+
+@media screen and (max-width: 850px) {
+
+	*{
 	box-sizing: border-box;
-} */
+}
+
 
 #containerForAccounts {
 	display: flex;
@@ -157,4 +237,5 @@ const selected = ref(null)
 	margin-top: 10px;
 	font-size: 10px;
 } */
+}
 </style>
