@@ -3,11 +3,12 @@
 <BContainer fluid>
 <h1>Lägg upp annons!</h1>
 <!--  Här startar formuläret för annonsen -->
-    <BRow>
+<form>   
+<BRow>
         <BCol cols="4">
         <div class="productName">
 			<BFormGroup label="Namn på produkt" label-for="input-1">
-            <BFormInput id="input-1"type="text" placeholder="Skriv här"required>
+            <BFormInput id="input-1" v-model="formData.productName" type="text" placeholder="Skriv här"required>
 
             </BFormInput>
 			</BFormGroup>
@@ -20,7 +21,7 @@
            <BFormGroup
 			label-for="input-2"
             >
-            <BFormSelect v-model="selectedCategory" :options="productCategory" />
+            <BFormSelect v-model="formData.selectedCategory" :options="productCategory" />
             <BFormSelectOption :value="null" disabled> </BFormSelectOption>
 			</BFormGroup>
 
@@ -35,9 +36,9 @@
             >
             <div class="productCondition">
             <!--  radioknappar inuti div för att få dom i sidled -->
-            <BFormRadio v-model="selectedCondition" name="some-radios" value="A" class="radioButton">Nyskick </BFormRadio>
-            <BFormRadio v-model="selectedCondition" name="some-radios" value="B" class="radioButton">Begangnat </BFormRadio>
-            <BFormRadio v-model="selectedCondition" name="some-radios" value="C" class="radioButton">Slitet </BFormRadio>
+            <BFormRadio v-model="formData.selectedCondition" name="some-radios" value="nyskick" class="radioButton">Nyskick </BFormRadio>
+            <BFormRadio v-model="formData.selectedCondition" name="some-radios" value="begangnat" class="radioButton">Begangnat </BFormRadio>
+            <BFormRadio v-model="formData.selectedCondition" name="some-radios" value="slitet" class="radioButton">Slitet </BFormRadio>
 		    </div>
         </BFormGroup>
         </BCol>
@@ -59,7 +60,7 @@
         <BCol cols="4">
         <div class="productDescription">
         <BFormGroup label="Produkt beskrivning:" label-for="input-5">
-            <BFormTextarea v-model="textEx" placeholder="Nämn gärna när varan köpts, strolek på kläder osv..." rows="3" />
+            <BFormTextarea v-model="formData.productDescription" placeholder="Nämn gärna när varan köpts, strolek på kläder osv..." rows="3" />
         </BFormGroup>
 		</div>
         </BCol>
@@ -69,7 +70,7 @@
         <BCol cols="4">
         <div class="productPrice">
 			<BFormGroup label="Pris på produkt" label-for="input-6">
-            <BFormInput id="input-6" type="text"v-model="formattedPrice"  placeholder="Pris här"  required>
+            <BFormInput id="input-6" type="text"v-model="formData.productPrice"  placeholder="Pris här"  required>
 
             </BFormInput>
 			</BFormGroup>
@@ -81,12 +82,12 @@
         <BCol cols="4">
         <div class="addProduct">
 			<BFormGroup  label-for="input-7">
-            <BButton variant="success">LÄGG UPP ANNONS!🚀</BButton>
+            <BButton variant="success" type="submit" @click="submitForm">LÄGG UPP ANNONS!🚀</BButton>
 			</BFormGroup>
         </div>    
         </BCol>
     </BRow> 
-
+</form>
     </BContainer>
 </div>
 </template>
@@ -96,15 +97,57 @@ import {ref, computed} from 'vue'
 
 const productCategory = [
 {value: 'null', text: 'Välj en kategori'},
-{value: 'a', text: 'Växter'},
-{value: 'a', text: 'Elektronik'},
-{value: 'b', text: 'Heminredning'},
-{value: 'c', text: 'Hobby'},
-{value: 'd', text: 'Sport'},
+{value: 'växter', text: 'Växter'},
+{value: 'elektronik', text: 'Elektronik'},
+{value: 'heminredning', text: 'Heminredning'},
+{value: 'hobby', text: 'Hobby'},
+{value: 'sport', text: 'Sport'},
+{value: 'fordon', text: 'Fordon'},
+{value: 'djur', text: 'Djur'}
 ]
 
+/* const productName= ref(null)
 const selectedCategory = ref(null)
 const selectedCondition = ref(null)
+const productDescription = ref(null) */
+
+const formData = ref({
+  productName: "",
+  selectedCategory: "",
+  selectedCondition: "",
+  productDescription: "",
+  productPrice: ""
+});
+
+const submitForm = async () => {
+  try {
+    const response = await fetch("http://localhost:3000/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        ...formData.value,
+        productPrice: productPrice.value
+      }),
+    });
+
+    const result = await response.text(); // Handle non-JSON responses
+    if (!response.ok) throw new Error(result || "Request failed");
+    
+    alert("Form submitted successfully!");
+    // Reset form after submission
+    formData.value = {
+      productName: "",
+      selectedCategory: "",
+      selectedCondition: "",
+      productDescription: ""
+    };
+    productPrice.value = "";
+  } catch (error) {
+    console.error("Error:", error);
+    alert(`Submission failed: ${error.message}`);
+  }
+};
+
 
 let selectedFile = null;
 
