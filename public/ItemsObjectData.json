@@ -189,5 +189,117 @@
     "img": "../assets/fox.jpeg",
     "adress": "göteborg",
     "säljare": "Hampus"
+  },
+  {
+    "id": 1740566856640,
+    "namn": "strutsunge",
+    "kategori": "djur",
+    "skick": "",
+    "beskrivning": "vi köpte ett strutsägg i kenya, när vi  kom hem från resan hade ägget kläckts i väskan och upp hoppade en liten strutsunge",
+    "pris": 12355,
+    "img": "../assets/fox.jpeg",
+    "adress": "activeUser.adress",
+    "säljare": "activeUser.name"
+  },
+  {
+    "id": 1740566910958,
+    "namn": "lacoste piké",
+    "kategori": "kläder",
+    "skick": "nyskick",
+    "beskrivning": "fin tröja men var lite för stor för mig, nypris 1500",
+    "pris": 800,
+    "img": "../assets/fox.jpeg",
+    "adress": "activeUser.adress",
+    "säljare": "activeUser.name"
+  },
+  {
+    "id": 1740566960057,
+    "namn": "bordslampa",
+    "kategori": "heminredning",
+    "skick": "begangnat",
+    "beskrivning": "fin lampa från ikea, köpt 2005",
+    "pris": 90,
+    "img": "../assets/fox.jpeg",
+    "adress": "activeUser.adress",
+    "säljare": "activeUser.name"
+  },
+  {
+    "id": 1740567074770,
+    "namn": "krokodildräkt",
+    "kategori": "kläder",
+    "skick": "begangnat",
+    "beskrivning": "Hade denna på en halloweenfest, alla tyckte den var grym men sambon säger att jag inte får ha kvar den",
+    "pris": 350,
+    "img": "../assets/fox.jpeg",
+    "adress": "activeUser.adress",
+    "säljare": "activeUser.name"
+  },
+  {
+    "id": 1740569222764,
+    "namn": "Spöket Laban",
+    "kategori": "hobby",
+    "skick": "nyskick",
+    "beskrivning": "ett gosedjur som min son blev skrämd av så han vill inte ha den kvar.",
+    "pris": 120,
+    "img": "../assets/fox.jpeg",
+    "adress": "activeUser.adress",
+    "säljare": "activeUser.name"
+  },
+  {
+    "id": 1740569350503,
+    "namn": "ketchup",
+    "kategori": "hobby",
+    "skick": "nyskick",
+    "beskrivning": "123",
+    "pris": 44,
+    "img": "../assets/fox.jpeg",
+    "adress": "activeUser.adress",
+    "säljare": "activeUser.name"
+  },
+  {
+    "id": 1740569730949,
+    "namn": "keps",
+    "kategori": "kläder",
+    "skick": "begangnat",
+    "beskrivning": "en fin keps jag fick från min morfar, den har en drake på framsidan",
+    "pris": 123,
+    "img": "../assets/fox.jpeg",
+    "adress": "activeUser.adress",
+    "säljare": "activeUser.name"
+  },
+  {
+    "id": 1740570385593,
+    "namn": "JL tröjja",
+    "kategori": "kläder",
+    "skick": "begangnat",
+    "beskrivning": "köpte en sån bara för att alla andra hade en när vi gick på högstadiet.",
+    "pris": 555,
+    "img": "../assets/fox.jpeg",
+    "adress": "activeUser.adress",
+    "säljare": "activeUser.name"
+  },
+  {
+    "id": 1740572052497,
+    "namn": "ballerinakeps",
+    "kategori": "kläder",
+    "skick": "begangnat",
+    "storlek": "l",
+    "beskrivning": "bra keps till fin dans",
+    "pris": "60",
+    "img": "../assets/fox.jpeg",
+    "adress": "activeUser.adress",
+    "säljare": "activeUser.name"
+  },
+  {
+    "id": 1740572113441,
+    "namn": "kilt",
+    "kategori": "kläder",
+    "skick": "nyskick",
+    "storlek": "large",
+    "beskrivning": "köpt i skottland",
+    "pris": "66",
+    "img": "../assets/fox.jpeg",
+    "adress": "activeUser.adress",
+    "säljare": "activeUser.name"
   }
 ]
