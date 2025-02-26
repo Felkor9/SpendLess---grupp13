@@ -6,10 +6,14 @@
 				<label for="search" class="labelForSearch">Välkommen till SpendLess!</label>
 			</BCol>
 			<BCol cols="12">
-				<BFormInput v-model="text" placeholder="Vad letar du efter idag?" class="inputSearch"/>
+				<BFormInput v-model="search"  placeholder="Vad letar du efter idag?" class="inputSearch"/>
 			</BCol>
-			<BCol  cols="12"><BButton variant="success" class="inputButton">Sök</BButton> </BCol>
+			<BCol  cols="12"><BButton variant="success" class="inputButton"  @click="searchProduct">Sök</BButton> </BCol>
+
 		</BRow>
+
+
+
 	</BContainer>
 
   <BRow id="categoryitem">
@@ -29,6 +33,12 @@
 <option value="Kläder">Kläder</option> -->
 	<!-- </select> -->
 	<div id="containerForObject">
+		<BRow v-if="search.trim() !== ''">
+      <BCol v-for="product in filteredProducts" :key="product.id" cols="12">
+        <div class="product-card">{{ product.namn }}</div>
+      </BCol>
+    </BRow>
+
 	<ItemsObject />
 	</div>
 
@@ -37,7 +47,7 @@
 <script setup>
 import {BCol} from "bootstrap-vue-next"
 import ItemsObject from "../components/ItemsObject.vue"
-import {ref} from 'vue'
+import {ref, computed, onMounted} from 'vue'
 
 const productCategory = [
   {value: 'null', text: 'Välj en kategori'},
@@ -49,7 +59,33 @@ const productCategory = [
 ]
 
 const selected = ref(null)
+const search = ref('')
+const products = ref([])
 
+const productFetch = async () => {
+	try {
+		const response = await fetch("/ItemsObjectData.json")
+		if (!response.ok) throw new Error("Nätverksfel vid hämtning av JSON")
+		products.value = await response.json()
+		console.log("Hämtade produkter:", products.value) // Kontrollera i konsolen
+	} catch (error) {
+		console.error("Fel vid hämtning:", error)
+	}
+}
+
+const filteredProducts = computed(() => {
+  return products.value.filter(product => {
+    const matchesText = product.namn.toLowerCase().includes(search.value.toLowerCase())
+    return matchesText
+  })
+})
+
+function searchProduct() {
+  // Eftersom filtrering sker automatiskt genom `computed`, behöver inget annat göras här
+  console.log("Sökning:", search.value) // Logga för att säkerställa att sökningen fungerar
+}
+
+productFetch() // Anropa funktion för att hämta data vid start
 
 </script>
 
