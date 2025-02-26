@@ -47,34 +47,42 @@
 
 			<label for="LoginForm" class="PasswordLabel">Lösenord</label>
 			<input type="text" class="loginForm" />
-			<p><a href="">Glömt lösenord?</a></p>
-			<BButton variant="primary" size="sm" class="buttonLogIn"
+			<BButton @click="modal = !modal">Glömt lösenord?</BButton
+			><BModal v-model="modal" title="Glömt lösenord?"
+				>Gå till "Mitt konto" och fyll i dina uppgifter</BModal
+			>
+			<BButton variant="primary" size="sm" class="buttonLogIn" href="#/"
 				>LOGGA IN</BButton
 			>
 		</div>
-		<p>Har du inget konto? <a href="#">Skapa Konto</a></p>
+		<p>
+			Har du inget konto?
+			<a href="#myaccount">Skapa Konto</a>
+		</p>
 	</BContainer>
 </template>
 <script setup>
 //Här importerar vi lite gött
 import {ref} from "vue"
 
-//funtion för hamburgarmenyn
+//funtion för att öppna hamburgarmenyn (Felix)
 const hamburgerMenu = ref(false)
 const toggleMenu = () => {
 	hamburgerMenu.value = !hamburgerMenu.value
 }
 
-//Stänger hamburgarmenyn igen
+//Stänger hamburgarmenyn igen (Evelina)
 const closeMenu = () => {
 	hamburgerMenu.value = false
 }
 
-//Profilmenyn
+//Funktion för att öppna profilmenyn (Felix)
 const profileMenu = ref(false)
 const toggleProfile = () => {
 	profileMenu.value = !profileMenu.value
 }
+
+const modal = ref(false)
 </script>
 
 <style scoped>
