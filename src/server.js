@@ -34,8 +34,8 @@ app.post("/submit", (req, res) => {
         beskrivning: formData.productDescription,
         pris: Number(formData.productPrice),
         img: "../assets/fox.jpeg",
-        adress: "göteborg",
-        säljare: "Hampus"
+        adress: "activeUser.adress",
+        säljare: "activeUser.name"
       };
 
       jsonData.push(newItem);

@@ -8,7 +8,7 @@
         <BCol cols="4">
         <div class="productName">
 			<BFormGroup label="Namn på produkt" label-for="input-1">
-            <BFormInput id="input-1" v-model="formData.productName" type="text" placeholder="Skriv här"required>
+            <BFormInput id="input-1" v-model="formData.productName" type="text" placeholder="Skriv här">
 
             </BFormInput>
 			</BFormGroup>
@@ -23,7 +23,7 @@
             >
             <div class="productCategory">
             <BFormSelect v-model="formData.selectedCategory" :options="productCategory" />
-            <BFormSelectOption :value="null" disabled> </BFormSelectOption>
+            <BFormSelectOption :value="null" > </BFormSelectOption>
         </div>
 			</BFormGroup>
             </BCol>
@@ -42,8 +42,8 @@
 
             </BCol>
     </BRow>
-<!--  Skickväljare -->
-    <BRow >
+<!--  Skickväljare dyker bara upp om man inte valt djur-->
+    <BRow v-if="formData.selectedCategory !== 'djur'" >
         <BCol cols="4">
            <BFormGroup
 			label-for="input-3"
@@ -85,7 +85,7 @@
         <BCol cols="4">
         <div class="productPrice">
 			<BFormGroup label="Pris på produkt" label-for="input-6">
-            <BFormInput id="input-6" type="text"v-model="formData.productPrice"  placeholder="Pris här"  required>
+            <BFormInput id="input-6" type="text"v-model="formData.productPrice"  placeholder="Pris här"  >
 
             </BFormInput>
 			</BFormGroup>
@@ -97,7 +97,7 @@
         <BCol cols="4">
         <div class="addProduct">
 			<BFormGroup  label-for="input-7">
-            <BButton variant="success" type="submit" @click="submitForm">LÄGG UPP ANNONS!🚀</BButton>
+            <BButton variant="success" type="submit" :disabled="!isFormValid"  @click="submitForm">LÄGG UPP ANNONS!🚀</BButton>
 			</BFormGroup>
         </div>    
         </BCol>
@@ -143,6 +143,31 @@ const formData = ref({
   productAdress: "",
   selectedSize: null,
 });
+
+// Kollar så att allt är i fyllt, annars är knappen disabled
+const isFormValid = computed(() => {
+  return (
+    formData.value.productName.trim() !== "" &&
+    formData.value.selectedCategory !== "null" &&
+    formData.value.selectedCondition.trim() !== "" &&
+    formData.value.productDescription.trim() !== "" &&
+    formData.value.productPrice.trim() !== "" &&
+    // selectedSize behövs bara när kläder är valt
+    (formData.value.selectedCategory !== "kläder" || formData.value.selectedSize !== null) &&
+    // när djur är valt behövs ej condition 
+    (formData.value.selectedCategory === "djur" || formData.value.selectedCondition.trim() !== "")
+  );
+});
+
+/* formData.value.productImages.trim() !== "" &&    
+formData.value.productSeller.trim() !== "" &&
+formData.value.productAdress.trim() !== "" &&
+
+lägg till dom här i computed ovanför när konton och bilder funkar.
+*/
+
+
+
 
 
    // Skicka iväg forumuläret
