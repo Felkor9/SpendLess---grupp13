@@ -17,16 +17,22 @@
 	<div>
 		<ul v-if="hamburgerMenu" id="UnOrderedListCategory" class="bg-light">
 			<li class="listItemCategory">
-				<router-link to="/" class="routerLink">Home</router-link>
+				<router-link to="/" class="routerLink" @click="closeMenu"
+					>Home</router-link
+				>
 			</li>
 			<li class="listItemCategory">
-				<router-link to="/about" class="routerLink">About</router-link>
+				<router-link to="/about" class="routerLink" @click="closeMenu"
+					>About</router-link
+				>
 			</li>
 			<li class="listItemCategory">
-				<router-link to="/myaccount" class="routerLink">Mitt konto</router-link>
+				<router-link to="/myaccount" class="routerLink" @click="closeMenu"
+					>Mitt konto</router-link
+				>
 			</li>
 			<li class="listItemCategory">
-				<router-link to="/newproduct" class="routerLink"
+				<router-link to="/newproduct" class="routerLink" @click="closeMenu"
 					>Lägg upp annons</router-link
 				>
 			</li>
@@ -59,6 +65,12 @@ const toggleMenu = () => {
 	hamburgerMenu.value = !hamburgerMenu.value
 }
 
+//Stänger hamburgarmenyn igen
+const closeMenu = () => {
+	hamburgerMenu.value = false
+}
+
+//Profilmenyn
 const profileMenu = ref(false)
 const toggleProfile = () => {
 	profileMenu.value = !profileMenu.value
