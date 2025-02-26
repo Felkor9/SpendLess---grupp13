@@ -1,23 +1,5 @@
 <template>
 	<h1>Selected product</h1>
-	<p>
-		Denna sida ska tas bort från navbaren sen men måste se hur det ser ut medan
-		jag kodar.
-	</p>
-	<!-- <BCard
-		title= products.namn
-		img-src="./public/favicon-196.png"
-		img-alt="Image"
-		img-top
-		tag="article"
-		style="max-width: 25rem"
-		class="ProductCard"
-		v-if="products"
-	>
-		<BCardText> {{ products.beskrivning }} </BCardText>
-		<BButton href="#myaccount" variant="success">Visa intresse</BButton>
-	</BCard> -->
-
 	<div class="card" style="width: 350px" v-if="products">
 		<img
 			:src="products.img"
@@ -29,7 +11,7 @@
 			<h5 class="card-title">{{ products.namn }}</h5>
 			<p class="card-text">{{ products.beskrivning }}</p>
 			<p>{{ products.pris }} :-</p>
-			<button class="btn btn-primary">hej</button>
+			<button class="btn btn-success">Kontakta säljare</button>
 		</div>
 	</div>
 </template>
@@ -56,15 +38,17 @@ function fetchProductDetails() {
 			console.log(products.value) // Logga datan EFTER att den har laddats
 		})
 		.catch((error) => console.error("Fel vid hämtning:", error))
-
-	// '	return {products}
 }
 
 onMounted(fetchProductDetails)
 </script>
 
 <style scoped>
-.ProductCard {
+.card {
+	margin-left: 25px;
+}
+
+h1 {
 	margin-left: 25px;
 }
 </style>
