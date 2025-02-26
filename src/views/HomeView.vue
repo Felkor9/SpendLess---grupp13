@@ -1,9 +1,8 @@
 <template>
 	<!-- <h1>Home</h1> -->
-	<div id="bigWrapper">
 	<BContainer fluid class="containerSearch">
-		<BRow class="my-1">
-			<BCol cols="12">
+		<BRow class="my-1 ">
+			<BCol cols="12" >
 				<label for="search" class="labelForSearch">Välkommen till SpendLess!</label>
 			</BCol>
 			<BCol cols="12">
@@ -32,7 +31,7 @@
 	<div id="containerForObject">
 	<ItemsObject />
 	</div>
-	</div>
+
 </template>
 
 <script setup>
@@ -59,82 +58,85 @@ const selected = ref(null)
 
 /* CSS för desktop här */
 
-@media screen and (min-width: 850px) {
+@media screen and (min-width: 768px) {
 
 *{
 	box-sizing: border-box;
+	/* margin: 20px; */
 }
 
-
-#containerForAccounts {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	z-index: 1;
-}
 
 .containerSearch{
 	background-image: url(/assets/coffee-3989866_1280.jpg);
-	background-size: cover;
-	background-repeat: no-repeat;
+	background-size: 100%;
 	background-position: 100%;
-	min-height: 300px;
-	/* width: 100vw; */
+	min-height: 20rem;
 	display: flex;
-	flex-direction: column;
-	align-items: center;
 	justify-content: center;
-	/* margin: 0; */
+	width: 100vw;
+	margin: 20px;
+	display: flex;
+	margin: 0;
+
+
 }
 
 .labelForSearch{
 	color: white;
-	font-size: 25px;
+	font-size: 50px;
 	font-weight: 900;
+	margin-bottom: 0;
 	/* font-family:'Times New Roman', Times, serif; */
 
 }
 
 .inputSearch{
-	font-size: 23px;
+	font-size: 20px;
 	padding-inline: 20px;
+	padding: 10px;
 	font-family: 'Times New Roman', Times, serif;
-	border-radius: 0;
+	border-radius: 5px;
+	width: 50rem;
 }
 
 .categoryChooser{
-	min-width: 200px;
+	min-width: 20vw;
+	font-size: 20px;
 }
 
 .inputButton{
-	margin-top: 10px;
+	margin-top: 5px;
 	width: 100px;
-	padding: 10px;
+	padding: 0;
 	height: 50px;
+	font-size: 20px;
+
 
 
 }
 
 .my-1{
+	width: auto;
 	display: flex;
-	/* justify-content: flex-start; */
+	justify-content: center;
 	flex-direction: column;
-	/* align-items: flex-start; */
-	width: 100vw;
+	align-items: center;
+
 }
 
 #categoryitem{
 	/* display: flex; */
 	/* background-color: black; */
 	width: 100vw;
+	padding: 10px;
+	font-size: 100px;
 	margin-top: 10px;
 
 }
 
 #containerForObject{
 	width: 100vw;
-	padding: 10px;
+	padding: 5px;
 
 }
 
@@ -144,7 +146,7 @@ const selected = ref(null)
 
 /* här börjar css för mobil */
 
-@media screen and (max-width: 850px) {
+@media screen and (max-width: 768px) {
 
 	*{
 	box-sizing: border-box;
@@ -178,14 +180,13 @@ const selected = ref(null)
 	font-size: 25px;
 	font-weight: 900;
 	/* font-family:'Times New Roman', Times, serif; */
-
 }
 
 .inputSearch{
-	font-size: 23px;
-	padding-inline: 20px;
+	font-size: 20px;
+	/* padding-inline: 20px; */
 	font-family: 'Times New Roman', Times, serif;
-	border-radius: 0;
+	border-radius: 5px;
 }
 
 .categoryChooser{
