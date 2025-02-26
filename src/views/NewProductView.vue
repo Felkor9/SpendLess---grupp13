@@ -16,14 +16,29 @@
         </BCol>
     </BRow>
 <!--  Kategoriväljare -->
-     <BRow class="productCategory">
+     <BRow >
         <BCol cols="4">
            <BFormGroup
 			label-for="input-2"
             >
+            <div class="productCategory">
             <BFormSelect v-model="formData.selectedCategory" :options="productCategory" />
             <BFormSelectOption :value="null" disabled> </BFormSelectOption>
+        </div>
 			</BFormGroup>
+            </BCol>
+    </BRow>
+<!--  Storleksväljareväljare om man valt kategori-kläder-->
+     <BRow  >
+        <BCol cols="4">
+           <BFormGroup
+			label-for="input-2,5"
+            >
+            <div class="productSize">
+            <BFormSelect v-model="formData.selectedSize" :options="productSizes"  v-if="formData.selectedCategory === 'kläder'"/>
+            <BFormSelectOption :value="null" > </BFormSelectOption>
+		</div>	
+        </BFormGroup>
 
             </BCol>
     </BRow>
@@ -99,26 +114,38 @@ const productCategory = [
 {value: 'null', text: 'Välj en kategori'},
 {value: 'växter', text: 'Växter'},
 {value: 'elektronik', text: 'Elektronik'},
-{value: 'heminredning', text: 'Heminredning'},
 {value: 'hobby', text: 'Hobby'},
+{value: 'kläder', text: 'Kläder'},
+{value: 'heminredning', text: 'Heminredning'},
 {value: 'sport', text: 'Sport'},
 {value: 'fordon', text: 'Fordon'},
 {value: 'djur', text: 'Djur'}
 ]
+const productSizes = [
+{value: 'null', text: 'Välj en storlek'},
+{value: 'xs', text: 'XS'},
+{value: 's', text: 'SMALL'},
+{value: 'm', text: 'MEDIUM'},
+{value: 'l', text: 'LARGE'},
+{value: 'xl', text: 'XLARGE'},
+{value: 'other', text: 'ANNAT'}
+]
 
-/* const productName= ref(null)
-const selectedCategory = ref(null)
-const selectedCondition = ref(null)
-const productDescription = ref(null) */
-
+   // Värden som ska fyllas i från formuläret innan de skickas iväg
 const formData = ref({
   productName: "",
-  selectedCategory: "",
+  selectedCategory: "null",
   selectedCondition: "",
   productDescription: "",
-  productPrice: ""
+  productPrice: "",
+  productImages : "",
+  productSeller: "",
+  productAdress: "",
+  selectedSize: null,
 });
 
+
+   // Skicka iväg forumuläret
 const submitForm = async () => {
   try {
     const response = await fetch("http://localhost:3000/submit", {
@@ -133,22 +160,28 @@ const submitForm = async () => {
     const result = await response.text(); // Handle non-JSON responses
     if (!response.ok) throw new Error(result || "Request failed");
     
-    alert("Form submitted successfully!");
-    // Reset form after submission
+    alert("Annonsen är nu tillagt i systemet!");
+
+    // Nollställ forumuläret
     formData.value = {
-      productName: "",
-      selectedCategory: "",
-      selectedCondition: "",
-      productDescription: ""
+        productName: "",
+        selectedCategory: "null",
+        selectedCondition: "",
+        productDescription: "",
+        productPrice: "",
+        productImages : "",
+        productSeller: "",
+        productAdress: "",
+        selectedSize: null,
     };
-    productPrice.value = "";
+    // productPrice.value = "";
   } catch (error) {
     console.error("Error:", error);
     alert(`Submission failed: ${error.message}`);
   }
 };
 
-
+// Bilduppladdningsfunktion
 let selectedFile = null;
 
 function onFileSelected(event) {
@@ -178,12 +211,14 @@ const formattedPrice = computed({
 .productName {
     margin-top: 20px;
     margin-bottom: 30px;
-
 }
 
 .productCategory {
-    
-    
+    margin-bottom: 30px;
+}
+
+.productSize {
+    margin-top: -40px;
     margin-bottom: 30px;
 }
 
