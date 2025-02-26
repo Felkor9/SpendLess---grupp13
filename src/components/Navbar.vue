@@ -47,10 +47,14 @@
 
 			<label for="LoginForm" class="PasswordLabel">Lösenord</label>
 			<input type="text" class="loginForm" />
-			<BButton @click="modal = !modal">Glömt lösenord?</BButton
+			<BButton class="passwordButton" @click="modal = !modal"
+				>Glömt lösenord?</BButton
 			><BModal v-model="modal" title="Glömt lösenord?"
-				>Gå till "Mitt konto" och fyll i dina uppgifter</BModal
-			>
+				>Fyll i din e-post och tryck sedan på "OK".<input
+					type="text"
+					placeholder="E-post"
+					class="inputMail"
+			/></BModal>
 			<BButton variant="primary" size="sm" class="buttonLogIn" href="#/"
 				>LOGGA IN</BButton
 			>
@@ -133,11 +137,9 @@ const modal = ref(false)
 	#UnOrderedListCategory {
 		z-index: 2;
 		margin: 0;
-		/* margin-top: 10px; */
 		padding: 0;
 		width: 80vw;
 		height: auto;
-		/* background-color: rgb(255, 255, 255); */
 		position: absolute;
 		top: 50;
 		display: flex;
@@ -152,7 +154,6 @@ const modal = ref(false)
 		padding: 0;
 		width: 90vw;
 		min-height: 50vh;
-		/* background-color: rgb(0, 0, 0); */
 		position: absolute;
 		top: 50;
 		right: 0;
@@ -200,8 +201,26 @@ const modal = ref(false)
 		padding: 5px;
 		width: 15rem;
 	}
+
+	.passwordButton {
+		margin-top: 5px;
+		margin-bottom: 5px;
+	}
+
+	.inputMail {
+		margin-top: 5px;
+	}
 }
 @media screen and (min-width: 850px) {
+	.passwordButton {
+		margin-top: 5px;
+		margin-bottom: 5px;
+	}
+
+	.inputMail {
+		margin-top: 5px;
+	}
+
 	nav {
 		display: flex;
 		justify-content: space-around;
@@ -248,11 +267,9 @@ const modal = ref(false)
 	#UnOrderedListCategory {
 		z-index: 2;
 		margin: 0;
-		/* margin-top: 10px; */
 		padding: 0;
 		width: 80vw;
 		height: auto;
-		/* background-color: rgb(255, 255, 255); */
 		position: absolute;
 		top: 50;
 		display: flex;
@@ -267,7 +284,6 @@ const modal = ref(false)
 		padding: 0;
 		width: 90vw;
 		min-height: 50vh;
-		/* background-color: rgb(0, 0, 0); */
 		position: absolute;
 		top: 50;
 		right: 0;
