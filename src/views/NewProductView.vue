@@ -3,7 +3,7 @@
 <BContainer fluid>
 <h1>Lägg upp annons!</h1>
 <!--  Här startar formuläret för annonsen -->
-<form>   
+<form @submit.prevent="submitForm">   
 <BRow>
         <BCol cols="4">
         <div class="productName">
@@ -51,9 +51,9 @@
             >
             <div class="productCondition">
             <!--  radioknappar inuti div för att få dom i sidled -->
-            <BFormRadio v-model="formData.selectedCondition" name="some-radios" value="nyskick" class="radioButton">Nyskick </BFormRadio>
-            <BFormRadio v-model="formData.selectedCondition" name="some-radios" value="begangnat" class="radioButton">Begangnat </BFormRadio>
-            <BFormRadio v-model="formData.selectedCondition" name="some-radios" value="slitet" class="radioButton">Slitet </BFormRadio>
+            <BFormRadio v-model="formData.selectedCondition" name="condition-radios" value="nyskick" class="radioButton">Nyskick </BFormRadio>
+            <BFormRadio v-model="formData.selectedCondition" name="condition-radios" value="begangnat" class="radioButton">Begangnat </BFormRadio>
+            <BFormRadio v-model="formData.selectedCondition" name="condition-radios" value="slitet" class="radioButton">Slitet </BFormRadio>
 		    </div>
         </BFormGroup>
         </BCol>
@@ -75,7 +75,7 @@
         <BCol cols="4">
         <div class="productDescription">
         <BFormGroup label="Produkt beskrivning:" label-for="input-5">
-            <BFormTextarea v-model="formData.productDescription" placeholder="Nämn gärna när varan köpts, strolek på kläder osv..." rows="3" />
+            <BFormTextarea v-model="formData.productDescription" placeholder="Nämn gärna när varan köpts, inköpspris osv..." rows="3" />
         </BFormGroup>
 		</div>
         </BCol>
@@ -85,7 +85,7 @@
         <BCol cols="4">
         <div class="productPrice">
 			<BFormGroup label="Pris på produkt" label-for="input-6">
-            <BFormInput id="input-6" type="text"v-model="formData.productPrice"  placeholder="Pris här"  >
+            <BFormInput id="input-6" type="number"v-model="formData.productPrice"  placeholder="Pris här"  >
 
             </BFormInput>
 			</BFormGroup>
@@ -97,7 +97,7 @@
         <BCol cols="4">
         <div class="addProduct">
 			<BFormGroup  label-for="input-7">
-            <BButton variant="success" type="submit" :disabled="!isFormValid"  @click="submitForm">LÄGG UPP ANNONS!🚀</BButton>
+            <BButton variant="success" type="submit" :disabled="!isFormValid"  >LÄGG UPP ANNONS!🚀</BButton>
 			</BFormGroup>
         </div>    
         </BCol>
@@ -122,12 +122,12 @@ const productCategory = [
 {value: 'djur', text: 'Djur'}
 ]
 const productSizes = [
-{value: 'null', text: 'Välj en storlek'},
-{value: 'xs', text: 'XS'},
-{value: 's', text: 'SMALL'},
-{value: 'm', text: 'MEDIUM'},
-{value: 'l', text: 'LARGE'},
-{value: 'xl', text: 'XLARGE'},
+{value: null, text: 'Välj en storlek'},
+{value: 'xsmall', text: 'XS'},
+{value: 'small', text: 'SMALL'},
+{value: 'medium', text: 'MEDIUM'},
+{value: 'large', text: 'LARGE'},
+{value: 'xlarge', text: 'XLARGE'},
 {value: 'other', text: 'ANNAT'}
 ]
 
@@ -141,7 +141,7 @@ const formData = ref({
   productImages : "",
   productSeller: "",
   productAdress: "",
-  selectedSize: null,
+  selectedSize: "null",
 });
 
 // Kollar så att allt är i fyllt, annars är knappen disabled
@@ -149,7 +149,6 @@ const isFormValid = computed(() => {
   return (
     formData.value.productName.trim() !== "" &&
     formData.value.selectedCategory !== "null" &&
-    formData.value.selectedCondition.trim() !== "" &&
     formData.value.productDescription.trim() !== "" &&
     formData.value.productPrice.trim() !== "" &&
     // selectedSize behövs bara när kläder är valt
@@ -176,18 +175,16 @@ const submitForm = async () => {
     const response = await fetch("http://localhost:3000/submit", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        ...formData.value,
-        productPrice: productPrice.value
-      }),
+      body: JSON.stringify(formData.value)
     });
-
-    const result = await response.text(); // Handle non-JSON responses
-    if (!response.ok) throw new Error(result || "Request failed");
+    
+    // kolla så att post har funkat annars visa error
+    const result = await response.text(); 
+    if (!response.ok) throw new Error(result || "Nåt har gått fel med json");
     
     alert("Annonsen är nu tillagt i systemet!");
 
-    // Nollställ forumuläret
+    // Nollställ forumuläret efter att varan har skickats iväg
     formData.value = {
         productName: "",
         selectedCategory: "null",
@@ -202,7 +199,7 @@ const submitForm = async () => {
     // productPrice.value = "";
   } catch (error) {
     console.error("Error:", error);
-    alert(`Submission failed: ${error.message}`);
+    alert(`Nåt har gått fel vid uppladdningen: ${error.message}`);
   }
 };
 
@@ -218,14 +215,7 @@ function onImageUpload() {
 // Här ska de skrivas en cool funktion senare
 }
 
-const productPrice = ref('');
-const formattedPrice = computed({
-  get: () => (productPrice.value ? `${productPrice.value} Kr` : ''),
-  set: (value) => {
-    // ta bort bokstäver
-    productPrice.value = value.replace(/[^0-9.]/g, '');
-  }
-});
+
 
 
 
