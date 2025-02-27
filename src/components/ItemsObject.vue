@@ -282,14 +282,6 @@
       width: 100%;
     }
 
-    ul {
-      list-style-type: none;
-      width: 100%;
-      padding: 0;
-    }
-    li {
-      width: 100%;
-    }
     .cardContainer {
       display: flex;
       flex-wrap: wrap;
@@ -298,7 +290,7 @@
     }
 
     .card {
-      margin: 10px;
+      margin: 30px;
       height: 450px;
       box-sizing: border-box;
       position: relative;
