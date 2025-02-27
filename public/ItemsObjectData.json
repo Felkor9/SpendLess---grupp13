@@ -301,5 +301,17 @@
     "img": "../assets/fox.jpeg",
     "adress": "activeUser.adress",
     "säljare": "activeUser.name"
+  },
+  {
+    "id": 1740651401300,
+    "namn": "fotbollsskor",
+    "kategori": "kläder",
+    "skick": "begangnat",
+    "storlek": "other",
+    "beskrivning": "storlek 45 adidas pro super lagom \n\nanvända en säsong",
+    "pris": "879",
+    "img": "../assets/fox.jpeg",
+    "adress": "activeUser.adress",
+    "säljare": "activeUser.name"
   }
 ]
