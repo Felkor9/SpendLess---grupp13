@@ -1,26 +1,19 @@
 <template>
   <div class="itemWrapper">
     <div
-      id="itemCard"
+      class="card"
       v-for="object in objects"
-      :key="objects.id"
-      @click="chosenProduct(products)"
+      :key="object.id"
+      @click="chosenProduct(objects)"
     >
       <router-link :to="`selectedproduct/${object.id}`">
-        <img :src="object.img" alt="" class="itemImage" />
-        <ul>
-          <li>
-            <p class="itemText">{{ object.namn }}</p>
-          </li>
-          <li>
-            <p class="itemText">{{ object.adress }}</p>
-          </li>
-          <li>
-            <p class="itemText">
-              <strong>{{ object.pris }} :- </strong>
-            </p>
-          </li>
-        </ul>
+        <img :src="object.img" class="card-img-top imgObject" alt="" />
+        <div class="card-body">
+          <h5 class="card-title">{{ object.namn }}</h5>
+          <p class="card-text">{{ object.adress }}</p>
+          <p>{{ object.pris }} :-</p>
+          <button class="btn btn-success knapp">Kontakta säljare</button>
+        </div>
       </router-link>
     </div>
   </div>
@@ -253,47 +246,149 @@
 </script>
 
 <style scoped>
-  .itemWrapper {
-    height: auto;
-    width: 100dvw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    /* margin: 10px; */
-    margin-right: 30px;
-    padding: 8px;
+  @media screen and (min-width: 768px) {
+    .itemWrapper {
+      height: auto;
+      width: 100dvw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      /* margin: 10px; */
+      margin-right: 30px;
+      padding: 8px;
+    }
+
+    #itemCard {
+      /* box-shadow: 2px 2px 2px 1px; */
+      width: 150px;
+      height: 350px;
+      /* font-size: 20px; */
+      margin-bottom: 20px;
+      margin-right: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      object-fit: cover;
+    }
+
+    .itemText {
+      font-size: 18px;
+      margin: 0;
+    }
+
+    .itemImage {
+      height: 170px;
+      width: 100%;
+    }
+
+    ul {
+      list-style-type: none;
+      width: 100%;
+      padding: 0;
+    }
+    li {
+      width: 100%;
+    }
+    .cardContainer {
+      display: flex;
+      flex-wrap: wrap;
+      /* align-items: center; */
+      justify-content: center;
+    }
+
+    .card {
+      margin: 10px;
+      height: 450px;
+      box-sizing: border-box;
+      position: relative;
+      width: 250px;
+    }
+
+    .knapp {
+      position: absolute;
+      font-size: 12px;
+      width: auto;
+      height: fit-content;
+      bottom: 0;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .imgObject {
+      max-width: 250px;
+      max-height: 270px;
+    }
   }
 
-  #itemCard {
-    /* box-shadow: 2px 2px 2px 1px; */
-    width: 150px;
-    height: 350px;
-    /* font-size: 20px; */
-    margin-bottom: 20px;
-    margin-right: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    object-fit: cover;
-  }
+  @media screen and (max-width: 768px) {
+    .itemWrapper {
+      height: auto;
+      width: 100dvw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      /* margin: 10px; */
+      margin-right: 30px;
+      padding: 8px;
+    }
+    #itemCard {
+      /* box-shadow: 2px 2px 2px 1px; */
+      width: 150px;
+      height: 350px;
+      /* font-size: 20px; */
+      margin-bottom: 20px;
+      margin-right: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      object-fit: cover;
+    }
 
-  .itemText {
-    font-size: 18px;
-    margin: 0;
-  }
+    .itemText {
+      font-size: 18px;
+      margin: 0;
+    }
 
-  .itemImage {
-    height: 170px;
-    width: 100%;
-  }
+    .itemImage {
+      height: 170px;
+      width: 100%;
+    }
 
-  ul {
-    list-style-type: none;
-    width: 100%;
-    padding: 0;
-  }
-  li {
-    width: 100%;
+    ul {
+      list-style-type: none;
+      width: 100%;
+      padding: 0;
+    }
+    li {
+      width: 100%;
+    }
+    .cardContainer {
+      display: flex;
+      flex-wrap: wrap;
+      /* align-items: center; */
+      justify-content: center;
+    }
+
+    .card {
+      margin: 10px;
+      height: 350px;
+      box-sizing: border-box;
+      position: relative;
+      max-width: 150px;
+    }
+
+    .knapp {
+      position: absolute;
+      font-size: 12px;
+      width: auto;
+      height: fit-content;
+      bottom: 0;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .imgObject {
+      max-width: 150px;
+    }
   }
 </style>
