@@ -36,6 +36,11 @@
           >Lägg upp annons</router-link
         >
       </li>
+      <li class="listItemCategory">
+        <router-link to="/loggedinview" class="routerLink" @click="closeMenu"
+          >Inloggad vy</router-link
+        >
+      </li>
     </ul>
   </div>
 

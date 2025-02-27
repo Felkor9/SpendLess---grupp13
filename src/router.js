@@ -10,6 +10,8 @@ import NewProductView from "./views/NewProductView.vue"
 
 import SelectedProductView from "./views/SelectedProductView.vue"
 
+import LoggedInView from "./views/LoggedInView.vue"
+
 export default createRouter({
 	history: createWebHashHistory(),
 	routes: [
@@ -33,5 +35,10 @@ export default createRouter({
 			component: SelectedProductView,
 			path: "/selectedproduct/:id",
 		},
+		{
+			component: LoggedInView,
+			path: "/loggedinview/",
+		},
+
 	],
 })
