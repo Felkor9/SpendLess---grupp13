@@ -69,7 +69,7 @@ const user = ref({
   rating: 3
 });
 
-// standarsbild för användaren
+// standardbild för användaren
 const profilePicture = ref("/path-to-profile-image.jpg")
 
 // styr vilken flik vi är inne på. mina annonser är standard
