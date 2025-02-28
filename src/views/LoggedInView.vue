@@ -6,6 +6,7 @@
       <!-- Profilinformation -->
       <BRow>
         <BCol class="text-center">
+
           <BAvatar size="80px" :src="profilePicture" class="profile-avatar" />
           <h3>{{ user.name }}</h3>
           <p>{{ user.email }}</p>
@@ -104,14 +105,15 @@ const myListings = ref([
 .profile-tabs {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-top: 20px;
 	padding: 20px;
+  gap: 10px;
 
 }
 @media screen and (max-width: 360px) {
   .profile-tabs {
-    flex-direction: column;
-    gap: 10px;
+    flex-direction: column;;
   }
 }
 </style>
