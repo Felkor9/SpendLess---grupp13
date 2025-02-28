@@ -41,6 +41,7 @@
             id="input-2"
             type="name"
             placeholder="Ditt namn"
+            v-model="store.name"
             required
           />
 

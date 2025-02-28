@@ -7,11 +7,13 @@ export const createAccountStore = defineStore('auth', () => {
     const loginEmail = ref('')
     const loginPassword = ref('')
     const user = ref(null)
+    const name = ref('')
 
   const registerUser = () => {
     const newUser = {
-      email: email.value,
-      password: newPassword.value, // Använd "password" istället för "newPassword"
+        email: email.value,
+        password: newPassword.value,// Använd "password" istället för "newPassword"
+        name: name.value
     };
 
 
@@ -23,8 +25,9 @@ export const createAccountStore = defineStore('auth', () => {
     localStorage.setItem('users', JSON.stringify(users));
 
     // Återställer formuläret
-    email.value = '';
-    newPassword.value = '';
+        email.value = '';
+      newPassword.value = '';
+      name.value = ''
 
     console.log('användare registrerad' , users);
     };
@@ -43,22 +46,41 @@ export const createAccountStore = defineStore('auth', () => {
     console.log('✅ Grattis, du har loggat in');
     localStorage.setItem('loggedInUser', JSON.stringify(foundUser)); // Spara inloggad användare i localStorage
     user.value = foundUser; // Sätt den inloggade användaren i reaktiv variabel
-    console.log('Inloggad användare:', foundUser);
+      console.log('Inloggad användare:', foundUser);
+
+      loginEmail.value = '';
+      loginPassword.value = '';
+
   } else {
     // Om användaren inte hittas
     console.log('❌ Fel e-post eller lösenord');
-  }
-};
+        }
+
+    };
+
+    const logoutUser = () => {
+    // Rensa användaren från localStorage
+    localStorage.removeItem('loggedInUser');
+
+    // Återställ den reaktiva användaren
+    user.value = null;
+
+        console.log('Användaren har loggats ut');
+
+  };
 
 
     return {
         email,
-    newPassword,
-    loginEmail,
-    loginPassword,
-    user,
-    registerUser,
-    loginUser, };
+        newPassword,
+        loginEmail,
+        loginPassword,
+        user,
+        name,
+        registerUser,
+        loginUser,
+        logoutUser,
+    };
 });
 
 
