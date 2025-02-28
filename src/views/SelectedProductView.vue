@@ -1,6 +1,6 @@
 <template>
-  <h1>Selected productssss</h1>
-  <div class="card" style="width: 350px" v-if="products">
+  <h1>Selected product</h1>
+  <div class="card" v-if="products">
     <img
       :src="products.img"
       class="card-img-top"
@@ -8,9 +8,12 @@
       style="max-width: 350px"
     />
     <div class="card-body">
-      <h5 class="card-title">{{ products.namn }}</h5>
+      <h4 class="card-title">Information om varan</h4>
       <p class="card-text">{{ products.beskrivning }}</p>
+      <p>Stad: {{ products.adress }}</p>
       <p>{{ products.pris }} :-</p>
+      <BAvatar class="avatarPicture" />
+      <p>Varan säljs av: {{ products.säljare }}</p>
       <button class="btn btn-success">Kontakta säljare</button>
     </div>
   </div>
@@ -44,8 +47,15 @@
 </script>
 
 <style scoped>
+  /* .spanInDiv {
+    display: flex;
+    flex-direction: column;
+  } */
   .card {
     margin-left: 25px;
+    margin-right: 25px;
+    display: flex;
+    flex-direction: row;
   }
 
   h1 {
