@@ -1,3 +1,4 @@
+// diverse paket som behövs för formulärhantering.
 import express from "express";
 import fs from "fs";
 import cors from "cors";
@@ -9,9 +10,10 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootPublicPath = path.join(__dirname, '../public');
 
+//express ser till att de skapas en server för att ta emot formuläret POST
 const app = express();
 
-// Middleware
+
 app.use(express.json());
 app.use(cors({
   origin: "http://localhost:5173",
@@ -20,7 +22,7 @@ app.use(cors({
 }));
 app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
 
-// Multer configuration for file uploads
+// Multer tar hand om filen som läggs in i formuläret, den mellanlandar i multers famn innan den skickas vidare
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     const uploadDir = path.join(rootPublicPath, 'uploads');
@@ -38,22 +40,23 @@ const upload = multer({ storage });
 
 const FILE_PATH = path.join(__dirname, '../public/ItemsObjectData.json');
 
-// Updated /submit endpoint with file upload
+// När submitknappen i formuläret trycks på händer detta
 app.post("/submit", upload.array('productImages'), (req, res) => {
   
+  // req är request, alltså de som skickas iväg med POST
   const formData = req.body;
   const files = req.files;
-
+// fs kollar så att filen kan läsas in
   fs.readFile(FILE_PATH, "utf8", (err, data) => {
     if (err && err.code !== 'ENOENT') {
       console.error("Read error:", err);
       return res.status(500).send("Error reading data");
     }
-
+// skapar ett ID till annonsen som är datum och tid precis NU! 
     try {
       let jsonData = JSON.parse(data || '[]');
-      const newId = Date.now(); // id för annonsen, tar datum och tid
-      
+      const newId = Date.now(); 
+
       const newProductFileName = formData.productName
       ? formData.productName.replace(/[^a-zA-Z0-9åäöÅÄÖ]/g, '_')
       : 'product';
@@ -62,7 +65,7 @@ app.post("/submit", upload.array('productImages'), (req, res) => {
       const uploadDir = path.join(rootPublicPath, 'uploads');
       const imgArray = []; // länkar till bilderna ska in i arrayen
       
-
+//filerna som läggs till får nya namn
       if (files && files.length > 0) {
         files.forEach((file, index) => {
           const ext = path.extname(file.originalname);
@@ -81,7 +84,7 @@ app.post("/submit", upload.array('productImages'), (req, res) => {
       }
 
     
-
+// annons infon som ska skickas till json-filen
       const newItem = {
         id: Date.now(),
         namn: formData.productName,
@@ -112,6 +115,7 @@ app.post("/submit", upload.array('productImages'), (req, res) => {
   });
 });
 
-app.listen(3000, () => console.log("Server running on http://localhost:3000"));
+// servern körs på port 3000
+app.listen(3000, () => console.log("Servern för formulärhantering sker på :  http://localhost:3000"));
 
 
