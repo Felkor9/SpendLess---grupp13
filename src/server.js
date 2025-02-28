@@ -1,33 +1,87 @@
-// npm-paketet som låter oss skapa en server för att få ett fungerande formulär
-import express from "express"
+import express from "express";
+import fs from "fs";
+import cors from "cors";
+import multer from "multer";
+import path from "path";
+import { fileURLToPath } from 'url';
 
-// npm-paketet file system det låter oss skriva till itemsobjectsfilen
-import fs from "fs"
-
-import cors from "cors"
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const rootPublicPath = path.join(__dirname, '../public');
 
 const app = express();
+
+// Middleware
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: "http://localhost:5173",
+  methods: ["POST", "GET", "OPTIONS"],
+  allowedHeaders: ["Content-Type"]
+}));
+app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
 
-const FILE_PATH = "../public/ItemsObjectData.json";
+// Multer configuration for file uploads
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    const uploadDir = path.join(rootPublicPath, 'uploads');
+    if (!fs.existsSync(uploadDir)) {
+      fs.mkdirSync(uploadDir, { recursive: true });
+    }
+    cb(null, uploadDir);
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + '-' + file.originalname);
+  }
+});
 
-// Ta emot information från formData efter submitknappen tryckts
-app.post("/submit", (req, res) => {
+const upload = multer({ storage });
+
+const FILE_PATH = path.join(__dirname, '../public/ItemsObjectData.json');
+
+// Updated /submit endpoint with file upload
+app.post("/submit", upload.array('productImages'), (req, res) => {
+  
   const formData = req.body;
+  const files = req.files;
 
   fs.readFile(FILE_PATH, "utf8", (err, data) => {
-    if (err) {
+    if (err && err.code !== 'ENOENT') {
       console.error("Read error:", err);
-      // Initialize empty array if file doesn't exist
-      if (err.code === 'ENOENT') data = '[]';
-      else return res.status(500).send("Error reading data");
+      return res.status(500).send("Error reading data");
     }
 
     try {
       let jsonData = JSON.parse(data || '[]');
+      const newId = Date.now(); // id för annonsen, tar datum och tid
+      
+      const newProductFileName = formData.productName
+      ? formData.productName.replace(/[^a-zA-Z0-9åäöÅÄÖ]/g, '_')
+      : 'product';
 
-      // Fälten som skrivs in i itemsfilen med info från formuläret
+        
+      const uploadDir = path.join(rootPublicPath, 'uploads');
+      const imgArray = []; // länkar till bilderna ska in i arrayen
+      
+
+      if (files && files.length > 0) {
+        files.forEach((file, index) => {
+          const ext = path.extname(file.originalname);
+          const newFilename = `${newProductFileName}-${newId}-${index}${ext}`;
+          const oldPath = file.path;
+          const newPath = path.join(uploadDir, newFilename);
+
+          try {
+            fs.renameSync(oldPath, newPath);
+            imgArray.push(`uploads/${newFilename}`); //lägger till alla i ary
+          } catch (renameErr) {
+            console.error("kan inte spara filnamn:", renameErr);
+            imgArray.push(`uploads/${file.filename}`); // Fallback om det går fel
+          }
+        });
+      }
+
+    
+
       const newItem = {
         id: Date.now(),
         namn: formData.productName,
@@ -35,15 +89,15 @@ app.post("/submit", (req, res) => {
         skick: formData.selectedCondition,
         storlek: formData.selectedSize,
         beskrivning: formData.productDescription,
-        pris: formData.productPrice,
-        img: "../assets/fox.jpeg",
+        pris: Number(formData.productPrice) || 0,
+        img: imgArray.length > 0 ? imgArray : ["../assets/fox.jpeg"] ,
         adress: "activeUser.adress",
         säljare: "activeUser.name"
       };
 
       jsonData.push(newItem);
+      
 
-      // skriv till filen om error uppstår
       fs.writeFile(FILE_PATH, JSON.stringify(jsonData, null, 2), (writeErr) => {
         if (writeErr) {
           console.error("Write error:", writeErr);
@@ -58,13 +112,6 @@ app.post("/submit", (req, res) => {
   });
 });
 
-app.use(cors({
-  origin: "http://localhost:5173",  // Allow your frontend's origin
-  methods: "POST, GET, OPTIONS",
-  allowedHeaders: "Content-Type"
-}));
+app.listen(3000, () => console.log("Server running on http://localhost:3000"));
 
 
-
-// Starta servern på port 3000
-app.listen(3000, () => console.log("Servern för att formulär ska funka körs på  http://localhost:3000"));
