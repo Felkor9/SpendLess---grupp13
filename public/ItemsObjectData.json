@@ -216,5 +216,19 @@
     ],
     "adress": "activeUser.adress",
     "säljare": "activeUser.name"
+  },
+  {
+    "id": 1740764067247,
+    "namn": "Test",
+    "kategori": "växter",
+    "skick": "nyskick",
+    "storlek": "null",
+    "beskrivning": "Apelsina från brasilien ",
+    "pris": 23,
+    "img": [
+      "uploads/Test-1740764067245-0.jpg"
+    ],
+    "adress": "It-högskolan",
+    "säljare": "Felix Korshavn"
   }
 ]
