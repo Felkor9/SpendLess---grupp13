@@ -26,9 +26,14 @@
           >About</router-link
         >
       </li>
-      <li class="listItemCategory">
+      <li class="listItemCategory" v-if="store.user">
+        <router-link to="/loggedinview" class="routerLink" @click="closeMenu"
+          >Mina sidor</router-link
+        >
+      </li>
+      <li class="listItemCategory" v-else>
         <router-link to="/myaccount" class="routerLink" @click="closeMenu"
-          >Mitt konto</router-link
+          >Mina sidor</router-link
         >
       </li>
       <li class="listItemCategory">
@@ -36,43 +41,74 @@
           >Lägg upp annons</router-link
         >
       </li>
-      <li class="listItemCategory">
+      <!-- <li class="listItemCategory">
         <router-link to="/loggedinview" class="routerLink" @click="closeMenu"
           >Inloggad vy</router-link
         >
-      </li>
+      </li> -->
     </ul>
   </div>
 
   <BContainer id="containerForAccounts" v-if="profileMenu" class="bg-light">
-    <h1>Logga in</h1>
-    <div class="containerForSign">
-      <label for="LoginForm" class="EmailLabel">Email</label>
-      <input type="text" class="loginForm" />
-
-      <label for="LoginForm" class="PasswordLabel">Lösenord</label>
-      <input type="text" class="loginForm" />
-      <BButton class="passwordButton" @click="modal = !modal"
-        >Glömt lösenord?</BButton
-      ><BModal v-model="modal" title="Glömt lösenord?"
-        >Fyll i din e-post och tryck sedan på "OK".<input
-          type="text"
-          placeholder="E-post"
-          class="inputMail"
-      /></BModal>
-      <BButton variant="primary" size="sm" class="buttonLogIn" href="#/"
-        >LOGGA IN</BButton
+    <div v-if="store.user">
+      <p>välkommen {{ store.user.name }}</p>
+      <BButton
+        variant="primary"
+        size="sm"
+        class="buttonLogIn"
+        type="submit"
+        @click="logout"
+        >LOGGA UT</BButton
       >
     </div>
-    <p>
-      Har du inget konto?
-      <a href="#myaccount">Skapa Konto</a>
-    </p>
+    <div v-else>
+      <h1>Logga in</h1>
+      <BForm @submit.prevent="store.loginUser">
+        <div class="containerForSign">
+          <label for="LoginForm" class="EmailLabel">Email</label>
+          <input type="text" class="loginForm" v-model="store.loginEmail" />
+
+          <label for="LoginForm" class="PasswordLabel">Lösenord</label>
+          <input
+            type="password"
+            class="loginForm"
+            v-model="store.loginPassword"
+          />
+          <a
+            class="passwordButton linkPassword"
+            @click.prevent="modal = !modal"
+            href=""
+            >Glömt lösenord?</a
+          >
+          <BModal v-model="modal" title="Glömt lösenord?"
+            >Fyll i din e-post och tryck sedan på "OK".<input
+              type="text"
+              placeholder="E-post"
+              class="inputMail"
+          /></BModal>
+          <BButton variant="primary" size="sm" class="buttonLogIn" type="submit"
+            >LOGGA IN</BButton
+          >
+        </div>
+      </BForm>
+      <p>
+        Har du inget konto?
+        <a href="#myaccount" @click="closeProfile"
+          ><router-link to="/myaccount">Skapa Konto</router-link></a
+        >
+      </p>
+    </div>
   </BContainer>
 </template>
 <script setup>
   //Här importerar vi lite gött
   import { ref } from 'vue'
+  import { createAccountStore } from '../store'
+  import { BContainer } from 'bootstrap-vue-next'
+
+  const store = createAccountStore()
+
+  // console.log(store.user.name)
 
   //funtion för att öppna hamburgarmenyn (Felix)
   const hamburgerMenu = ref(false)
@@ -91,7 +127,15 @@
     profileMenu.value = !profileMenu.value
   }
 
+  const closeProfile = () => {
+    profileMenu.value = false
+  }
+
   const modal = ref(false)
+
+  const logout = () => {
+    store.logoutUser() // Anropa logoutUser actionen från store
+  }
 </script>
 
 <style scoped>
@@ -184,6 +228,11 @@
       font-size: 20px;
     }
 
+    #router-link {
+      color: white;
+      text-decoration: none;
+    }
+
     .EmailLabel {
       align-self: flex-start;
       font-size: large;
@@ -210,6 +259,12 @@
     .passwordButton {
       margin-top: 5px;
       margin-bottom: 5px;
+      background-color: none;
+      cursor: pointer;
+    }
+
+    .linkPassword {
+      cursor: pointer;
     }
 
     .inputMail {
@@ -306,6 +361,11 @@
       padding: 5px;
       width: 100%;
       border-bottom: 1px solid black;
+    }
+
+    #router-link {
+      color: white;
+      text-decoration: none;
     }
 
     .routerLink {
