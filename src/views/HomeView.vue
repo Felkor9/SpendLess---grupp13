@@ -43,18 +43,12 @@
       <!-- Loopar genom filtrerade produkter och visar dem som kort -->
       <div
         class="card"
-        style="width: 150px"
         v-for="product in filteredProducts"
         :key="product.id"
         @click="chosenProduct(products)"
       >
         <router-link :to="`selectedproduct/${product.id}`">
-          <img
-            :src="product.img"
-            class="card-img-top"
-            alt=""
-            style="max-width: 150px"
-          />
+          <img :src="product.img" class="card-img-top" alt="" />
           <div class="card-body">
             <h5 class="card-title">{{ product.namn }}</h5>
             <p class="card-text">{{ product.adress }}</p>
@@ -204,11 +198,11 @@
     }
 
     .card {
-      margin-right: 50px;
-      margin-bottom: 30px;
-      height: 400px;
+      margin: 30px;
+      height: 450px;
       box-sizing: border-box;
       position: relative;
+      width: 250px;
     }
 
     .knapp {
@@ -219,6 +213,10 @@
       bottom: 0;
       align-items: center;
       margin-bottom: 10px;
+    }
+    .imgObject {
+      max-width: 250px;
+      max-height: 270px;
     }
   }
 
