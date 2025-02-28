@@ -53,9 +53,13 @@
 
         <label for="LoginForm" class="PasswordLabel">Lösenord</label>
         <input type="text" class="loginForm" v-model="store.loginPassword" />
-        <BButton class="passwordButton" @click="modal = !modal"
-          >Glömt lösenord?</BButton
-        ><BModal v-model="modal" title="Glömt lösenord?"
+        <a
+          class="passwordButton linkPassword"
+          @click.prevent="modal = !modal"
+          href=""
+          >Glömt lösenord?</a
+        >
+        <BModal v-model="modal" title="Glömt lösenord?"
           >Fyll i din e-post och tryck sedan på "OK".<input
             type="text"
             placeholder="E-post"
@@ -215,6 +219,12 @@
     .passwordButton {
       margin-top: 5px;
       margin-bottom: 5px;
+      background-color: none;
+      cursor: pointer;
+    }
+
+    .linkPassword {
+      cursor: pointer;
     }
 
     .inputMail {
