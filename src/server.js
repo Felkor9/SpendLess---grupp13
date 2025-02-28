@@ -66,7 +66,7 @@ app.post("/submit", upload.array('productImages'), (req, res) => {
       if (files && files.length > 0) {
         files.forEach((file, index) => {
           const ext = path.extname(file.originalname);
-          const newFilename = `${newProductFileName}-${newId}-${index}${ext}`;
+          const newFilename = `${newProductFileName}-${newId}-${index +1 }${ext}`;
           const oldPath = file.path;
           const newPath = path.join(uploadDir, newFilename);
 

@@ -230,5 +230,21 @@
     ],
     "adress": "It-högskolan",
     "säljare": "Felix Korshavn"
+  },
+  {
+    "id": 1740763761530,
+    "namn": "Tröja",
+    "kategori": "kläder",
+    "skick": "nyskick",
+    "storlek": "medium",
+    "beskrivning": "en tröja som inte passar",
+    "pris": 563,
+    "img": [
+      "uploads/Tröja-1740763761527-1.jpg",
+      "uploads/Tröja-1740763761527-2.jpg",
+      "uploads/Tröja-1740763761527-3.jpg"
+    ],
+    "adress": "activeUser.adress",
+    "säljare": "activeUser.name"
   }
 ]
