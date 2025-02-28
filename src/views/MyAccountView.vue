@@ -24,30 +24,27 @@
       </BCol> -->
 
       <!-- Skapa konto formulär -->
-      <BForm @submit.prevent="registerUser">
+      <BForm @submit.prevent="store.registerUser">
         <BCol cols="12" class="FormAccount">
           <h1>Skapa konto</h1>
-          <BFormGroup label="Email address:" label-for="input-1"> </BFormGroup>
+          <BFormGroup label="Email address:" label-for="input-1" />
           <BFormInput
             id="input-1"
             type="email"
             placeholder="Din E-post"
             required
-            v-model="email"
-          ></BFormInput>
+            v-model="store.email"
+          />
 
-          <BFormGroup
-            label="För- och efternamn"
-            label-for="input-2"
-          ></BFormGroup>
+          <BFormGroup label="För- och efternamn" label-for="input-2" />
           <BFormInput
             id="input-2"
             type="name"
             placeholder="Ditt namn"
             required
-          ></BFormInput>
+          />
 
-          <BFormGroup label="Lösenord" label-for="input-3"></BFormGroup>
+          <BFormGroup label="Lösenord" label-for="input-3" />
           <BFormInput
             id="input-3"
             v-model.trim="value"
@@ -55,9 +52,9 @@
             type="password"
             placeholder="Lösenord"
             required
-            v-model="newPassword"
-          ></BFormInput>
-          <BFormGroup label="Upprepa lösenord" label-for="input-4"></BFormGroup>
+            v-model="store.newPassword"
+          />
+          <BFormGroup label="Upprepa lösenord" label-for="input-4" />
           <BFormInput
             id="input-3"
             v-model.trim="repeatValue"
@@ -65,7 +62,7 @@
             type="password"
             placeholder="Upprepa lösenord"
             required
-          ></BFormInput>
+          />
 
           <BFormGroup label="Stad" label-for="input-5">
             <BFormInput
@@ -73,7 +70,7 @@
               type="text"
               placeholder="Vart bor du?"
               required
-            ></BFormInput>
+            />
           </BFormGroup>
           <BButton variant="danger" type="submit" class="buttons"
             >Skapa konto</BButton
@@ -88,29 +85,33 @@
   import { BCol } from 'bootstrap-vue-next'
   import { ref, computed } from 'vue'
 
+  import { createAccountStore } from '../store'
+
+  const store = createAccountStore()
+
   const value = ref('')
   const repeatValue = ref('')
-  const email = ref('')
-  const newPassword = ref('')
+  // const email = ref('')
+  // const newPassword = ref('')
 
-  //Funktion för registrering
-  const registerUser = () => {
-    const newUser = {
-      email: email.value,
-      password: newPassword.value
-    }
+  // //Funktion för registrering
+  // const registerUser = () => {
+  //   const newUser = {
+  //     email: email.value,
+  //     password: newPassword.value
+  //   }
 
-    //Funktion för att spara lösenord och email i localStorage
-    const users = JSON.parse(localStorage.getItem('users')) || []
+  //   //Funktion för att spara lösenord och email i localStorage
+  //   const users = JSON.parse(localStorage.getItem('users')) || []
 
-    users.push(newUser)
-    localStorage.setItem('users', JSON.stringify(users))
+  //   users.push(newUser)
+  //   localStorage.setItem('users', JSON.stringify(users))
 
-    //Återställer formuläret
-    ;(email.value = ''), (newPassword.value = '')
+  //   //Återställer formuläret
+  //   ;(email.value = ''), (newPassword.value = '')
 
-    console.log(users)
-  }
+  //   console.log(users)
+  // }
 
   // Funktion för lösenordets minimumlängd (Evelina)
   const password = computed(() => (value.value?.length > 7 ? true : false))
