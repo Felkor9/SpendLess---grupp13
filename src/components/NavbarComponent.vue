@@ -46,24 +46,26 @@
 
   <BContainer id="containerForAccounts" v-if="profileMenu" class="bg-light">
     <h1>Logga in</h1>
-    <div class="containerForSign">
-      <label for="LoginForm" class="EmailLabel">Email</label>
-      <input type="text" class="loginForm" />
+    <BForm @submit.prevent="store.loginUser">
+      <div class="containerForSign">
+        <label for="LoginForm" class="EmailLabel">Email</label>
+        <input type="text" class="loginForm" v-model="store.loginEmail" />
 
-      <label for="LoginForm" class="PasswordLabel">Lösenord</label>
-      <input type="text" class="loginForm" />
-      <BButton class="passwordButton" @click="modal = !modal"
-        >Glömt lösenord?</BButton
-      ><BModal v-model="modal" title="Glömt lösenord?"
-        >Fyll i din e-post och tryck sedan på "OK".<input
-          type="text"
-          placeholder="E-post"
-          class="inputMail"
-      /></BModal>
-      <BButton variant="primary" size="sm" class="buttonLogIn" href="#/"
-        >LOGGA IN</BButton
-      >
-    </div>
+        <label for="LoginForm" class="PasswordLabel">Lösenord</label>
+        <input type="text" class="loginForm" v-model="store.loginPassword" />
+        <BButton class="passwordButton" @click="modal = !modal"
+          >Glömt lösenord?</BButton
+        ><BModal v-model="modal" title="Glömt lösenord?"
+          >Fyll i din e-post och tryck sedan på "OK".<input
+            type="text"
+            placeholder="E-post"
+            class="inputMail"
+        /></BModal>
+        <BButton variant="primary" size="sm" class="buttonLogIn" type="submit"
+          >LOGGA IN</BButton
+        >
+      </div>
+    </BForm>
     <p>
       Har du inget konto?
       <a href="#myaccount">Skapa Konto</a>
@@ -73,6 +75,9 @@
 <script setup>
   //Här importerar vi lite gött
   import { ref } from 'vue'
+  import { createAccountStore } from '../store'
+
+  const store = createAccountStore()
 
   //funtion för att öppna hamburgarmenyn (Felix)
   const hamburgerMenu = ref(false)
