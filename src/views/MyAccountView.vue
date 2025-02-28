@@ -61,9 +61,13 @@
             v-model.trim="repeatValue"
             :state="repeatPassword"
             type="password"
+            v-model="repeatPassword"
             placeholder="Upprepa lösenord"
             required
           />
+          <p v-if="!passwordsMatch && !passwordLongEnough" style="color: red">
+            ❌ Lösenorden matchar inte !
+          </p>
 
           <BFormGroup label="Stad" label-for="input-5">
             <BFormInput
@@ -92,6 +96,17 @@
 
   const value = ref('')
   const repeatValue = ref('')
+  const repeatPassword = ref('')
+
+  const passwordsMatch = computed(
+    () => store.newPassword === repeatPassword.value
+  )
+
+  const passwordLongEnough = computed(
+    () =>
+      store.newPassword.length >= 5 && store.repeatPassword.length >= 5 !== 0
+  )
+
   // const email = ref('')
   // const newPassword = ref('')
 
@@ -115,10 +130,11 @@
   // }
 
   // Funktion för lösenordets minimumlängd (Evelina)
-  const password = computed(() => (value.value?.length > 7 ? true : false))
-  const repeatPassword = computed(() =>
-    repeatValue.value?.length > 7 ? true : false
-  )
+  // const password = computed(() => (value.value?.length > 7 ? true : false))
+  // const repeatPassword = computed(() =>
+  //   repeatValue.value?.length > 7 ? true : false
+
+  // )
 </script>
 
 <style scoped>
