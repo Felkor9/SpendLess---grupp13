@@ -1,5 +1,6 @@
 <template>
   <nav>
+    <!-- Hamburgarmenyn -->
     <img
       src="/assets/hamburgerMeny.svg"
       alt="ikon för hamburgarmeny"
@@ -48,7 +49,7 @@
       </li> -->
     </ul>
   </div>
-
+  <!-- Profilmenyn till höger -->
   <BContainer id="containerForAccounts" v-if="profileMenu" class="bg-light">
     <div v-if="store.user">
       <p>välkommen {{ store.user.name }}</p>

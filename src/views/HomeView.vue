@@ -71,12 +71,12 @@
 
   // Lista av produktkategorier
   const productCategory = [
-    { value: 'null', text: 'Välj en kategori' },
-    { value: 'a', text: 'Växter' },
-    { value: 'b', text: 'Elektronik' },
-    { value: 'c', text: 'Heminredning' },
-    { value: 'd', text: 'Hobby' },
-    { value: 'e', text: 'Sport' }
+    { value: null, text: 'Välj en kategori' },
+    { value: 'Växter', text: 'Växter' },
+    { value: 'Elektronik', text: 'Elektronik' },
+    { value: 'Heminredning', text: 'Heminredning' },
+    { value: 'Hobby', text: 'Hobby' },
+    { value: 'Sport', text: 'Sport' }
   ]
 
   // Reaktiva variabler för kategorival, söktext och produktlista
@@ -95,6 +95,16 @@
       console.error('Fel vid hämtning:', error)
     }
   }
+
+  //Försöker filtrera produkter baserat på kategorival (Evelina)
+  // const filteredCategory = computed(() => {
+  //   if (!selected.value) {
+  //     return products.value
+  //   }
+  //   return products.value.filter(
+  //     (product) => product.kategori === selected.value
+  //   )
+  // })
 
   // Filtrerar produkter baserat på söktext
   const filteredProducts = computed(() => {

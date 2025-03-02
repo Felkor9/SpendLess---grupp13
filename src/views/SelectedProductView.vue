@@ -4,17 +4,19 @@
     <img
       :src="products.img"
       class="card-img-top"
-      alt=""
+      alt="produktkort"
       style="max-width: 350px"
     />
     <div class="card-body">
-      <h4 class="card-title">Information om varan</h4>
+      <h4 class="card-title">{{ products.namn }}</h4>
       <p class="card-text">{{ products.beskrivning }}</p>
-      <p>Stad: {{ products.adress }}</p>
-      <p>{{ products.pris }} :-</p>
-      <BAvatar class="avatarPicture" />
-      <p>Varan säljs av: {{ products.säljare }}</p>
-      <button class="btn btn-success">Kontakta säljare</button>
+      <p>Varan finns i {{ products.adress }}</p>
+      <p>Pris: {{ products.pris }} :-</p>
+      <div class="säljare-info">
+        <BAvatar class="avatarPicture" />
+        <p>Varan säljs av {{ products.säljare }}</p>
+      </div>
+      <button class="btn btn-success">Kontakta {{ products.säljare }}</button>
     </div>
   </div>
 </template>
@@ -47,10 +49,6 @@
 </script>
 
 <style scoped>
-  /* .spanInDiv {
-    display: flex;
-    flex-direction: column;
-  } */
   .card {
     margin-left: 25px;
     margin-right: 25px;
@@ -60,5 +58,15 @@
 
   h1 {
     margin-left: 25px;
+  }
+
+  .säljare-info {
+    display: flex;
+    align-items: center;
+  }
+
+  .avatarPicture {
+    margin-right: 10px;
+    margin-bottom: 15px;
   }
 </style>
