@@ -1,4 +1,3 @@
-import { json } from 'express';
 import { defineStore } from 'pinia';
 import { ref, computed } from 'vue';
 
@@ -11,11 +10,6 @@ export const createAccountStore = defineStore('auth', () => {
     const name = ref('')
     const repeatPassword = ref('')
 
-
-    // meddalnden
-    const messages = ref(json.parse(localStorage.getItem("chatMessages"))) || []
-
-    //inloggning och registrering
   const registerUser = () => {
     const newUser = {
         email: email.value,
