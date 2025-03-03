@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 
 export const createAccountStore = defineStore('auth', () => {
   const email = ref('');
@@ -8,6 +8,7 @@ export const createAccountStore = defineStore('auth', () => {
     const loginPassword = ref('')
     const user = ref(null)
     const name = ref('')
+    const repeatPassword = ref('')
 
   const registerUser = () => {
     const newUser = {
@@ -25,9 +26,11 @@ export const createAccountStore = defineStore('auth', () => {
     localStorage.setItem('users', JSON.stringify(users));
 
     // Återställer formuläret
-        email.value = '';
+      email.value = '';
       newPassword.value = '';
-      name.value = ''
+    name.value = '';
+    repeatPassword.value = '';
+
 
     console.log('användare registrerad' , users);
     };
@@ -69,6 +72,24 @@ export const createAccountStore = defineStore('auth', () => {
 
   };
 
+  const value = ref('')
+  const repeatValue = ref('')
+  // const matchedPasswords = ref('')
+
+
+  const passwordsMatch = computed(
+    () => newPassword.value === repeatPassword.value
+  )
+
+
+  const passwordLongEnough = computed(
+    () => {
+      return newPassword.value.length >= 5 && repeatPassword.value.length >= 5
+    }
+  )
+
+
+
 
     return {
         email,
@@ -79,7 +100,13 @@ export const createAccountStore = defineStore('auth', () => {
         name,
         registerUser,
         loginUser,
-        logoutUser,
+      logoutUser,
+      repeatValue,
+      repeatPassword,
+      passwordsMatch,
+      passwordLongEnough,
+      value,
+
     };
 });
 

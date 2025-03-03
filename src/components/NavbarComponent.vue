@@ -49,18 +49,23 @@
       </li> -->
     </ul>
   </div>
-  <!-- Profilmenyn till höger -->
+  <!-- Profilmenyn till höger som visas om användare är inloggad -->
   <BContainer id="containerForAccounts" v-if="profileMenu" class="bg-light">
     <div v-if="store.user">
       <p>välkommen {{ store.user.name }}</p>
-      <BButton
-        variant="primary"
-        size="sm"
-        class="buttonLogIn"
-        type="submit"
-        @click="logout"
-        >LOGGA UT</BButton
-      >
+      <div id="containerForSettings">
+        <BButton variant="secondary">Inställningar</BButton>
+      </div>
+      <div>
+        <BButton
+          variant="primary"
+          size="sm"
+          class="buttonLogIn"
+          type="submit"
+          @click="logout"
+          >LOGGA UT</BButton
+        >
+      </div>
     </div>
     <div v-else>
       <h1>Logga in</h1>
@@ -105,7 +110,7 @@
   //Här importerar vi lite gött
   import { ref } from 'vue'
   import { createAccountStore } from '../store'
-  import { BContainer } from 'bootstrap-vue-next'
+  import { BButton, BContainer } from 'bootstrap-vue-next'
 
   const store = createAccountStore()
 
