@@ -24,7 +24,7 @@
       </BCol> -->
 
       <!-- Skapa konto formulär -->
-      <BForm @submit.prevent="store.registerUser">
+      <BForm @submit.prevent="registerAndNavigate">
         <BCol cols="12" class="FormAccount">
           <h1>Skapa konto</h1>
           <BFormGroup label="Email address:" label-for="input-1" />
@@ -48,8 +48,6 @@
           <BFormGroup label="Lösenord" label-for="input-3" />
           <BFormInput
             id="input-3"
-            v-model.trim="value"
-            :state="password"
             type="password"
             placeholder="Lösenord"
             required
@@ -57,16 +55,17 @@
           />
           <BFormGroup label="Upprepa lösenord" label-for="input-4" />
           <BFormInput
-            id="input-3"
-            v-model.trim="repeatValue"
-            :state="repeatPassword"
+            id="input-4"
             type="password"
-            v-model="repeatPassword"
+            v-model="store.repeatPassword"
             placeholder="Upprepa lösenord"
             required
           />
-          <p v-if="!passwordsMatch && !passwordLongEnough" style="color: red">
-            ❌ Lösenorden matchar inte !
+          <p v-if="!store.passwordsMatch" style="color: red">
+            ❌ Lösenorden matchar inte!
+          </p>
+          <p v-if="!store.passwordLongEnough" style="color: red">
+            ❌ Lösenordet måste vara minst 5 tecken!
           </p>
 
           <BFormGroup label="Stad" label-for="input-5">
@@ -89,23 +88,20 @@
 <script setup>
   import { BCol } from 'bootstrap-vue-next'
   import { ref, computed } from 'vue'
+  import { useRouter } from 'vue-router'
 
   import { createAccountStore } from '../store'
 
   const store = createAccountStore()
+  const router = useRouter() // Hämta router för navigation
 
-  const value = ref('')
-  const repeatValue = ref('')
-  const repeatPassword = ref('')
+  const registerAndNavigate = () => {
+    // Anropa registerUser-metoden för att skapa användaren
+    store.registerUser()
 
-  const passwordsMatch = computed(
-    () => store.newPassword === repeatPassword.value
-  )
-
-  const passwordLongEnough = computed(
-    () =>
-      store.newPassword.length >= 5 && store.repeatPassword.length >= 5 !== 0
-  )
+    // Navigera till HomeView efter registrering
+    router.push({ path: '/' })
+  }
 
   // const email = ref('')
   // const newPassword = ref('')

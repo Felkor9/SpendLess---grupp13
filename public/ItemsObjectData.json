@@ -244,5 +244,21 @@
     ],
     "adress": "activeUser.adress",
     "säljare": "activeUser.name"
+  },
+  {
+    "id": 1740862017639,
+    "namn": "Trådhjärta",
+    "kategori": "heminredning",
+    "skick": "begangnat",
+    "storlek": "null",
+    "beskrivning": "ett litet hjärta som cajsa har gjort slöjden",
+    "pris": 321,
+    "img": [
+      "uploads/Trådhjärta-1740862017636-1.jpg",
+      "uploads/Trådhjärta-1740862017636-2.jpg",
+      "uploads/Trådhjärta-1740862017636-3.jpg"
+    ],
+    "adress": "activeUser.adress",
+    "säljare": "activeUser.name"
   }
 ]
