@@ -33,22 +33,21 @@
         placeholder="Välj kategori"
         class="categoryChooser"
       />
-      <BFormSelectOption :value="null" disabled></BFormSelectOption>
     </BCol>
   </BRow>
 
   <!-- Produktvisning -->
   <div id="containerForObject">
-    <div v-if="search.trim() !== ''" class="cardContainer">
+    <div v-if="filteredProducts.length > 0" class="cardContainer">
       <!-- Loopar genom filtrerade produkter och visar dem som kort -->
       <div
         class="card"
         v-for="product in filteredProducts"
         :key="product.id"
-        @click="chosenProduct(products)"
+        @click="chosenProduct(product)"
       >
         <router-link :to="`selectedproduct/${product.id}`">
-          <img :src="product.img" class="card-img-top" alt="" />
+          <img :src="product.img" class="card-img-top" alt="produktkort" />
           <div class="card-body">
             <h5 class="card-title">{{ product.namn }}</h5>
             <p class="card-text">{{ product.adress }}</p>
@@ -58,25 +57,27 @@
         </router-link>
       </div>
     </div>
-    <!-- Visar standardprodukter om ingen sökning gjorts -->
-    <div v-if="search === ''">
-      <ItemsObject />
+    <!-- Visar meddelande ifall sökningen inte finns -->
+    <div v-if="filteredProducts.length === 0">
+      <p>Kan inte hitta det du söker efter...</p>
     </div>
   </div>
 </template>
 
 <script setup>
   import { ref, computed } from 'vue'
-  import ItemsObject from '../components/ItemsObject.vue'
 
   // Lista av produktkategorier
   const productCategory = [
     { value: null, text: 'Välj en kategori' },
-    { value: 'Växter', text: 'Växter' },
-    { value: 'Elektronik', text: 'Elektronik' },
-    { value: 'Heminredning', text: 'Heminredning' },
-    { value: 'Hobby', text: 'Hobby' },
-    { value: 'Sport', text: 'Sport' }
+    { value: 'hem & trädgård', text: 'Hem & Trädgård' },
+    { value: 'elektronik', text: 'Elektronik' },
+    { value: 'fordon', text: 'Fordon' },
+    { value: 'hobby', text: 'Hobby' },
+    { value: 'sport', text: 'Sport' },
+    { value: 'djur', text: 'Djur' },
+    { value: 'kläder', text: 'Kläder' },
+    { value: 'köksutrustning', text: 'Köksutrustning' }
   ]
 
   // Reaktiva variabler för kategorival, söktext och produktlista
@@ -84,7 +85,7 @@
   const search = ref('')
   const products = ref([])
 
-  // Funktion för att hämta produkter från en JSON-fil
+  // Funktion för att hämta produkter från en JSON-fil (Felix)
   const productFetch = async () => {
     try {
       const response = await fetch('/ItemsObjectData.json')
@@ -96,32 +97,25 @@
     }
   }
 
-  //Försöker filtrera produkter baserat på kategorival (Evelina)
-  // const filteredCategory = computed(() => {
-  //   if (!selected.value) {
-  //     return products.value
-  //   }
-  //   return products.value.filter(
-  //     (product) => product.kategori === selected.value
-  //   )
-  // })
-
-  // Filtrerar produkter baserat på söktext
+  //Filtrering av kategori samt sökfält (Evelina)
   const filteredProducts = computed(() => {
-    return products.value.filter((product) => {
-      return product.namn.toLowerCase().includes(search.value.toLowerCase())
-    })
+    let filtered = products.value
+
+    //Filtera baserat på kategori om den är vald
+    if (selected.value) {
+      filtered = filtered.filter(
+        (product) =>
+          product.kategori.toLowerCase() === selected.value.toLowerCase()
+      )
+    }
+    //Filtrera baserat på söktext
+    if (search.value.trim() !== '') {
+      filtered = filtered.filter((product) =>
+        product.namn.toLowerCase().includes(search.value.toLowerCase())
+      )
+    }
+    return filtered
   })
-
-  // Funktion som hanterar sökning (loggar endast sökningen eftersom filtrering redan sker automatiskt)
-  function searchProduct() {
-    console.log('Sökning:', search.value)
-  }
-
-  // Funktion som hanterar val av produkt
-  function chosenProduct(product) {
-    console.log('Vald produkt:', product)
-  }
 
   // Hämtar produkter vid start
   productFetch()
