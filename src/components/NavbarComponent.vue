@@ -58,7 +58,11 @@
         <BAvatar size="80px" :src="profilePicture" class="profile-avatar" />
         <p>Välkommen {{ store.user.name }}!</p>
         <BButton variant="secondary" class="settingsButton"
-          >Inställningar</BButton
+          ><router-link
+            to="/settings"
+            style="color: white; text-decoration: none"
+            >Inställningar</router-link
+          ></BButton
         >
       </div>
       <div>

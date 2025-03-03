@@ -12,6 +12,8 @@ import SelectedProductView from "./views/SelectedProductView.vue"
 
 import LoggedInView from "./views/LoggedInView.vue"
 
+import SettingsView from "./views/SettingsView.vue"
+
 export default createRouter({
 	history: createWebHashHistory(),
 	routes: [
@@ -39,6 +41,9 @@ export default createRouter({
 			component: LoggedInView,
 			path: "/loggedinview/",
 		},
-
+		{
+			component: SettingsView,
+			path: "/settings/",
+		},
 	],
 })
