@@ -53,10 +53,13 @@
   </div>
   <!-- Profilmenyn till höger som visas om användare är inloggad -->
   <BContainer id="containerForAccounts" v-if="profileMenu" class="bg-light">
-    <div v-if="store.user">
-      <p>välkommen {{ store.user.name }}</p>
+    <div v-if="store.user" class="wrapper">
       <div id="containerForSettings">
-        <BButton variant="secondary">Inställningar</BButton>
+        <BAvatar size="80px" :src="profilePicture" class="profile-avatar" />
+        <p>Välkommen {{ store.user.name }}!</p>
+        <BButton variant="secondary" class="settingsButton"
+          >Inställningar</BButton
+        >
       </div>
       <div>
         <BButton
@@ -277,6 +280,33 @@
 
     .inputMail {
       margin-top: 5px;
+    }
+
+    #containerForSettings {
+      width: 100%;
+      height: 150%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: center;
+    }
+
+    .wrapper {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100%;
+      /* width: 100%; */
+    }
+
+    .settingsButton {
+      width: 40%;
+      font-size: small;
+    }
+    .profile-avatar {
+      border: 3px solid white;
+      margin-bottom: 10px;
+      /* align-self: top; */
     }
   }
   @media screen and (min-width: 850px) {

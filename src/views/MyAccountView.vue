@@ -87,7 +87,7 @@
 
 <script setup>
   import { BCol } from 'bootstrap-vue-next'
-  import { ref, computed } from 'vue'
+  // import { ref, computed } from 'vue'
   import { useRouter } from 'vue-router'
 
   import { createAccountStore } from '../store'
@@ -102,35 +102,6 @@
     // Navigera till HomeView efter registrering
     router.push({ path: '/' })
   }
-
-  // const email = ref('')
-  // const newPassword = ref('')
-
-  // //Funktion för registrering
-  // const registerUser = () => {
-  //   const newUser = {
-  //     email: email.value,
-  //     password: newPassword.value
-  //   }
-
-  //   //Funktion för att spara lösenord och email i localStorage
-  //   const users = JSON.parse(localStorage.getItem('users')) || []
-
-  //   users.push(newUser)
-  //   localStorage.setItem('users', JSON.stringify(users))
-
-  //   //Återställer formuläret
-  //   ;(email.value = ''), (newPassword.value = '')
-
-  //   console.log(users)
-  // }
-
-  // Funktion för lösenordets minimumlängd (Evelina)
-  // const password = computed(() => (value.value?.length > 7 ? true : false))
-  // const repeatPassword = computed(() =>
-  //   repeatValue.value?.length > 7 ? true : false
-
-  // )
 </script>
 
 <style scoped>
