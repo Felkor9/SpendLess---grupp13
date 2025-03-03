@@ -1,5 +1,5 @@
 <template>
-  <h1>Selected product</h1>
+ <h1 v-if="products">{{ products.namn }}</h1>
   <div class="card" v-if="products">
     <img
       :src="products.img"
@@ -22,6 +22,7 @@
 
 <!-- Modal -->
 <div v-if="showModal" class="modal">
+  
   <!-- Innehållet i modalen -->
   <div class="modal-content">
     <span class="close" @click="showModal = false">&times;</span>
