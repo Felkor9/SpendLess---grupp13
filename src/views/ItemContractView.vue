@@ -1,7 +1,18 @@
 <template>
   <div class="contractWrapper">
     <h1>Kontrakt Signering</h1>
-
+    <BRow>
+      <BCol cols="12">
+        <BFormGroup label-for="input-2">
+          <div class="contractSelector">
+            <BFormSelect
+              v-model="selectedContract"
+              :options="computedItemsList"
+            />
+          </div>
+        </BFormGroup>
+      </BCol>
+    </BRow>
     <div>
       <BFormCheckbox
         id="checkbox-1"
@@ -24,19 +35,19 @@
       </BFormCheckbox>
     </div>
 
-    <div class="verification">
-      <h1 v-if="verificationStatus">
-        Detta kontraktet är nu signerat av båda parter. ps, Tänk på att din
-        rating kan sänkas om du häver detta.
-      </h1>
+    <div class="verification" v-if="verificationStatus">
+      <h1>Detta kontraktet är nu signerat av båda parter.</h1>
+      <h5>Tänk på att din rating kan sänkas om du häver detta.</h5>
     </div>
   </div>
 </template>
 <script setup>
-  import { ref, computed } from 'vue'
+  import { ref, computed, onMounted } from 'vue'
 
+  const selectedContract = ref(null)
   const sellerVerification = ref('inte signerat')
   const buyerVerification = ref('inte signerat')
+  const objects = ref([])
 
   const verificationStatus = computed(() => {
     return (
@@ -45,18 +56,14 @@
     )
   })
 
-  /* 
   function fetchJsonData() {
-    fetch('/ItemsObjectData.json') // Se till att filen finns i "public"-mappen
+    fetch('/ItemsObjectData.json')
       .then((response) => {
-        if (!response.ok) {
-          throw new Error('Nätverksfel vid hämtning av JSON')
-        }
+        if (!response.ok) throw new Error('Nätverksfel vid hämtning av JSON')
         return response.json()
       })
       .then((data) => {
-        objects.value = data // Uppdatera refens .value
-        console.log(objects.value) // Logga datan EFTER att den har laddats
+        objects.value = data
       })
       .catch((error) => console.error('Fel vid hämtning:', error))
   }
@@ -66,10 +73,14 @@
     fetchJsonData()
   })
 
-  function chosenProduct(products) {
-    console.log('clicked')
-    clickedProduct.value = products
-  } */
+  const computedItemsList = computed(() => [
+    { value: null, text: 'Välj annons med rätt id' },
+    ...objects.value.map((object) => ({
+      value: object.id,
+      // Check your JSON structure and adjust these property names accordingly
+      text: `${object.namn} (ID: ${object.id})`
+    }))
+  ])
 </script>
 
 <style scoped>
