@@ -39,7 +39,7 @@
           >Mina sidor</router-link
         >
       </li>
-      <li class="listItemCategory">
+      <li class="listItemCategory" v-if="store.user">
         <router-link to="/newproduct" class="routerLink" @click="closeMenu"
           >Lägg upp annons</router-link
         >
@@ -437,6 +437,33 @@
     .loginForm {
       padding: 5px;
       width: 15rem;
+    }
+
+    .wrapper {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100%;
+      /* width: 100%; */
+    }
+
+    #containerForSettings {
+      width: 100%;
+      height: 150%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: center;
+    }
+
+    .settingsButton {
+      width: 40%;
+      font-size: small;
+    }
+    .profile-avatar {
+      border: 3px solid white;
+      margin-bottom: 10px;
+      /* align-self: top; */
     }
   }
 </style>
