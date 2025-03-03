@@ -31,8 +31,8 @@
       width="50%"
       height="200"
       style="border: 0"
-      allowfullscreen=""
+      allowfullscreen="100%"
       loading="lazy"
-    ></iframe>
+    />
   </div>
 </template>
