@@ -14,6 +14,10 @@ import LoggedInView from "./views/LoggedInView.vue"
 
 import SettingsView from "./views/SettingsView.vue"
 
+import ItemContractView from "./views/ItemContractView.vue"
+
+
+
 export default createRouter({
 	history: createWebHashHistory(),
 	routes: [
@@ -44,6 +48,10 @@ export default createRouter({
 		{
 			component: SettingsView,
 			path: "/settings/",
+		},
+		{
+			component: ItemContractView,
+			path: "/itemcontract/",
 		},
 	],
 })
