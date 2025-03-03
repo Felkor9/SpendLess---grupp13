@@ -7,7 +7,9 @@
       id="hamburgerIcon"
       @click="toggleMenu()"
     />
-    <img src="/assets/spendLess-Ikonv1.png" alt="" id="spendLessIcon" />
+    <router-link to="/">
+      <img src="/assets/spendLess-Ikonv1.png" alt="" id="spendLessIcon"
+    /></router-link>
     <img
       src="/assets/userIcon.svg"
       alt=""
