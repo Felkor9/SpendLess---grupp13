@@ -7,7 +7,9 @@
       id="hamburgerIcon"
       @click="toggleMenu()"
     />
-    <img src="/assets/spendLess-Ikonv1.png" alt="" id="spendLessIcon" />
+    <router-link to="/">
+      <img src="/assets/spendLess-Ikonv1.png" alt="" id="spendLessIcon"
+    /></router-link>
     <img
       src="/assets/userIcon.svg"
       alt=""
@@ -37,7 +39,7 @@
           >Mina sidor</router-link
         >
       </li>
-      <li class="listItemCategory">
+      <li class="listItemCategory" v-if="store.user">
         <router-link to="/newproduct" class="routerLink" @click="closeMenu"
           >Lägg upp annons</router-link
         >
@@ -49,18 +51,30 @@
       </li> -->
     </ul>
   </div>
-  <!-- Profilmenyn till höger -->
+  <!-- Profilmenyn till höger som visas om användare är inloggad -->
   <BContainer id="containerForAccounts" v-if="profileMenu" class="bg-light">
-    <div v-if="store.user">
-      <p>välkommen {{ store.user.name }}</p>
-      <BButton
-        variant="primary"
-        size="sm"
-        class="buttonLogIn"
-        type="submit"
-        @click="logout"
-        >LOGGA UT</BButton
-      >
+    <div v-if="store.user" class="wrapper">
+      <div id="containerForSettings">
+        <BAvatar size="80px" :src="profilePicture" class="profile-avatar" />
+        <p>Välkommen {{ store.user.name }}!</p>
+        <BButton variant="secondary" class="settingsButton"
+          ><router-link
+            to="/settings"
+            style="color: white; text-decoration: none"
+            >Inställningar</router-link
+          ></BButton
+        >
+      </div>
+      <div>
+        <BButton
+          variant="primary"
+          size="sm"
+          class="buttonLogIn"
+          type="submit"
+          @click="logout"
+          >LOGGA UT</BButton
+        >
+      </div>
     </div>
     <div v-else>
       <h1>Logga in</h1>
@@ -105,7 +119,7 @@
   //Här importerar vi lite gött
   import { ref } from 'vue'
   import { createAccountStore } from '../store'
-  import { BContainer } from 'bootstrap-vue-next'
+  import { BButton, BContainer } from 'bootstrap-vue-next'
 
   const store = createAccountStore()
 
@@ -271,6 +285,33 @@
     .inputMail {
       margin-top: 5px;
     }
+
+    #containerForSettings {
+      width: 100%;
+      height: 150%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: center;
+    }
+
+    .wrapper {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100%;
+      /* width: 100%; */
+    }
+
+    .settingsButton {
+      width: 40%;
+      font-size: small;
+    }
+    .profile-avatar {
+      border: 3px solid white;
+      margin-bottom: 10px;
+      /* align-self: top; */
+    }
   }
   @media screen and (min-width: 850px) {
     .passwordButton {
@@ -396,6 +437,33 @@
     .loginForm {
       padding: 5px;
       width: 15rem;
+    }
+
+    .wrapper {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100%;
+      /* width: 100%; */
+    }
+
+    #containerForSettings {
+      width: 100%;
+      height: 150%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: center;
+    }
+
+    .settingsButton {
+      width: 40%;
+      font-size: small;
+    }
+    .profile-avatar {
+      border: 3px solid white;
+      margin-bottom: 10px;
+      /* align-self: top; */
     }
   }
 </style>

@@ -42,6 +42,13 @@
             >Meddelanden</BButton
           >
         </BCol>
+        <BCol>
+          <router-link to="/newproduct">
+            <BButton variant="warning" block
+              >Lägg upp annons</BButton
+            ></router-link
+          >
+        </BCol>
       </BRow>
 
       <!--innehåll (dynmasikt)-->

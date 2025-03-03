@@ -90,7 +90,7 @@
     "storlek": "M",
     "img": "../assets/lampa.webp",
     "adress": "Helsingborg",
-    "kategori": "inredning",
+    "kategori": "hem & trädgård",
     "pris": 159,
     "beskrivning": "Modern lampa för vardagsrummet.",
     "säljare": "Linda"
@@ -114,7 +114,7 @@
     "storlek": "L",
     "img": "../assets/bokhylla.jpg",
     "adress": "Uppsala",
-    "kategori": "möbler",
+    "kategori": "hem & trädgård",
     "pris": 499,
     "beskrivning": "En stilren bokhylla för ditt hem.",
     "säljare": "Johanna"
@@ -150,7 +150,7 @@
     "storlek": "XL",
     "img": "../assets/lopband.webp",
     "adress": "Stockholm",
-    "kategori": "sport & fritid",
+    "kategori": "sport",
     "pris": 3000,
     "beskrivning": "Köpte till maken men han använder den inte.",
     "säljare": "Petra"
@@ -162,7 +162,7 @@
     "storlek": "L",
     "img": "../assets/skrivbord.jpg",
     "adress": "Göteborg",
-    "kategori": "möbler",
+    "kategori": "hem & trädgård",
     "pris": 250,
     "beskrivning": "Litet men rymligt och stabilt.",
     "säljare": "Joakim"
@@ -220,14 +220,12 @@
   {
     "id": 1740764067247,
     "namn": "Test",
-    "kategori": "växter",
+    "kategori": "hem & trädgård",
     "skick": "nyskick",
     "storlek": "null",
     "beskrivning": "Apelsina från brasilien ",
     "pris": 23,
-    "img": [
-      "uploads/Test-1740764067245-0.jpg"
-    ],
+    "img": ["uploads/Test-1740764067245-0.jpg"],
     "adress": "It-högskolan",
     "säljare": "Felix Korshavn"
   },
@@ -243,6 +241,22 @@
       "uploads/Tröja-1740763761527-1.jpg",
       "uploads/Tröja-1740763761527-2.jpg",
       "uploads/Tröja-1740763761527-3.jpg"
+    ],
+    "adress": "activeUser.adress",
+    "säljare": "activeUser.name"
+  },
+  {
+    "id": 1740862017639,
+    "namn": "Trådhjärta",
+    "kategori": "heminredning",
+    "skick": "begangnat",
+    "storlek": "null",
+    "beskrivning": "ett litet hjärta som cajsa har gjort slöjden",
+    "pris": 321,
+    "img": [
+      "uploads/Trådhjärta-1740862017636-1.jpg",
+      "uploads/Trådhjärta-1740862017636-2.jpg",
+      "uploads/Trådhjärta-1740862017636-3.jpg"
     ],
     "adress": "activeUser.adress",
     "säljare": "activeUser.name"
