@@ -354,13 +354,13 @@
       padding: 5px;
       position: relative;
       width: 100vw;
-      height: 80px;
+      height: 50px;
       z-index: 5;
     }
 
     #hamburgerIcon {
-      width: 45px;
-      height: 45px;
+      width: 30px;
+      height: 30px;
       cursor: pointer;
       position: absolute;
       margin-left: 10px;
@@ -369,13 +369,13 @@
     }
 
     #spendLessIcon {
-      width: 70px;
-      height: 50px;
+      width: 50px;
+      height: 30px;
     }
 
     #userIcon {
-      width: 70px;
-      height: 70px;
+      width: 50px;
+      height: 50px;
       cursor: pointer;
       position: absolute;
       top: 0;
