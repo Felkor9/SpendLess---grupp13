@@ -144,6 +144,9 @@
 
 <script setup>
   import { ref, computed } from 'vue'
+  //Importerar funktionen från pinia
+  import { createAccountStore } from '../store'
+  const store = createAccountStore()
 
   const productCategory = [
     { value: null, text: 'Välj en kategori' },

@@ -32,8 +32,8 @@ export const createAccountStore = defineStore('auth', () => {
     console.log('användare registrerad', users)
   }
 
+  // Hämta användare från localStorage
   const loginUser = () => {
-    // Hämta användare från localStorage
     const users = JSON.parse(localStorage.getItem('users')) || []
 
     // Hitta användaren baserat på email och lösenord
@@ -78,8 +78,34 @@ export const createAccountStore = defineStore('auth', () => {
     return newPassword.value.length >= 5 && repeatPassword.value.length >= 5
   })
 
-  //Sparar en användares upplagda varor i localStorage
-  const myUploads = computed(() => {})
+  //Sparar en användares upplagda varor i localStorage (Evelina)
+  // const addProduct = (product) => {
+  //   const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'))
+  //   if (!loggedInUser) {
+  //     console.error('Ingen användare är inloggad')
+  //     return
+  //   }
+  //   const userEmail = loggedInUser.email
+  //   const userProducts = JSON.parse(localStorage.getItem('userProducts')) || {}
+
+  //   if (!userProducts[userEmail]) {
+  //     userProducts[userEmail] = []
+  //   }
+
+  //   userProducts[userEmail].push(product)
+
+  //   localStorage.setItem('userProducts', JSON.stringify(userProducts))
+  // }
+
+  // const getUserProducts = computed(() => {
+  //   const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'))
+  //   if (!loggedInUser) return []
+
+  //   const userEmail = loggedInUser.email
+  //   const userProducts = JSON.parse(localStorage.getItem('userProducts')) || {}
+
+  //   return userProducts[userEmail] || []
+  // })
 
   return {
     email,
@@ -96,9 +122,7 @@ export const createAccountStore = defineStore('auth', () => {
     passwordsMatch,
     passwordLongEnough,
     value
+    // addProduct,
+    // getUserProducts
   }
 })
-
-// export const loginUserStore = defineStore('auth', () => {
-
-// })
