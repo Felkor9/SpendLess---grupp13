@@ -7,7 +7,11 @@
       <!-- Profilinformation -->
       <BRow>
         <BCol class="text-center">
-          <BAvatar size="80px" :src="profilePicture" class="profile-avatar" />
+          <BAvatar
+            size="80px"
+            :src="store.profilePicture"
+            class="profile-avatar"
+          />
           <!-- <h3>{{ store.user.name }}</h3> -->
           <p>{{ store.user.name }}</p>
 
@@ -69,8 +73,8 @@
             <p>Här visas dina favoriter.</p>
           </div>
 
-          <div v-if="activeTab === 'messages'"> 
-            <MessagesComponent /> 
+          <div v-if="activeTab === 'messages'">
+            <MessagesComponent />
           </div>
         </BCol>
       </BRow>
@@ -82,15 +86,16 @@
 </template>
 
 <script setup>
-import MessagesComponent from '../components/MessagesComponent.vue'
-import { ref, onMounted } from 'vue'
-import { createAccountStore } from '../store'
- 
+  import MessagesComponent from '../components/MessagesComponent.vue'
+  import { ref, onMounted } from 'vue'
+  import { createAccountStore } from '../store'
+
   const store = createAccountStore()
   const messages = ref([])
 
-  onMounted(() => { 
-    messages.value = JSON.parse(localStorage.getItem('chatMessages')) || []}) 
+  onMounted(() => {
+    messages.value = JSON.parse(localStorage.getItem('chatMessages')) || []
+  })
 
   const userTest = ref({
     name: 'Förnamn Efternamn',
@@ -109,7 +114,6 @@ import { createAccountStore } from '../store'
     { id: 2, product: 'Produkt 2', date: '2025-02-15' },
     { id: 3, product: 'Produkt 3', date: '2024-12-10' }
   ])
-
 </script>
 
 <style scoped>

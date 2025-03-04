@@ -66,7 +66,11 @@
   <BContainer id="containerForAccounts" v-if="profileMenu" class="bg-light">
     <div v-if="store.user" class="wrapper">
       <div id="containerForSettings">
-        <BAvatar size="80px" :src="profilePicture" class="profile-avatar" />
+        <BAvatar
+          size="80px"
+          :src="store.profilePicture"
+          class="profile-avatar"
+        />
         <p>Välkommen {{ store.user.name }}!</p>
         <BButton variant="secondary" class="settingsButton"
           ><router-link

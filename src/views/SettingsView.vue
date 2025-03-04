@@ -1,12 +1,20 @@
 <template>
   <BContainer id="HeaderForSettings">
-    <BAvatar size="100px" :src="profilePicture" class="profile-avatar" />
+    <!-- Avatar som visar profilbild -->
+    <BAvatar
+      size="100px"
+      :src="store.profilePicture || ''"
+      class="profile-avatar"
+    />
+
+    <!-- Filuppladdning för profilbild -->
     <input
       type="file"
       @change="onFileChange"
       accept="image/*"
       class="file-input"
     />
+
     <div class="containerForList">
       <h3 id="headingName">Allmänt</h3>
       <ul class="ulLista">
@@ -29,28 +37,29 @@
     </div>
   </BContainer>
 </template>
+
 <script setup>
+  import { ref, computed } from 'vue'
   import { BAvatar } from 'bootstrap-vue-next'
-  import { ref } from 'vue'
-  import { createAccountStore } from '../store'
+  import { createAccountStore } from '../store.js' // Importera Pinia-store
+
   const store = createAccountStore()
+  const profilePicture = ref(store.profilePicture) // Hämta profilbild
+  // const defaultAvatar = '/assets/'
 
-  // Profilbild som en ref (kan lagras i localStorage eller Vuex om du vill spara den permanent)
-  const profilePicture = ref(localStorage.getItem('profilePicture') || '')
-
-  // Funktion för att hantera filuppladdning
+  // Hantera filuppladdning
   const onFileChange = (event) => {
     const file = event.target.files[0]
     if (file) {
       const reader = new FileReader()
       reader.onload = (e) => {
-        profilePicture.value = e.target.result
-        localStorage.setItem('profilePicture', e.target.result) // Spara i localStorage
+        store.updateProfilePicture(e.target.result) // Uppdatera store
       }
       reader.readAsDataURL(file)
     }
   }
 </script>
+
 <style scoped>
   #HeaderForSettings {
     width: 100%;

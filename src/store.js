@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 
 export const createAccountStore = defineStore('auth', () => {
   const email = ref('')
@@ -9,10 +9,11 @@ export const createAccountStore = defineStore('auth', () => {
   const user = ref(null)
   const name = ref('')
   const repeatPassword = ref('')
+  const profilePicture = ref('')
 
-// hämtar medalanden från local storage, eller skapar en tom lista 
+// hämtar medalanden från local storage, eller skapar en tom lista
   const messages = ref(JSON.parse(localStorage.getItem('chatMessages')) || [])
-  
+
   const sendMessage = (message) => {
     messages.value.push(message) // Lägger till nytt meddelande i listan
     localStorage.setItem('chatMessages', JSON.stringify(messages.value))}
@@ -25,7 +26,8 @@ export const createAccountStore = defineStore('auth', () => {
     const newUser = {
       email: email.value,
       password: newPassword.value, // Använd "password" istället för "newPassword"
-      name: name.value
+      name: name.value,
+      profilePicture: profilePicture.value || '', //lägger till profilbild om det är valt
     }
 
     // Funktion för att spara lösenord och email i localStorage (Evelina & Felix)
@@ -39,6 +41,7 @@ export const createAccountStore = defineStore('auth', () => {
     newPassword.value = ''
     name.value = ''
     repeatPassword.value = ''
+    profilePicture.value = ''
 
     console.log('användare registrerad', users)
   }
@@ -46,6 +49,7 @@ export const createAccountStore = defineStore('auth', () => {
   const loginUser = () => {
     // Hämta användare från localStorage
     const users = JSON.parse(localStorage.getItem('users')) || []
+    // profilePicture.value = foundUser.profilePicture || ''
 
     // Hitta användaren baserat på email och lösenord
     const foundUser = users.find(
@@ -58,6 +62,7 @@ export const createAccountStore = defineStore('auth', () => {
       localStorage.setItem('loggedInUser', JSON.stringify(foundUser)) // Spara inloggad användare i localStorage
       user.value = foundUser // Sätt den inloggade användaren i reaktiv variabel
       console.log('Inloggad användare:', foundUser)
+      profilePicture.value = foundUser.profilePicture
 
       loginEmail.value = ''
       loginPassword.value = ''
@@ -66,6 +71,23 @@ export const createAccountStore = defineStore('auth', () => {
       console.log('❌ Fel e-post eller lösenord')
     }
   }
+  const updateProfilePicture = (imageData) => {
+    if (user.value) {
+      user.value.profilePicture = imageData
+      profilePicture.value = imageData
+      localStorage.setItem('loggedInUser', JSON.stringify(user.value))
+
+      const users = JSON.parse(localStorage.getItem('users')) || []
+      const updatedUsers = users.map((u) =>
+      u.email === user.value.email ? {...u, profilePicture: imageData} : u)
+
+
+      localStorage.setItem('users', JSON.stringify(updatedUsers))
+      localStorage.setItem('loggedInUser', JSON.stringify(user.value))
+    }
+
+  }
+
 
   const logoutUser = () => {
     // Rensa användaren från localStorage
@@ -73,6 +95,7 @@ export const createAccountStore = defineStore('auth', () => {
 
     // Återställ den reaktiva användaren
     user.value = null
+    profilePicture.value = ''
 
     console.log('Användaren har loggats ut')
   }
@@ -89,8 +112,15 @@ export const createAccountStore = defineStore('auth', () => {
     return newPassword.value.length >= 5 && repeatPassword.value.length >= 5
   })
 
+  watch(profilePicture, (newPic) => {
+    if (user.value) {
+      user.value.profilePicture = newPic
+      localStorage.setItem('loggedInUser', JSON.stringify(user.value))
+    }
+  })
+
   //Sparar en användares upplagda varor i localStorage
-  const myUploads = computed(() => {})
+  // const myUploads = computed(() => {})
 
   return {
     email,
@@ -107,9 +137,12 @@ export const createAccountStore = defineStore('auth', () => {
     passwordsMatch,
     passwordLongEnough,
     value,
-    messages, 
+    messages,
     sendMessage,
-    loadMessages, 
+    loadMessages,
+    updateProfilePicture,
+    profilePicture,
+
   }
 })
 
