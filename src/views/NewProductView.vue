@@ -2,7 +2,7 @@
   <div id="bigWrapper">
     <BContainer fluid>
       <h1>Lägg upp annons!</h1>
-      <!--  Här startar formuläret för annonsen -->
+      <!--  Här startar formuläret för annonsen (Hampus)-->
       <form @submit.prevent="submitForm" enctype="multipart/form-data">
         <BRow>
           <BCol cols="4">
@@ -18,7 +18,7 @@
             </div>
           </BCol>
         </BRow>
-        <!--  Kategoriväljare -->
+        <!--  Kategoriväljare (Hampus)-->
         <BRow>
           <BCol cols="4">
             <BFormGroup label-for="input-2">
@@ -32,7 +32,7 @@
             </BFormGroup>
           </BCol>
         </BRow>
-        <!--  Storleksväljareväljare om man valt kategori-kläder-->
+        <!--  Storleksväljareväljare om man valt kategori-kläder (Hampus)-->
         <BRow>
           <BCol cols="4">
             <BFormGroup label-for="input-2,5">
@@ -47,12 +47,12 @@
             </BFormGroup>
           </BCol>
         </BRow>
-        <!--  Skickväljare dyker bara upp om man inte valt djur-->
+        <!--  Skickväljare dyker bara upp om man inte valt djur (Hampus)-->
         <BRow v-if="formData.selectedCategory !== 'djur'">
           <BCol cols="4">
             <BFormGroup label-for="input-3" label="Skick på varan:">
               <div class="productCondition">
-                <!--  radioknappar inuti div för att få dom i sidled -->
+                <!--  radioknappar inuti div för att få dom i sidled (Hampus)-->
                 <BFormRadio
                   v-model="formData.selectedCondition"
                   name="condition-radios"
@@ -78,7 +78,7 @@
             </BFormGroup>
           </BCol>
         </BRow>
-        <!--  Bilduppladdning -->
+        <!--  Bilduppladdning (Hampus)-->
         <BRow>
           <BCol cols="4">
             <BFormGroup label-for="input-4" label="Ladda upp bilder på varan:">
@@ -93,7 +93,7 @@
             </BFormGroup>
           </BCol>
         </BRow>
-        <!--  Annons Beskrivning -->
+        <!--  Annons Beskrivning (Hampus) -->
         <BRow>
           <BCol cols="4">
             <div class="productDescription">
@@ -107,7 +107,7 @@
             </div>
           </BCol>
         </BRow>
-        <!--  Annons Pris -->
+        <!--  Annons Pris (Hampus)-->
         <BRow>
           <BCol cols="4">
             <div class="productPrice">
@@ -122,7 +122,7 @@
             </div>
           </BCol>
         </BRow>
-        <!--  Lägg till annons -->
+        <!--  Lägg till annons (Hampus)-->
         <BRow>
           <BCol cols="4">
             <div class="addProduct">
@@ -166,7 +166,7 @@
     { value: 'other', text: 'ANNAT' }
   ]
 
-  // Värden som ska fyllas i från formuläret innan de skickas iväg
+  // Värden som ska fyllas i från formuläret innan de skickas iväg (Hampus)
   const formData = ref({
     productName: '',
     selectedCategory: 'null',
@@ -179,36 +179,36 @@
     selectedSize: 'null'
   })
 
-  // Kollar så att allt är i fyllt, annars är knappen disabled
+  // Kollar så att allt är i fyllt, annars är knappen disabled (Hampus)
   const isFormValid = computed(() => {
     return (
       formData.value.productName.trim() !== '' &&
       formData.value.selectedCategory !== 'null' &&
       formData.value.productDescription.trim() !== '' &&
       formData.value.productPrice.trim() !== '' &&
-      // selectedSize behövs bara när kläder är valt
+      // selectedSize behövs bara när kläder är valt (Hampus)
       (formData.value.selectedCategory !== 'kläder' ||
         formData.value.selectedSize !== null) &&
-      // när djur är valt behövs ej condition
+      // när djur är valt behövs ej condition (Hampus)
       (formData.value.selectedCategory === 'djur' ||
         formData.value.selectedCondition.trim() !== '')
     )
   })
 
-  /* formData.value.productImages.trim() !== "" &&    
+  /* formData.value.productImages.trim() !== "" &&
 	formData.value.productSeller.trim() !== "" &&
 	formData.value.productAdress.trim() !== "" &&
-	
+
 	lägg till dom här i computed ovanför när konton och bilder funkar.
 	*/
 
   const fileInput = ref(null)
 
-  // Skicka iväg forumuläret
+  // Skicka iväg forumuläret (Hampus)
   const submitForm = async () => {
     try {
       const formPayload = new FormData()
-      //lägg till formulärvärden i objektet som ska skickas
+      //lägg till formulärvärden i objektet som ska skickas (Hampus)
       formPayload.append('productName', formData.value.productName)
       formPayload.append('selectedCategory', formData.value.selectedCategory)
       formPayload.append('selectedCondition', formData.value.selectedCondition)
@@ -225,7 +225,7 @@
       formPayload.append('productSeller', 'activeUser.name')
       formPayload.append('productAdress', 'actuveUser.adress')
 
-      // lägg till filer i objektet
+      // lägg till filer i objektet (Hampus)
 
       if (fileInput.value?.files) {
         for (let i = 0; i < fileInput.value.files.length; i++) {
@@ -238,11 +238,11 @@
         body: formPayload
       })
 
-      // kolla så att post har funkat annars visa error
+      // kolla så att post har funkat annars visa error (Hampus)
       if (!response.ok) throw new Error(result || 'Nåt har gått snett')
       alert('Annonsen är nu tillagt i systemet!')
 
-      // Nollställ forumuläret och filer efter att varan har skickats iväg
+      // Nollställ forumuläret och filer efter att varan har skickats iväg (Hampus)
       formData.value = {
         productName: '',
         selectedCategory: 'null',

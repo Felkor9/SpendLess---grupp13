@@ -51,8 +51,10 @@
           <div class="card-body">
             <h5 class="card-title">{{ product.namn }}</h5>
             <p class="card-text">{{ product.adress }}</p>
-            <p>{{ product.pris }} :-</p>
-            <button class="btn btn-success knapp">Kontakta säljare</button>
+            <p id="lastText">{{ product.pris }} :-</p>
+            <button class="btn btn-success knapp" id="productButton">
+              Kontakta säljare
+            </button>
           </div>
         </router-link>
       </div>
@@ -101,14 +103,14 @@
   const filteredProducts = computed(() => {
     let filtered = products.value
 
-    //Filtera baserat på kategori om den är vald
+    //Filtera baserat på kategori om den är vald (Evelina)
     if (selected.value) {
       filtered = filtered.filter(
         (product) =>
           product.kategori.toLowerCase() === selected.value.toLowerCase()
       )
     }
-    //Filtrera baserat på söktext
+    //Filtrera baserat på söktext (Evelina)
     if (search.value.trim() !== '') {
       filtered = filtered.filter((product) =>
         product.namn.toLowerCase().includes(search.value.toLowerCase())
@@ -117,7 +119,7 @@
     return filtered
   })
 
-  // Hämtar produkter vid start
+  // Hämtar produkter vid start (Felix)
   productFetch()
 </script>
 
@@ -148,7 +150,6 @@
       font-size: 50px;
       font-weight: 900;
       margin-bottom: 0;
-      /* font-family:'Times New Roman', Times, serif; */
     }
 
     .inputSearch {
@@ -231,6 +232,16 @@
       box-sizing: border-box;
     }
 
+    /* #productButton { */
+    /* margin-top: 20px; */
+    /* margin-top: 20px; */
+    /* } */
+
+    .card-img-top {
+      max-height: 180px;
+      max-width: 250px;
+    }
+
     #containerForAccounts {
       display: flex;
       flex-direction: column;
@@ -245,12 +256,10 @@
       background-repeat: no-repeat;
       background-position: 100%;
       min-height: 300px;
-      /* width: 100vw; */
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      /* margin: 0; */
     }
 
     .labelForSearch {
@@ -300,8 +309,9 @@
     .cardContainer {
       display: flex;
       flex-wrap: wrap;
-      /* align-items: center; */
+      align-items: center;
       justify-content: center;
+      flex-direction: column;
     }
 
     .card {
@@ -319,21 +329,7 @@
       bottom: 0;
       align-items: center;
       margin-bottom: 10px;
+      margin-top: 5px;
     }
-
-    /* #containerForAccounts button {
-  	/* width: 80px;
-  	height: 30px;
-  	margin-top: 10px; */
-    /* cursor: pointer; */
-    /* }  */
-
-    /* input[type="submit"] {
-  	cursor: pointer;
-  	width: 80px;
-  	height: 30px;
-  	margin-top: 10px;
-  	font-size: 10px;
-  } */
   }
 </style>

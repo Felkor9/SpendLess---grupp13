@@ -54,7 +54,6 @@
   const route = useRoute()
   const productId = route.params.id
   const products = ref(null)
-
   const showModal = ref(false) // Stängd från start
   const messageText = ref('')
 
