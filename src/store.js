@@ -10,6 +10,17 @@ export const createAccountStore = defineStore('auth', () => {
   const name = ref('')
   const repeatPassword = ref('')
 
+// hämtar medalanden från local storage, eller skapar en tom lista 
+  const messages = ref(JSON.parse(localStorage.getItem('chatMessages')) || [])
+  
+  const sendMessage = (message) => {
+    messages.value.push(message) // Lägger till nytt meddelande i listan
+    localStorage.setItem('chatMessages', JSON.stringify(messages.value))}
+
+  const loadMessages = () => {
+      messages.value = JSON.parse(localStorage.getItem('chatMessages')) || []
+    }
+
   const registerUser = () => {
     const newUser = {
       email: email.value,
@@ -95,7 +106,10 @@ export const createAccountStore = defineStore('auth', () => {
     repeatPassword,
     passwordsMatch,
     passwordLongEnough,
-    value
+    value,
+    messages, 
+    sendMessage,
+    loadMessages, 
   }
 })
 

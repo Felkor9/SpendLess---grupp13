@@ -69,9 +69,8 @@
             <p>Här visas dina favoriter.</p>
           </div>
 
-          <div v-if="activeTab === 'messages'">
-            <h5>Meddelanden</h5>
-            <p>Här visas dina meddelanden.</p>
+          <div v-if="activeTab === 'messages'"> 
+            <MessagesComponent /> 
           </div>
         </BCol>
       </BRow>
@@ -83,12 +82,15 @@
 </template>
 
 <script setup>
-  import { ref } from 'vue'
-
-  //hämtar funtioner från pinia
-  import { createAccountStore } from '../store'
-  //kör funktionen från pinia
+import MessagesComponent from '../components/MessagesComponent.vue'
+import { ref, onMounted } from 'vue'
+import { createAccountStore } from '../store'
+ 
   const store = createAccountStore()
+  const messages = ref([])
+
+  onMounted(() => { 
+    messages.value = JSON.parse(localStorage.getItem('chatMessages')) || []}) 
 
   const userTest = ref({
     name: 'Förnamn Efternamn',
@@ -107,6 +109,7 @@
     { id: 2, product: 'Produkt 2', date: '2025-02-15' },
     { id: 3, product: 'Produkt 3', date: '2024-12-10' }
   ])
+
 </script>
 
 <style scoped>

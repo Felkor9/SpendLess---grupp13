@@ -50,12 +50,14 @@
 <script setup>
   import { ref, onMounted } from 'vue'
   import { useRoute } from 'vue-router'
+  import { createAccountStore } from '../store'
 
   const route = useRoute()
   const productId = route.params.id
   const products = ref(null)
   const showModal = ref(false) // Stängd från start
   const messageText = ref('')
+  const store = createAccountStore();
 
   // Funktion för att skicka meddelande
   const sendMessage = () => {
@@ -64,7 +66,14 @@
       alert('För att skicka måste du skriva ett meddelande!')
       return
     }
-
+    const newMessage = { 
+      productId: productId, 
+      productName: products.value?.namn, 
+      seller: products.value?.säljare, 
+      message: messageText.value, 
+      } 
+      store.sendMessage(newMessage) 
+      
     console.log(`Meddelande skickat: "${messageText.value}" till säljaren.`)
 
     // Rensar textrutan efter att meddelandet har skickats
