@@ -294,7 +294,7 @@
       height: 450px;
       box-sizing: border-box;
       position: relative;
-      width: 250px;
+      width: 300px;
     }
 
     .knapp {
@@ -325,7 +325,6 @@
       padding: 8px;
     }
     #itemCard {
-      /* box-shadow: 2px 2px 2px 1px; */
       width: 150px;
       height: 350px;
       /* font-size: 20px; */
@@ -380,7 +379,7 @@
       margin-bottom: 10px;
     }
     .imgObject {
-      max-width: 150px;
+      max-width: 170px;
     }
   }
 </style>

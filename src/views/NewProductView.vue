@@ -1,11 +1,11 @@
 <template>
   <div id="bigWrapper">
-    <BContainer fluid>
+    <BContainer fluid class="formContainer">
       <h1>Lägg upp annons!</h1>
-      <!--  Här startar formuläret för annonsen -->
+      <!--  Här startar formuläret för annonsen (Hampus)-->
       <form @submit.prevent="submitForm" enctype="multipart/form-data">
         <BRow>
-          <BCol cols="4">
+          <BCol cols="10">
             <div class="productName">
               <BFormGroup label="Namn på produkt" label-for="input-1">
                 <BFormInput
@@ -18,9 +18,9 @@
             </div>
           </BCol>
         </BRow>
-        <!--  Kategoriväljare -->
+        <!--  Kategoriväljare (Hampus)-->
         <BRow>
-          <BCol cols="4">
+          <BCol cols="10">
             <BFormGroup label-for="input-2">
               <div class="productCategory">
                 <BFormSelect
@@ -32,9 +32,9 @@
             </BFormGroup>
           </BCol>
         </BRow>
-        <!--  Storleksväljareväljare om man valt kategori-kläder-->
+        <!--  Storleksväljareväljare om man valt kategori-kläder (Hampus)-->
         <BRow>
-          <BCol cols="4">
+          <BCol cols="10">
             <BFormGroup label-for="input-2,5">
               <div class="productSize">
                 <BFormSelect
@@ -47,12 +47,12 @@
             </BFormGroup>
           </BCol>
         </BRow>
-        <!--  Skickväljare dyker bara upp om man inte valt djur-->
+        <!--  Skickväljare dyker bara upp om man inte valt djur (Hampus)-->
         <BRow v-if="formData.selectedCategory !== 'djur'">
-          <BCol cols="4">
+          <BCol cols="10">
             <BFormGroup label-for="input-3" label="Skick på varan:">
               <div class="productCondition">
-                <!--  radioknappar inuti div för att få dom i sidled -->
+                <!--  radioknappar inuti div för att få dom i sidled (Hampus)-->
                 <BFormRadio
                   v-model="formData.selectedCondition"
                   name="condition-radios"
@@ -78,9 +78,9 @@
             </BFormGroup>
           </BCol>
         </BRow>
-        <!--  Bilduppladdning -->
+        <!--  Bilduppladdning (Hampus)-->
         <BRow>
-          <BCol cols="4">
+          <BCol cols="10">
             <BFormGroup label-for="input-4" label="Ladda upp bilder på varan:">
               <div class="productImage">
                 <input
@@ -93,9 +93,9 @@
             </BFormGroup>
           </BCol>
         </BRow>
-        <!--  Annons Beskrivning -->
+        <!--  Annons Beskrivning (Hampus) -->
         <BRow>
-          <BCol cols="4">
+          <BCol cols="10">
             <div class="productDescription">
               <BFormGroup label="Produkt beskrivning:" label-for="input-5">
                 <BFormTextarea
@@ -107,7 +107,7 @@
             </div>
           </BCol>
         </BRow>
-        <!--  Annons Pris -->
+        <!--  Annons Pris (Hampus)-->
         <BRow>
           <BCol cols="4">
             <div class="productPrice">
@@ -122,9 +122,9 @@
             </div>
           </BCol>
         </BRow>
-        <!--  Lägg till annons -->
+        <!--  Lägg till annons (Hampus)-->
         <BRow>
-          <BCol cols="4">
+          <BCol cols="8">
             <div class="addProduct">
               <BFormGroup label-for="input-7">
                 <BButton
@@ -166,7 +166,7 @@
     { value: 'other', text: 'ANNAT' }
   ]
 
-  // Värden som ska fyllas i från formuläret innan de skickas iväg
+  // Värden som ska fyllas i från formuläret innan de skickas iväg (Hampus)
   const formData = ref({
     productName: '',
     selectedCategory: 'null',
@@ -179,17 +179,17 @@
     selectedSize: 'null'
   })
 
-  // Kollar så att allt är i fyllt, annars är knappen disabled
+  // Kollar så att allt är i fyllt, annars är knappen disabled (Hampus)
   const isFormValid = computed(() => {
     return (
       formData.value.productName.trim() !== '' &&
       formData.value.selectedCategory !== 'null' &&
       formData.value.productDescription.trim() !== '' &&
       formData.value.productPrice.trim() !== '' &&
-      // selectedSize behövs bara när kläder är valt
+      // selectedSize behövs bara när kläder är valt (Hampus)
       (formData.value.selectedCategory !== 'kläder' ||
         formData.value.selectedSize !== null) &&
-      // när djur är valt behövs ej condition
+      // när djur är valt behövs ej condition (Hampus)
       (formData.value.selectedCategory === 'djur' ||
         formData.value.selectedCondition.trim() !== '')
     )
@@ -204,11 +204,11 @@
 
   const fileInput = ref(null)
 
-  // Skicka iväg forumuläret
+  // Skicka iväg forumuläret (Hampus)
   const submitForm = async () => {
     try {
       const formPayload = new FormData()
-      //lägg till formulärvärden i objektet som ska skickas
+      //lägg till formulärvärden i objektet som ska skickas (Hampus)
       formPayload.append('productName', formData.value.productName)
       formPayload.append('selectedCategory', formData.value.selectedCategory)
       formPayload.append('selectedCondition', formData.value.selectedCondition)
@@ -225,7 +225,7 @@
       formPayload.append('productSeller', 'activeUser.name')
       formPayload.append('productAdress', 'actuveUser.adress')
 
-      // lägg till filer i objektet
+      // lägg till filer i objektet (Hampus)
 
       if (fileInput.value?.files) {
         for (let i = 0; i < fileInput.value.files.length; i++) {
@@ -238,11 +238,11 @@
         body: formPayload
       })
 
-      // kolla så att post har funkat annars visa error
+      // kolla så att post har funkat annars visa error (Hampus)
       if (!response.ok) throw new Error(result || 'Nåt har gått snett')
       alert('Annonsen är nu tillagt i systemet!')
 
-      // Nollställ forumuläret och filer efter att varan har skickats iväg
+      // Nollställ forumuläret och filer efter att varan har skickats iväg (Hampus)
       formData.value = {
         productName: '',
         selectedCategory: 'null',
@@ -265,6 +265,14 @@
 </script>
 
 <style scoped>
+  /* css desktop storlek */
+  @media screen and (min-width: 768px) {
+    * {
+      box-sizing: border-box;
+      /* margin: 20px; */
+    }
+  }
+
   .productName {
     margin-top: 20px;
     margin-bottom: 30px;
@@ -306,14 +314,16 @@
   }
 
   #bigWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     min-height: 80vh;
     width: 100vw;
-    padding-left: 20px;
-    padding-right: 20px;
-    display: flex;
-    justify-content: center;
+  }
 
-    /* align-content: center; */
-    /* flex-direction: column; */
+  .formContainer {
+    max-width: 600px; /* Adjust as needed */
+    width: 100%;
   }
 </style>

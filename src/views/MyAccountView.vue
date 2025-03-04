@@ -1,28 +1,6 @@
 <template>
   <div id="bigWrapper">
     <BContainer fluid>
-      <!-- <BCol cols="12" class="FormAccount">
-        <h1>Inloggning</h1> -->
-      <!-- <BFormGroup label="Användarnamn" label-for="input-1">
-          <BFormInput
-            id="input-1"
-            type="Användarnamn"
-            placeholder="Skriv ditt användarnamn"
-            required
-          ></BFormInput>
-        </BFormGroup>
-        <BFormGroup label="Lösenord" label-for="input-2">
-          <BFormInput
-            id="input-2"
-            type="password"
-            placeholder="Lösenord"
-            required
-          ></BFormInput>
-          <BButton variant="success" class="buttons">Logga in</BButton>
-          <BButton variant="danger" class="buttons">Glömt lösenord</BButton>
-        </BFormGroup>
-      </BCol> -->
-
       <!-- Skapa konto formulär -->
       <BForm @submit.prevent="registerAndNavigate">
         <BCol cols="12" class="FormAccount">

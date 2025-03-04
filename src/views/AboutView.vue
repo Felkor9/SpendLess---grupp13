@@ -1,10 +1,23 @@
+<template>
+  <div>
+    <button @click="getLocation">Get Location</button>
+    <p v-if="errorMessage">{{ errorMessage }}</p>
+    <iframe
+      :src="`https://www.google.com/maps?q=${latitude},${longitude}&output=embed`"
+      width="50%"
+      height="200"
+      style="border: 0"
+      allowfullscreen="100%"
+      loading="lazy"
+    />
+  </div>
+</template>
 <script setup>
   import { ref } from 'vue'
 
-  const latitude = ref(null)
-  const longitude = ref(null)
   const errorMessage = ref('')
 
+  //Felix
   const getLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -21,18 +34,4 @@
     }
   }
 </script>
-
-<template>
-  <div>
-    <button @click="getLocation">Get Location</button>
-    <p v-if="errorMessage">{{ errorMessage }}</p>
-    <iframe
-      :src="`https://www.google.com/maps?q=${latitude},${longitude}&output=embed`"
-      width="50%"
-      height="200"
-      style="border: 0"
-      allowfullscreen="100%"
-      loading="lazy"
-    />
-  </div>
-</template>
+<style scoped></style>

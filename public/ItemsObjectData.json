@@ -225,7 +225,9 @@
     "storlek": "null",
     "beskrivning": "Apelsina från brasilien ",
     "pris": 23,
-    "img": ["uploads/Test-1740764067245-0.jpg"],
+    "img": [
+      "uploads/Test-1740764067245-0.jpg"
+    ],
     "adress": "It-högskolan",
     "säljare": "Felix Korshavn"
   },
@@ -257,6 +259,20 @@
       "uploads/Trådhjärta-1740862017636-1.jpg",
       "uploads/Trådhjärta-1740862017636-2.jpg",
       "uploads/Trådhjärta-1740862017636-3.jpg"
+    ],
+    "adress": "activeUser.adress",
+    "säljare": "activeUser.name"
+  },
+  {
+    "id": 1741077307894,
+    "namn": "Katt",
+    "kategori": "djur",
+    "skick": "",
+    "storlek": "null",
+    "beskrivning": "Söt hona på 3 månader som är redo att flytta hemifrån.",
+    "pris": 2000,
+    "img": [
+      "uploads/Katt-1741077307890-1.png"
     ],
     "adress": "activeUser.adress",
     "säljare": "activeUser.name"
