@@ -276,5 +276,75 @@
     ],
     "adress": "activeUser.adress",
     "säljare": "activeUser.name"
+  },
+  {
+    "id": "6tJo",
+    "namn": "snusdosa",
+    "kategori": "hobby",
+    "skick": "nyskick",
+    "storlek": "null",
+    "beskrivning": "fin dosa i metall med IFK emblem",
+    "pris": 150,
+    "img": [
+      "uploads/snusdosa-1741083822141-1.jpeg"
+    ],
+    "adress": "activeUser.adress",
+    "säljare": "activeUser.name"
+  },
+  {
+    "id": "6301",
+    "namn": "undulaten greg",
+    "kategori": "djur",
+    "skick": "",
+    "storlek": "null",
+    "beskrivning": "undulaten greg vill flytta ut på landet efter ett tufft liv i storstan",
+    "pris": 54,
+    "img": [
+      "uploads/undulaten_greg-1741084675614-1.jpg"
+    ],
+    "adress": "activeUser.adress",
+    "säljare": "activeUser.name"
+  },
+  {
+    "id": "0542",
+    "namn": "mmmas trehjuling",
+    "kategori": "fordon",
+    "skick": "begangnat",
+    "storlek": "null",
+    "beskrivning": "rostig men fin, den har överlevt sen 50talet",
+    "pris": 5,
+    "img": [
+      "uploads/mmmas_trehjuling-1741092114596-1.jpg"
+    ],
+    "adress": "activeUser.adress",
+    "säljare": "activeUser.name"
+  },
+  {
+    "id": "2746",
+    "namn": "asdhasdk",
+    "kategori": "hobby",
+    "skick": "nyskick",
+    "storlek": "null",
+    "beskrivning": "en liten beskriving",
+    "pris": 123,
+    "img": [
+      "uploads/asdhasdk-1741094542717-1.jpg"
+    ],
+    "adress": "activeUser.adress",
+    "säljare": "activeUser.name"
+  },
+  {
+    "id": 8925,
+    "namn": "gurka",
+    "kategori": "köksutrustning",
+    "skick": "nyskick",
+    "storlek": "null",
+    "beskrivning": "bra att ha i sallad",
+    "pris": 2,
+    "img": [
+      "uploads/gurka-8925-1.jpg"
+    ],
+    "adress": "activeUser.adress",
+    "säljare": "activeUser.name"
   }
 ]
