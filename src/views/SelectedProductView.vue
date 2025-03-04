@@ -2,7 +2,7 @@
   <h1 v-if="products">{{ products.namn }}</h1>
   <div class="card" v-if="products">
     <img
-      :src="products.img"
+      :src="Array.isArray(products.img) ? products.img[0] : products.img"
       class="card-img-top"
       alt="produktkort"
       style="max-width: 350px"
@@ -36,7 +36,7 @@
         v-model="messageText"
         id="message"
         placeholder="Skriv ditt meddelande..."
-      ></textarea>
+      />
 
       <!-- Knappar till modalen -->
       <div class="buttons">

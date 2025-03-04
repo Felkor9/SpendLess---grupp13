@@ -1,11 +1,11 @@
 <template>
   <div id="bigWrapper">
-    <BContainer fluid>
+    <BContainer fluid class="formContainer">
       <h1>Lägg upp annons!</h1>
       <!--  Här startar formuläret för annonsen (Hampus)-->
       <form @submit.prevent="submitForm" enctype="multipart/form-data">
         <BRow>
-          <BCol cols="4">
+          <BCol cols="10">
             <div class="productName">
               <BFormGroup label="Namn på produkt" label-for="input-1">
                 <BFormInput
@@ -20,7 +20,7 @@
         </BRow>
         <!--  Kategoriväljare (Hampus)-->
         <BRow>
-          <BCol cols="4">
+          <BCol cols="10">
             <BFormGroup label-for="input-2">
               <div class="productCategory">
                 <BFormSelect
@@ -34,7 +34,7 @@
         </BRow>
         <!--  Storleksväljareväljare om man valt kategori-kläder (Hampus)-->
         <BRow>
-          <BCol cols="4">
+          <BCol cols="10">
             <BFormGroup label-for="input-2,5">
               <div class="productSize">
                 <BFormSelect
@@ -49,7 +49,7 @@
         </BRow>
         <!--  Skickväljare dyker bara upp om man inte valt djur (Hampus)-->
         <BRow v-if="formData.selectedCategory !== 'djur'">
-          <BCol cols="4">
+          <BCol cols="10">
             <BFormGroup label-for="input-3" label="Skick på varan:">
               <div class="productCondition">
                 <!--  radioknappar inuti div för att få dom i sidled (Hampus)-->
@@ -80,7 +80,7 @@
         </BRow>
         <!--  Bilduppladdning (Hampus)-->
         <BRow>
-          <BCol cols="4">
+          <BCol cols="10">
             <BFormGroup label-for="input-4" label="Ladda upp bilder på varan:">
               <div class="productImage">
                 <input
@@ -95,7 +95,7 @@
         </BRow>
         <!--  Annons Beskrivning (Hampus) -->
         <BRow>
-          <BCol cols="4">
+          <BCol cols="10">
             <div class="productDescription">
               <BFormGroup label="Produkt beskrivning:" label-for="input-5">
                 <BFormTextarea
@@ -124,7 +124,7 @@
         </BRow>
         <!--  Lägg till annons (Hampus)-->
         <BRow>
-          <BCol cols="4">
+          <BCol cols="8">
             <div class="addProduct">
               <BFormGroup label-for="input-7">
                 <BButton
@@ -265,6 +265,14 @@
 </script>
 
 <style scoped>
+  /* css desktop storlek */
+  @media screen and (min-width: 768px) {
+    * {
+      box-sizing: border-box;
+      /* margin: 20px; */
+    }
+  }
+
   .productName {
     margin-top: 20px;
     margin-bottom: 30px;
@@ -306,14 +314,16 @@
   }
 
   #bigWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     min-height: 80vh;
     width: 100vw;
-    padding-left: 20px;
-    padding-right: 20px;
-    display: flex;
-    justify-content: center;
+  }
 
-    /* align-content: center; */
-    /* flex-direction: column; */
+  .formContainer {
+    max-width: 600px; /* Adjust as needed */
+    width: 100%;
   }
 </style>
