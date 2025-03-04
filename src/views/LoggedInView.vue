@@ -7,7 +7,11 @@
       <!-- Profilinformation -->
       <BRow>
         <BCol class="text-center">
-          <BAvatar size="80px" :src="profilePicture" class="profile-avatar" />
+          <BAvatar
+            size="80px"
+            :src="store.profilePicture"
+            class="profile-avatar"
+          />
           <!-- <h3>{{ store.user.name }}</h3> -->
           <p>{{ store.user.name }}</p>
 
@@ -70,8 +74,7 @@
           </div>
 
           <div v-if="activeTab === 'messages'">
-            <h5>Meddelanden</h5>
-            <p>Här visas dina meddelanden.</p>
+            <MessagesComponent />
           </div>
         </BCol>
       </BRow>
@@ -83,12 +86,16 @@
 </template>
 
 <script setup>
-  import { ref } from 'vue'
-
-  //hämtar funtioner från pinia
+  import MessagesComponent from '../components/MessagesComponent.vue'
+  import { ref, onMounted } from 'vue'
   import { createAccountStore } from '../store'
-  //kör funktionen från pinia
+
   const store = createAccountStore()
+  const messages = ref([])
+
+  onMounted(() => {
+    messages.value = JSON.parse(localStorage.getItem('chatMessages')) || []
+  })
 
   const userTest = ref({
     name: 'Förnamn Efternamn',

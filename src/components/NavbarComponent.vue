@@ -21,27 +21,38 @@
     <ul v-if="hamburgerMenu" id="UnOrderedListCategory" class="bg-light">
       <li class="listItemCategory">
         <router-link to="/" class="routerLink" @click="closeMenu"
-          >Home</router-link
+          ><img
+            src="/assets/home.svg"
+            alt="hem"
+            class="IconForNav"
+          />Home</router-link
         >
       </li>
       <li class="listItemCategory">
         <router-link to="/about" class="routerLink" @click="closeMenu"
-          >About</router-link
+          ><img
+            src="/assets/about.svg"
+            class="IconForNav"
+            alt=""
+          />About</router-link
         >
       </li>
       <li class="listItemCategory" v-if="store.user">
         <router-link to="/loggedinview" class="routerLink" @click="closeMenu"
-          >Mina sidor</router-link
+          ><img src="/assets/account.svg" class="IconForNav" alt="" />Mina
+          sidor</router-link
         >
       </li>
       <li class="listItemCategory" v-else>
         <router-link to="/myaccount" class="routerLink" @click="closeMenu"
-          >Mina sidor</router-link
+          ><img src="/assets/account.svg" class="IconForNav" alt="" />Mina
+          sidor</router-link
         >
       </li>
       <li class="listItemCategory" v-if="store.user">
         <router-link to="/newproduct" class="routerLink" @click="closeMenu"
-          >Lägg upp annons</router-link
+          ><img src="/assets/add-package.svg" class="IconForNav" alt="" />Lägg
+          upp annons</router-link
         >
       </li>
       <!-- <li class="listItemCategory">
@@ -55,7 +66,11 @@
   <BContainer id="containerForAccounts" v-if="profileMenu" class="bg-light">
     <div v-if="store.user" class="wrapper">
       <div id="containerForSettings">
-        <BAvatar size="80px" :src="profilePicture" class="profile-avatar" />
+        <BAvatar
+          size="80px"
+          :src="store.profilePicture"
+          class="profile-avatar"
+        />
         <p>Välkommen {{ store.user.name }}!</p>
         <BButton variant="secondary" class="settingsButton"
           ><router-link
@@ -154,7 +169,7 @@
 </script>
 
 <style scoped>
-  @media screen and (max-width: 850px) {
+  @media screen and (max-width: 768px) {
     nav {
       display: flex;
       justify-content: space-around;
@@ -232,16 +247,27 @@
     .listItemCategory {
       z-index: 2;
       list-style-type: none;
-      margin: 10px;
-      padding: 5px;
+      /* margin: 10px; */
+      padding: 15px;
       width: 100%;
       border-bottom: 1px solid black;
+      margin: 0;
+      position: relative;
+    }
+
+    .IconForNav {
+      width: 30px;
+      position: absolute;
+      top: 50;
+      left: 0;
+      margin-left: 8px;
     }
 
     .routerLink {
       color: black;
       text-decoration: none;
       font-size: 20px;
+      margin-left: 40px;
     }
 
     #router-link {
@@ -314,7 +340,7 @@
       /* align-self: top; */
     }
   }
-  @media screen and (min-width: 850px) {
+  @media screen and (min-width: 768px) {
     .passwordButton {
       margin-top: 5px;
       margin-bottom: 5px;
@@ -332,13 +358,13 @@
       padding: 5px;
       position: relative;
       width: 100vw;
-      height: 80px;
+      height: 50px;
       z-index: 5;
     }
 
     #hamburgerIcon {
-      width: 45px;
-      height: 45px;
+      width: 30px;
+      height: 30px;
       cursor: pointer;
       position: absolute;
       margin-left: 10px;
@@ -347,13 +373,13 @@
     }
 
     #spendLessIcon {
-      width: 70px;
-      height: 50px;
+      width: 50px;
+      height: 30px;
     }
 
     #userIcon {
-      width: 70px;
-      height: 70px;
+      width: 50px;
+      height: 50px;
       cursor: pointer;
       position: absolute;
       top: 0;
@@ -372,7 +398,7 @@
       z-index: 5;
       margin: 0;
       padding: 0;
-      width: 80vw;
+      width: 50vw;
       height: auto;
       position: absolute;
       top: 50;
@@ -386,7 +412,7 @@
       z-index: 5;
       margin: 0;
       padding: 0;
-      width: 90vw;
+      width: 50vw;
       min-height: 50vh;
       position: absolute;
       top: 50;
@@ -402,10 +428,21 @@
     .listItemCategory {
       z-index: 2;
       list-style-type: none;
-      margin: 10px;
-      padding: 5px;
+      /* margin: 10px; */
+      padding: 15px;
       width: 100%;
+      height: fit-content;
+      margin: 0;
       border-bottom: 1px solid black;
+      position: relative;
+    }
+
+    .IconForNav {
+      width: 30px;
+      position: absolute;
+      top: 50;
+      left: 0;
+      margin-left: 8px;
     }
 
     #router-link {
@@ -417,6 +454,7 @@
       color: black;
       text-decoration: none;
       font-size: 20px;
+      margin-left: 30px;
     }
 
     .EmailLabel {
