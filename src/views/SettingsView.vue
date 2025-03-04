@@ -14,7 +14,7 @@
       accept="image/*"
       class="file-input"
     />
-
+    <!-- innehåller länkarna -->
     <div class="containerForList">
       <h3 id="headingName">Allmänt</h3>
       <ul class="ulLista">
@@ -47,7 +47,7 @@
   const profilePicture = ref(store.profilePicture) // Hämta profilbild
   // const defaultAvatar = '/assets/'
 
-  // Hantera filuppladdning
+  // Hantera filuppladdning(felix)
   const onFileChange = (event) => {
     const file = event.target.files[0]
     if (file) {

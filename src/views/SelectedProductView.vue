@@ -57,7 +57,7 @@
   const products = ref(null)
   const showModal = ref(false) // Stängd från start
   const messageText = ref('')
-  const store = createAccountStore();
+  const store = createAccountStore()
 
   // Funktion för att skicka meddelande
   const sendMessage = () => {
@@ -66,14 +66,14 @@
       alert('För att skicka måste du skriva ett meddelande!')
       return
     }
-    const newMessage = { 
-      productId: productId, 
-      productName: products.value?.namn, 
-      seller: products.value?.säljare, 
-      message: messageText.value, 
-      } 
-      store.sendMessage(newMessage) 
-      
+    const newMessage = {
+      productId: productId,
+      productName: products.value?.namn,
+      seller: products.value?.säljare,
+      message: messageText.value
+    }
+    store.sendMessage(newMessage)
+
     console.log(`Meddelande skickat: "${messageText.value}" till säljaren.`)
 
     // Rensar textrutan efter att meddelandet har skickats
@@ -102,94 +102,196 @@
 </script>
 
 <style scoped>
-  .card {
-    margin-left: 25px;
-    margin-right: 25px;
-    display: flex;
-    flex-direction: row;
+  @media screen and (min-width: 768px) {
+    .card {
+      margin-left: 25px;
+      margin-right: 25px;
+      display: flex;
+      flex-direction: row;
+    }
+
+    h1 {
+      margin-left: 25px;
+    }
+
+    .säljare-info {
+      display: flex;
+      align-items: center;
+    }
+
+    .avatarPicture {
+      margin-right: 10px;
+      margin-bottom: 15px;
+    }
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 20px;
+      width: 400px;
+      border-radius: 8px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      position: relative;
+    }
+
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    textarea {
+      width: 100%;
+      height: 80px;
+      margin-top: 10px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 15px;
+    }
+
+    .btn-cancel {
+      background: #ccc;
+      color: black;
+      padding: 10px;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .btn-cancel:hover {
+      background: #bbb;
+    }
+
+    .btn-send {
+      background: green;
+      color: white;
+      padding: 10px;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .btn-send:hover {
+      background: darkgreen;
+    }
   }
 
-  h1 {
-    margin-left: 25px;
-  }
+  @media screen and (max-width: 768px) {
+    .card {
+      /* margin-left: 25px; */
+      /* margin-right: 25px; */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 100vw;
+    }
 
-  .säljare-info {
-    display: flex;
-    align-items: center;
-  }
+    .card-img-top {
+      max-height: 200px;
+      width: 300px;
+    }
 
-  .avatarPicture {
-    margin-right: 10px;
-    margin-bottom: 15px;
-  }
-  .modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+    h1 {
+      display: none;
+    }
 
-  .modal-content {
-    background: white;
-    padding: 20px;
-    width: 400px;
-    border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
-    text-align: center;
-    position: relative;
-  }
+    .säljare-info {
+      display: flex;
+      align-items: center;
+    }
 
-  .close {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 24px;
-    cursor: pointer;
-  }
+    .avatarPicture {
+      margin-right: 10px;
+      margin-bottom: 15px;
+    }
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-  textarea {
-    width: 100%;
-    height: 80px;
-    margin-top: 10px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
+    .modal-content {
+      background: white;
+      padding: 20px;
+      width: 400px;
+      border-radius: 8px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      position: relative;
+    }
 
-  .buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 15px;
-  }
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 24px;
+      cursor: pointer;
+    }
 
-  .btn-cancel {
-    background: #ccc;
-    color: black;
-    padding: 10px;
-    border: none;
-    cursor: pointer;
-    border-radius: 4px;
-  }
+    textarea {
+      width: 100%;
+      height: 80px;
+      margin-top: 10px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
 
-  .btn-cancel:hover {
-    background: #bbb;
-  }
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 15px;
+    }
 
-  .btn-send {
-    background: green;
-    color: white;
-    padding: 10px;
-    border: none;
-    cursor: pointer;
-    border-radius: 4px;
-  }
+    .btn-cancel {
+      background: #ccc;
+      color: black;
+      padding: 10px;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+    }
 
-  .btn-send:hover {
-    background: darkgreen;
+    .btn-cancel:hover {
+      background: #bbb;
+    }
+
+    .btn-send {
+      background: green;
+      color: white;
+      padding: 10px;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .btn-send:hover {
+      background: darkgreen;
+    }
   }
 </style>

@@ -47,7 +47,7 @@
         :key="product.id"
         @click="chosenProduct(product)"
       >
-        <router-link :to="`selectedproduct/${product.id}`">
+        <router-link :to="`selectedproduct/${product.id}`" class="routerlink">
           <img
             :src="Array.isArray(product.img) ? product.img[0] : product.img"
             class="card-img-top"
@@ -56,7 +56,9 @@
           <div class="card-body">
             <h5 class="card-title">{{ product.namn }}</h5>
             <p class="card-text">{{ product.adress }}</p>
-            <p id="lastText">{{ product.pris }} :-</p>
+            <p id="lastText">
+              <strong>{{ product.pris }} :-</strong>
+            </p>
             <button class="btn btn-success knapp" id="productButton">
               Kontakta säljare
             </button>
@@ -223,6 +225,7 @@
     #containerForObject {
       width: 100vw;
       padding: 5px;
+      /* height: 100px; */
     }
     .cardContainer {
       display: flex;
@@ -248,7 +251,7 @@
       align-items: center;
       margin-bottom: 10px;
     }
-    .imgObject {
+    .card-img-top {
       max-width: 250px;
       max-height: 270px;
     }
@@ -350,19 +353,39 @@
       width: 100vw;
       padding: 10px;
     }
+
     .cardContainer {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: center;
-      flex-direction: column;
+      flex-direction: row;
     }
 
     .card {
-      margin: 10px;
-      height: 350px;
+      margin: 8px;
+      width: 150px;
+      height: 300px;
       box-sizing: border-box;
       position: relative;
+      font-size: 12px;
+    }
+
+    .card-title {
+      font-size: 15px;
+      color: black;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .card-text {
+      font-size: 12px;
+      margin: 0;
+    }
+
+    .routerlink {
+      text-decoration: none;
+      color: black;
     }
 
     .knapp {
@@ -371,9 +394,16 @@
       width: auto;
       height: fit-content;
       bottom: 0;
+      object-fit: cover;
       align-items: center;
       margin-bottom: 10px;
       margin-top: 5px;
+    }
+
+    .card-img-top {
+      max-width: 100%;
+      min-width: none;
+      max-height: 50%;
     }
   }
 </style>
