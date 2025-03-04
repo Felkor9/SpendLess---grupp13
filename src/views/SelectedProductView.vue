@@ -36,7 +36,7 @@
         v-model="messageText"
         id="message"
         placeholder="Skriv ditt meddelande..."
-      ></textarea>
+      />
 
       <!-- Knappar till modalen -->
       <div class="buttons">
