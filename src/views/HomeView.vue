@@ -1,6 +1,7 @@
 <template>
   <!-- Välkomstmeddelande och sökfunktion -->
   <BContainer fluid class="containerSearch">
+    <video src="/assets/unboxing.mp4" autoplay loop muted class="video"></video>
     <BRow class="my-1">
       <BCol cols="12">
         <label for="search" class="labelForSearch"
@@ -127,20 +128,42 @@
   @media screen and (min-width: 768px) {
     * {
       box-sizing: border-box;
+      scroll-snap-type: mandatory;
+
       /* margin: 20px; */
+      /* padding: 10px; */
     }
 
     .containerSearch {
-      background-image: url(/assets/coffee-3989866_1280.jpg);
-      background-size: 100%;
-      background-position: 100%;
-      min-height: 20rem;
+      /* background-image: url(/assets/coffee-3989866_1280.jpg);
+      background-size: 97%;
+      border-radius: 10px;
+      /* background-position: ; */
+      /* background-repeat: no-repeat; */
+      /* background-position: center;  */
+      min-height: 100vh;
       display: flex;
       justify-content: center;
-      width: 100vw;
-      margin: 20px;
+      align-items: center;
+      /* margin-left: 10px; */
+      /* margin-right: 10px; */
+      /* width: 120%; */
+      /* margin: 0; */
       display: flex;
-      margin: 0;
+      z-index: 3;
+      position: relative;
+    }
+
+    .video {
+      height: 100vh;
+      width: 100vw;
+      z-index: -1; /* Flyttar den bakom allt annat */
+      position: absolute;
+      align-self: center;
+      margin-top: 0;
+      top: 0;
+      left: 0;
+      object-fit: cover;
     }
 
     .labelForSearch {
@@ -174,11 +197,13 @@
     }
 
     .my-1 {
-      width: auto;
+      /* width: 80vw; */
       display: flex;
       justify-content: center;
       flex-direction: column;
       align-items: center;
+      position: relative;
+      z-index: 2;
     }
 
     #categoryitem {
@@ -187,7 +212,7 @@
       width: 100vw;
       padding: 10px;
       font-size: 100px;
-      /* margin-top: 10px; */
+      /* margin-top: 100px; */
     }
 
     #containerForObject {
@@ -236,21 +261,34 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      z-index: 1;
+      z-index: 2;
     }
 
     .containerSearch {
-      background-image: url(/assets/coffee-3989866_1280.jpg);
+      /* background-image: url(/assets/coffee-3989866_1280.jpg);
       background-size: cover;
       background-repeat: no-repeat;
-      background-position: 100%;
+      background-position: 100%; */
       min-height: 300px;
       /* width: 100vw; */
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      z-index: 2;
       /* margin: 0; */
+    }
+
+    .video {
+      height: 300px;
+      width: 100vw;
+      z-index: -1; /* Flyttar den bakom allt annat */
+      position: absolute;
+      align-self: center;
+      margin-top: 80px;
+      top: 0;
+      left: 0;
+      object-fit: cover;
     }
 
     .labelForSearch {
@@ -284,6 +322,7 @@
       flex-direction: column;
       /* align-items: flex-start; */
       width: 100vw;
+      z-index: 1;
     }
 
     #categoryitem {

@@ -164,6 +164,7 @@
       position: relative;
       width: 100vw;
       height: 80px;
+      /* z-index: 3; */
     }
 
     #hamburgerIcon {
@@ -332,6 +333,7 @@
       position: relative;
       width: 100vw;
       height: 80px;
+      z-index: 5;
     }
 
     #hamburgerIcon {
@@ -367,7 +369,7 @@
     }
 
     #UnOrderedListCategory {
-      z-index: 2;
+      z-index: 5;
       margin: 0;
       padding: 0;
       width: 80vw;
@@ -381,7 +383,7 @@
     }
 
     #containerForAccounts {
-      z-index: 2;
+      z-index: 5;
       margin: 0;
       padding: 0;
       width: 90vw;
@@ -394,6 +396,7 @@
       justify-content: center;
       align-items: center;
       box-shadow: 2px 2px 10px grey;
+      /* z-index: 3; */
     }
 
     .listItemCategory {

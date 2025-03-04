@@ -146,15 +146,15 @@
   import { ref, computed } from 'vue'
 
   const productCategory = [
-    { value: 'null', text: 'Välj en kategori' },
-    { value: 'växter', text: 'Växter' },
+    { value: null, text: 'Välj en kategori' },
+    { value: 'hem & trädgård', text: 'Hem & Trädgård' },
     { value: 'elektronik', text: 'Elektronik' },
-    { value: 'hobby', text: 'Hobby' },
-    { value: 'kläder', text: 'Kläder' },
-    { value: 'heminredning', text: 'Heminredning' },
-    { value: 'sport', text: 'Sport' },
     { value: 'fordon', text: 'Fordon' },
-    { value: 'djur', text: 'Djur' }
+    { value: 'hobby', text: 'Hobby' },
+    { value: 'sport', text: 'Sport' },
+    { value: 'djur', text: 'Djur' },
+    { value: 'kläder', text: 'Kläder' },
+    { value: 'köksutrustning', text: 'Köksutrustning' }
   ]
   const productSizes = [
     { value: null, text: 'Välj en storlek' },
@@ -195,10 +195,10 @@
     )
   })
 
-  /* formData.value.productImages.trim() !== "" &&    
+  /* formData.value.productImages.trim() !== "" &&
 	formData.value.productSeller.trim() !== "" &&
 	formData.value.productAdress.trim() !== "" &&
-	
+
 	lägg till dom här i computed ovanför när konton och bilder funkar.
 	*/
 
