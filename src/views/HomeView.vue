@@ -47,7 +47,11 @@
         @click="chosenProduct(product)"
       >
         <router-link :to="`selectedproduct/${product.id}`">
-          <img :src="product.img" class="card-img-top" alt="produktkort" />
+          <img
+            :src="Array.isArray(product.img) ? product.img[0] : product.img"
+            class="card-img-top"
+            alt="produktkort"
+          />
           <div class="card-body">
             <h5 class="card-title">{{ product.namn }}</h5>
             <p class="card-text">{{ product.adress }}</p>
