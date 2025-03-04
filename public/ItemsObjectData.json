@@ -225,9 +225,7 @@
     "storlek": "null",
     "beskrivning": "Apelsina från brasilien ",
     "pris": 23,
-    "img": [
-      "uploads/Test-1740764067245-0.jpg"
-    ],
+    "img": ["uploads/Test-1740764067245-0.jpg"],
     "adress": "It-högskolan",
     "säljare": "Felix Korshavn"
   },
@@ -271,9 +269,7 @@
     "storlek": "null",
     "beskrivning": "Söt hona på 3 månader som är redo att flytta hemifrån.",
     "pris": 2000,
-    "img": [
-      "uploads/Katt-1741077307890-1.png"
-    ],
+    "img": ["uploads/Katt-1741077307890-1.png"],
     "adress": "activeUser.adress",
     "säljare": "activeUser.name"
   },
@@ -285,9 +281,7 @@
     "storlek": "null",
     "beskrivning": "fin dosa i metall med IFK emblem",
     "pris": 150,
-    "img": [
-      "uploads/snusdosa-1741083822141-1.jpeg"
-    ],
+    "img": ["uploads/snusdosa-1741083822141-1.jpeg"],
     "adress": "activeUser.adress",
     "säljare": "activeUser.name"
   },
@@ -299,9 +293,7 @@
     "storlek": "null",
     "beskrivning": "undulaten greg vill flytta ut på landet efter ett tufft liv i storstan",
     "pris": 54,
-    "img": [
-      "uploads/undulaten_greg-1741084675614-1.jpg"
-    ],
+    "img": ["uploads/undulaten_greg-1741084675614-1.jpg"],
     "adress": "activeUser.adress",
     "säljare": "activeUser.name"
   },
@@ -313,9 +305,7 @@
     "storlek": "null",
     "beskrivning": "rostig men fin, den har överlevt sen 50talet",
     "pris": 5,
-    "img": [
-      "uploads/mmmas_trehjuling-1741092114596-1.jpg"
-    ],
+    "img": ["uploads/mmmas_trehjuling-1741092114596-1.jpg"],
     "adress": "activeUser.adress",
     "säljare": "activeUser.name"
   },
@@ -327,9 +317,7 @@
     "storlek": "null",
     "beskrivning": "en liten beskriving",
     "pris": 123,
-    "img": [
-      "uploads/asdhasdk-1741094542717-1.jpg"
-    ],
+    "img": ["uploads/asdhasdk-1741094542717-1.jpg"],
     "adress": "activeUser.adress",
     "säljare": "activeUser.name"
   },
@@ -341,9 +329,7 @@
     "storlek": "null",
     "beskrivning": "bra att ha i sallad",
     "pris": 2,
-    "img": [
-      "uploads/gurka-8925-1.jpg"
-    ],
+    "img": ["uploads/gurka-8925-1.jpg"],
     "adress": "activeUser.adress",
     "säljare": "activeUser.name"
   }
