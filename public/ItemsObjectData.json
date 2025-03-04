@@ -276,5 +276,19 @@
     ],
     "adress": "activeUser.adress",
     "säljare": "activeUser.name"
+  },
+  {
+    "id": 1741115052231,
+    "namn": "Kastrull",
+    "kategori": "köksutrustning",
+    "skick": "nyskick",
+    "storlek": "null",
+    "beskrivning": "Har två, behöver bara en.",
+    "pris": 100,
+    "img": [
+      "uploads/Kastrull-1741115052231-1.avif"
+    ],
+    "adress": "activeUser.adress",
+    "säljare": "activeUser.name"
   }
 ]

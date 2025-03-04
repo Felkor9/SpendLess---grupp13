@@ -111,6 +111,7 @@ export const createAccountStore = defineStore('auth', () => {
     return newPassword.value.length >= 5 && repeatPassword.value.length >= 5
   })
 
+  //Ändrar /sparar profilbild (Felix)
   watch(profilePicture, (newPic) => {
     if (user.value) {
       user.value.profilePicture = newPic
@@ -118,34 +119,44 @@ export const createAccountStore = defineStore('auth', () => {
     }
   })
 
-  //Sparar en användares upplagda varor i localStorage (Evelina)
-  // const addProduct = (product) => {
-  //   const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'))
-  //   if (!loggedInUser) {
-  //     console.error('Ingen användare är inloggad')
-  //     return
-  //   }
-  //   const userEmail = loggedInUser.email
-  //   const userProducts = JSON.parse(localStorage.getItem('userProducts')) || {}
+  // Sparar en användares upplagda varor i localStorage (Evelina)
 
-  //   if (!userProducts[userEmail]) {
-  //     userProducts[userEmail] = []
-  //   }
+  const userProducts = ref([])
 
-  //   userProducts[userEmail].push(product)
+  const addProduct = (product) => {
+    const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'))
+    if (!loggedInUser) {
+      console.error('Ingen användare är inloggad')
+      return
+    }
 
-  //   localStorage.setItem('userProducts', JSON.stringify(userProducts))
-  // }
+    const userEmail = loggedInUser.email
+    const storedUserProducts =
+      JSON.parse(localStorage.getItem('userProducts')) || {}
 
-  // const getUserProducts = computed(() => {
-  //   const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'))
-  //   if (!loggedInUser) return []
+    if (!storedUserProducts[userEmail]) {
+      storedUserProducts[userEmail] = []
+    }
 
-  //   const userEmail = loggedInUser.email
-  //   const userProducts = JSON.parse(localStorage.getItem('userProducts')) || {}
+    // Lägg till produkt
+    storedUserProducts[userEmail].push(product)
+    localStorage.setItem('userProducts', JSON.stringify(storedUserProducts))
 
-  //   return userProducts[userEmail] || []
-  // })
+    // Uppdatera den reaktiva userProducts ref
+    userProducts.value = storedUserProducts[userEmail] || []
+    console.log('Produkter sparade för användare:', userProducts.value)
+  }
+
+  const getUserProducts = computed(() => {
+    const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'))
+    if (!loggedInUser) return []
+
+    const userEmail = loggedInUser.email
+    const storedUserProducts =
+      JSON.parse(localStorage.getItem('userProducts')) || {}
+
+    return storedUserProducts[userEmail] || []
+  })
 
   return {
     email,
@@ -161,6 +172,16 @@ export const createAccountStore = defineStore('auth', () => {
     repeatPassword,
     passwordsMatch,
     passwordLongEnough,
-    value
+    value,
+    addProduct,
+    userProducts,
+    getUserProducts,
+    messages,
+    sendMessage,
+    loadMessages,
+    updateProfilePicture,
+    profilePicture
   }
 })
+
+export const useAccountStore = createAccountStore
