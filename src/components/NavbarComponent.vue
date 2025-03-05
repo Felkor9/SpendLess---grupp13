@@ -67,7 +67,7 @@
     <div v-if="store.user" class="wrapper">
       <div id="containerForSettings">
         <BAvatar
-          size="80px"
+          size="110px"
           :src="store.profilePicture"
           class="profile-avatar"
         />
