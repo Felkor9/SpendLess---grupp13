@@ -405,9 +405,8 @@
     }
 
     .card-img-top {
-      max-width: 100%;
-      min-width: none;
-      max-height: 50%;
+      width: 100%;
+      height: 150px;
     }
   }
 </style>
