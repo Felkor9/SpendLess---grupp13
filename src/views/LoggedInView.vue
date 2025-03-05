@@ -60,12 +60,8 @@
           <div v-if="activeTab === 'listings'">
             <h5>Mina Annonser</h5>
             <BListGroup>
-              <BListGroupItem
-                v-for="item in getUserProducts"
-                :key="item.productName"
-              >
-                {{ item.productName }} - {{ item.productPrice }} kr
-              </BListGroupItem>
+              <BListGroupItem> </BListGroupItem>
+              <p>Varor</p>
             </BListGroup>
           </div>
 
@@ -91,14 +87,10 @@
 <script setup>
   import MessagesComponent from '../components/MessagesComponent.vue'
   import { ref, onMounted } from 'vue'
-  import { useAccountStore } from '../store'
-  import { storeToRefs } from 'pinia'
+  import { createAccountStore } from '../store'
 
-  const store = useAccountStore()
   const messages = ref([])
-
-  //Hämta produkter från store (Evelina)
-  const { getUserProducts } = storeToRefs(store)
+  const store = createAccountStore()
 
   onMounted(() => {
     messages.value = JSON.parse(localStorage.getItem('chatMessages')) || []
