@@ -161,6 +161,9 @@ export const createAccountStore = defineStore('auth', () => {
     repeatPassword,
     passwordsMatch,
     passwordLongEnough,
-    value
+    value,
+    updateProfilePicture,
+    profilePicture,
+
   }
 })
