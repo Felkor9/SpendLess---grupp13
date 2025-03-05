@@ -65,8 +65,8 @@
                 class="d-flex justify-content-between align-items-center"
               >
                 <div>
-                  <h6>{{ listings.namn }}</h6>
-                  <p>{{ listings.pris }}</p>
+                  <h5>{{ listings.namn }}</h5>
+                  <p>{{ listings.pris }}:-</p>
                 </div>
               </BListGroupItem>
             </BListGroup>
