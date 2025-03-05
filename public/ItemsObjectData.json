@@ -388,5 +388,55 @@
     ],
     "adress": "activeUser.adress",
     "säljare": "activeUser.name"
+  },
+  {
+    "id": 4780,
+    "namn": "Creepy Mask",
+    "kategori": "hem & trädgård",
+    "skick": "slitet",
+    "storlek": "null",
+    "beskrivning": "Den här ger mig mardrömmar, klarar inte av att ha den här hemma hos mig längre. Häromnatten trillade den dessutom av sin krok på väggen, what the fuck!  när de hände så kastade jag iväg den o då fick den massa skav uppe på. kom o köp om du gillar creepy skit.",
+    "pris": 666,
+    "img": [
+      "uploads/Creepy_Mask-4780-1.jpg",
+      "uploads/Creepy_Mask-4780-2.jpg",
+      "uploads/Creepy_Mask-4780-3.jpg"
+    ],
+    "adress": "activeUser.adress",
+    "säljare": "activeUser.name"
+  },
+  {
+    "id": 3280,
+    "namn": "Trimmad minicross",
+    "kategori": "fordon",
+    "skick": "begangnat",
+    "storlek": "null",
+    "beskrivning": "Jag har äntligen blivit klar med mitt lilla mekarprojekt. Satan va den går den här lille manicken. tror jag kom upp i 80 knyck här ute på grusvägen bredvid huset. Inget att köra omkring med inne i stan helt enkelt för om farbror blå ser dig på denna ryker körkortet direkt. Givetvis får man med alla orginaldelar ifall man vill köra lagligt.",
+    "pris": 6500,
+    "img": [
+      "uploads/Trimmad_minicross-3280-1.jpg",
+      "uploads/Trimmad_minicross-3280-2.jpg",
+      "uploads/Trimmad_minicross-3280-3.jpg"
+    ],
+    "adress": "activeUser.adress",
+    "säljare": "activeUser.name"
+  },
+  {
+    "id": 6475,
+    "namn": "Volvo V40 ",
+    "kategori": "fordon",
+    "skick": "slitet",
+    "storlek": "null",
+    "beskrivning": "Bilen går fint men har ju sina skavanker. Lite rost här o där och nåt äckligt som hänt i baksätet, det ser ut som en massa mögel. Jag orkar inte ta tag i de så säljer iväg den här till ett riktigt kalaspris.",
+    "pris": 5000,
+    "img": [
+      "uploads/Volvo_V40_-6475-1.jpg",
+      "uploads/Volvo_V40_-6475-2.jpg",
+      "uploads/Volvo_V40_-6475-3.jpg",
+      "uploads/Volvo_V40_-6475-4.jpg",
+      "uploads/Volvo_V40_-6475-5.jpg"
+    ],
+    "adress": "activeUser.adress",
+    "säljare": "activeUser.name"
   }
 ]
