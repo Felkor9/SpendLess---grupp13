@@ -141,13 +141,12 @@
     </BContainer>
   </div>
 </template>
-
 <script setup>
   import { ref, computed } from 'vue'
   //Importerar funktionen från pinia
-  import { createAccountStore } from '../store'
-  const store = createAccountStore()
-
+  import { useAccountStore } from '../store'
+  import { storeToRefs } from 'pinia'
+  const store = useAccountStore()
   const productCategory = [
     { value: null, text: 'Välj en kategori' },
     { value: 'hem & trädgård', text: 'Hem & Trädgård' },
@@ -168,7 +167,6 @@
     { value: 'xlarge', text: 'XLARGE' },
     { value: 'other', text: 'ANNAT' }
   ]
-
   // Värden som ska fyllas i från formuläret innan de skickas iväg (Hampus)
   const formData = ref({
     productName: '',
@@ -181,7 +179,6 @@
     productAdress: '',
     selectedSize: 'null'
   })
-
   // Kollar så att allt är i fyllt, annars är knappen disabled (Hampus)
   const isFormValid = computed(() => {
     return (
@@ -197,36 +194,15 @@
         formData.value.selectedCondition.trim() !== '')
     )
   })
-
   /* formData.value.productImages.trim() !== "" &&
-	formData.value.productSeller.trim() !== "" &&
-	formData.value.productAdress.trim() !== "" &&
-
-	lägg till dom här i computed ovanför när konton och bilder funkar.
-	*/
-
+  formData.value.productSeller.trim() !== "" &&
+  formData.value.productAdress.trim() !== "" &&
+  lägg till dom här i computed ovanför när konton och bilder funkar.
+  */
   const fileInput = ref(null)
-  //Uppdaterar submitForm för att kunna spara det i localStorage
+  // Skicka iväg forumuläret (Hampus)
   const submitForm = async () => {
     try {
-      const product = {
-        productName: formData.value.productName,
-        selectedCategory: formData.value.selectedCategory,
-        selectedCondition: formData.value.selectedCondition,
-        selectedSize: formData.value.selectedSize,
-        productDescription: formData.value.productDescription,
-        productPrice: formData.value.productPrice,
-        productImages: formData.value.productImages,
-        productSeller: 'activeUser.name',
-        productAdress: 'activeUser.adress'
-      }
-      //Anropar addProduct för att spara produkten i localStorage.
-      store.addProduct(product)
-      console.log('Annonsen är sparad i localStorage')
-
-      // Skicka iväg forumuläret och spara lokalt (Hampus)
-      // const submitForm = async () => {
-      //   try {
       const formPayload = new FormData()
       //lägg till formulärvärden i objektet som ska skickas (Hampus)
       formPayload.append('productName', formData.value.productName)
@@ -244,24 +220,19 @@
       formPayload.append('productPrice', formData.value.productPrice)
       formPayload.append('productSeller', 'activeUser.name')
       formPayload.append('productAdress', 'actuveUser.adress')
-
       // lägg till filer i objektet (Hampus)
-
       if (fileInput.value?.files) {
         for (let i = 0; i < fileInput.value.files.length; i++) {
           formPayload.append('productImages', fileInput.value.files[i])
         }
       }
-
       const response = await fetch('http://localhost:3000/submit', {
         method: 'POST',
         body: formPayload
       })
-
       // kolla så att post har funkat annars visa error (Hampus)
       if (!response.ok) throw new Error(result || 'Nåt har gått snett')
       alert('Annonsen är nu tillagt i systemet!')
-
       // Nollställ forumuläret och filer efter att varan har skickats iväg (Hampus)
       formData.value = {
         productName: '',
@@ -283,7 +254,6 @@
     }
   }
 </script>
-
 <style scoped>
   /* css desktop storlek */
   @media screen and (min-width: 768px) {
@@ -292,47 +262,38 @@
       /* margin: 20px; */
     }
   }
-
   .productName {
     margin-top: 20px;
     margin-bottom: 30px;
   }
-
   .productCategory {
     margin-bottom: 30px;
   }
-
   .productSize {
     margin-top: -40px;
     margin-bottom: 30px;
   }
-
   .productCondition {
     display: flex;
     margin: 10px;
     justify-content: space-between;
     margin-bottom: 30px;
   }
-
   .form-check {
     margin: 0 10px 0px 10px;
   }
-
   .productImage {
     margin-bottom: 30px;
   }
   .productImage input {
     margin: 10px;
   }
-
   .productDescription {
     margin-bottom: 30px;
   }
-
   .productPrice {
     margin-bottom: 30px;
   }
-
   #bigWrapper {
     display: flex;
     flex-direction: column;
@@ -341,7 +302,6 @@
     min-height: 80vh;
     width: 100vw;
   }
-
   .formContainer {
     max-width: 600px; /* Adjust as needed */
     width: 100%;
