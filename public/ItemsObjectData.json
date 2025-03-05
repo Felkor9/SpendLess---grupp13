@@ -225,9 +225,7 @@
     "storlek": "null",
     "beskrivning": "Apelsina från brasilien ",
     "pris": 23,
-    "img": [
-      "uploads/Test-1740764067245-0.jpg"
-    ],
+    "img": ["uploads/Test-1740764067245-0.jpg"],
     "adress": "It-högskolan",
     "säljare": "Felix Korshavn"
   },
@@ -248,22 +246,6 @@
     "säljare": "activeUser.name"
   },
   {
-    "id": 1740,
-    "namn": "Trådhjärta",
-    "kategori": "heminredning",
-    "skick": "begangnat",
-    "storlek": "null",
-    "beskrivning": "ett litet hjärta som cajsa har gjort slöjden",
-    "pris": 321,
-    "img": [
-      "uploads/Trådhjärta-1740862017636-1.jpg",
-      "uploads/Trådhjärta-1740862017636-2.jpg",
-      "uploads/Trådhjärta-1740862017636-3.jpg"
-    ],
-    "adress": "activeUser.adress",
-    "säljare": "activeUser.name"
-  },
-  {
     "id": 1741,
     "namn": "Katt",
     "kategori": "djur",
@@ -271,9 +253,7 @@
     "storlek": "null",
     "beskrivning": "Söt hona på 3 månader som är redo att flytta hemifrån.",
     "pris": 2000,
-    "img": [
-      "uploads/Katt-1741077307890-1.png"
-    ],
+    "img": ["uploads/Katt-1741077307890-1.png"],
     "adress": "activeUser.adress",
     "säljare": "activeUser.name"
   },
@@ -285,9 +265,7 @@
     "storlek": "null",
     "beskrivning": "fin dosa i metall med IFK emblem",
     "pris": 150,
-    "img": [
-      "uploads/snusdosa-1741083822141-1.jpeg"
-    ],
+    "img": ["uploads/snusdosa-1741083822141-1.jpeg"],
     "adress": "activeUser.adress",
     "säljare": "activeUser.name"
   },
@@ -299,9 +277,7 @@
     "storlek": "null",
     "beskrivning": "undulaten greg vill flytta ut på landet efter ett tufft liv i storstan",
     "pris": 54,
-    "img": [
-      "uploads/undulaten_greg-1741084675614-1.jpg"
-    ],
+    "img": ["uploads/undulaten_greg-1741084675614-1.jpg"],
     "adress": "activeUser.adress",
     "säljare": "activeUser.name"
   },
@@ -313,9 +289,7 @@
     "storlek": "null",
     "beskrivning": "rostig men fin, den har överlevt sen 50talet",
     "pris": 5,
-    "img": [
-      "uploads/mmmas_trehjuling-1741092114596-1.jpg"
-    ],
+    "img": ["uploads/mmmas_trehjuling-1741092114596-1.jpg"],
     "adress": "activeUser.adress",
     "säljare": "activeUser.name"
   },
@@ -327,9 +301,7 @@
     "storlek": "null",
     "beskrivning": "en liten beskriving",
     "pris": 123,
-    "img": [
-      "uploads/asdhasdk-1741094542717-1.jpg"
-    ],
+    "img": ["uploads/asdhasdk-1741094542717-1.jpg"],
     "adress": "activeUser.adress",
     "säljare": "activeUser.name"
   },
@@ -341,9 +313,7 @@
     "storlek": "null",
     "beskrivning": "bra att ha i sallad",
     "pris": 2,
-    "img": [
-      "uploads/gurka-8925-1.jpg"
-    ],
+    "img": ["uploads/gurka-8925-1.jpg"],
     "adress": "activeUser.adress",
     "säljare": "activeUser.name"
   },
@@ -355,9 +325,7 @@
     "storlek": "null",
     "beskrivning": "Bra bok för småbarn.",
     "pris": 45,
-    "img": [
-      "uploads/Greta_Gris_bok-7032-1.jpg"
-    ],
+    "img": ["uploads/Greta_Gris_bok-7032-1.jpg"],
     "adress": "activeUser.adress",
     "säljare": "activeUser.name"
   },
@@ -369,9 +337,7 @@
     "storlek": "null",
     "beskrivning": "Fin kastrull, har 2 likadana så säljer den gamla.",
     "pris": 50,
-    "img": [
-      "uploads/Kastrull-3711-1.avif"
-    ],
+    "img": ["uploads/Kastrull-3711-1.avif"],
     "adress": "activeUser.adress",
     "säljare": "activeUser.name"
   },
@@ -383,9 +349,7 @@
     "storlek": "null",
     "beskrivning": "Leksak för hundar, min hund är rädd för den. Inte använt.",
     "pris": 30,
-    "img": [
-      "uploads/Pipande_gris-4821-1.jpg"
-    ],
+    "img": ["uploads/Pipande_gris-4821-1.jpg"],
     "adress": "activeUser.adress",
     "säljare": "activeUser.name"
   },

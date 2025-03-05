@@ -40,6 +40,7 @@
   const selectedIndex = ref(0)
   const images = ref([])
 
+  //hämtar info från valt produkt-ID
   function fetchProductDetails() {
     console.log('Fetching images for product ID:', props.productId)
     fetch('/ItemsObjectData.json')
@@ -56,11 +57,11 @@
             : [product.img]
           console.log('Images set:', images.value)
         } else {
-          console.warn('No images found for product')
-          images.value = ['https://via.placeholder.com/600x400?text=No+Image']
+          console.warn('Kunde inte hitta bild till produkt')
+          images.value = ['../assets/fox.jpeg']
         }
       })
-      .catch((error) => console.error('Error fetching images:', error))
+      .catch((error) => console.error('Kunde inte hämta bilder:', error))
   }
 
   const selectImage = (index) => {
@@ -116,40 +117,40 @@
     object-fit: cover;
   }
 
-  /* Mobile layout (Smaller screens) */
+  /* Mobile layout - flex column istället för row så thumbnails hamnar under */
   @media (max-width: 768px) {
     .image-gallery {
-      flex-direction: column; /* Stack vertically */
+      flex-direction: column;
     }
 
     .main-image {
-      flex: none; /* Remove flex grow */
-      width: 100%; /* Full width */
+      flex: none;
+      width: 100%;
     }
 
     .main-image img {
-      height: 300px; /* Reduce height for mobile */
+      height: 300px;
     }
 
     .thumbnail-list {
-      flex: none; /* Remove flex grow */
-      width: 100%; /* Full width */
-      max-height: none; /* Remove vertical scroll */
-      display: flex; /* Horizontal row */
-      overflow-x: auto; /* Horizontal scroll */
-      gap: 10px; /* Space between thumbnails */
-      padding: 10px 0; /* Add some padding */
+      flex: none;
+      width: 100%;
+      max-height: none;
+      display: flex;
+      overflow-x: auto;
+      gap: 10px;
+      padding: 10px 0;
     }
 
     .thumbnail {
-      flex: 0 0 auto; /* Don’t grow or shrink, use natural size */
-      width: 80px; /* Fixed width for thumbnails */
-      margin-bottom: 0; /* Remove bottom margin since it’s horizontal */
+      flex: 0 0 auto;
+      width: 80px;
+      margin-bottom: 0;
     }
-
+    /* kvadratiska thumbnials */
     .thumbnail img {
-      width: 80px; /* Match thumbnail container width */
-      height: 80px; /* Square thumbnails */
+      width: 80px;
+      height: 80px;
     }
   }
 </style>

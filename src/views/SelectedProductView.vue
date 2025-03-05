@@ -1,4 +1,5 @@
 <template>
+  <!-- Bilder visas utanför product-card då det behöver en annan layout -->
   <ImageGallery :product-id="Number(productId)" />
   <div v-if="products" class="card">
     <div class="card-body">
@@ -106,109 +107,7 @@
 </script>
 
 <style scoped>
-  /* DESKTOP STYLING */
-  @media screen and (min-width: 768px) {
-    .card-body {
-      width: 60%;
-    }
-    .card {
-      margin-left: 25px;
-      margin-right: 25px;
-      display: flex;
-      flex-direction: row;
-    }
-
-    .card-title {
-      font-size: 1.5rem; /* Smaller but visible */
-      font-weight: bolder;
-      margin: 10px 0; /* Spacing */
-    }
-    .card-price {
-      font-size: 1rem; /* Smaller but visible */
-      font-weight: bolder;
-      margin: 10px 0; /* Spacing */
-    }
-
-    .säljare-info {
-      display: flex;
-      align-items: center;
-    }
-
-    .avatarPicture {
-      margin-right: 10px;
-      margin-bottom: 15px;
-    }
-    .modal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .modal-content {
-      background: white;
-      padding: 20px;
-      width: 400px;
-      border-radius: 8px;
-      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
-      text-align: center;
-      position: relative;
-    }
-
-    .close {
-      position: absolute;
-      top: 10px;
-      right: 15px;
-      font-size: 24px;
-      cursor: pointer;
-    }
-
-    textarea {
-      width: 100%;
-      height: 80px;
-      margin-top: 10px;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-
-    .buttons {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 15px;
-    }
-
-    .btn-cancel {
-      background: #ccc;
-      color: black;
-      padding: 10px;
-      border: none;
-      cursor: pointer;
-      border-radius: 4px;
-    }
-
-    .btn-cancel:hover {
-      background: #bbb;
-    }
-
-    .btn-send {
-      background: green;
-      color: white;
-      padding: 10px;
-      border: none;
-      cursor: pointer;
-      border-radius: 4px;
-    }
-
-    .btn-send:hover {
-      background: darkgreen;
-    }
-  }
+  /* GLOBAL STYLING */
 
   .condition-good {
     color: green;
@@ -223,21 +122,27 @@
     font-weight: bolder;
   }
 
-  /* MOBIL STYLING */
-  @media screen and (max-width: 768px) {
+  /* DESKTOP STYLING */
+  @media screen and (min-width: 768px) {
+    .card-body {
+      width: 60%;
+    }
     .card {
-      /* margin-left: 25px; */
-      /* margin-right: 25px; */
+      margin-left: 25px;
+      margin-right: 25px;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
-      width: 100vw;
+      flex-direction: row;
     }
 
     .card-title {
-      font-size: 1.5rem; /* Smaller but visible */
+      font-size: 1.5rem;
       font-weight: bolder;
-      margin: 10px 0; /* Spacing */
+      margin: 10px 0;
+    }
+    .card-price {
+      font-size: 1rem;
+      font-weight: bolder;
+      margin: 10px 0;
     }
 
     .säljare-info {
@@ -319,17 +224,101 @@
     .btn-send:hover {
       background: darkgreen;
     }
-    .condition-good {
-      color: green;
-      font-weight: bolder;
+  }
+
+  /* MOBIL STYLING */
+  @media screen and (max-width: 768px) {
+    .card {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 100vw;
     }
-    .condition-used {
-      color: orange;
+
+    .card-title {
+      font-size: 1.5rem;
       font-weight: bolder;
+      margin: 10px 0;
     }
-    .condition-worn {
-      color: red;
-      font-weight: bolder;
+
+    .säljare-info {
+      display: flex;
+      align-items: center;
+    }
+
+    .avatarPicture {
+      margin-right: 10px;
+      margin-bottom: 15px;
+    }
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 20px;
+      width: 400px;
+      border-radius: 8px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      position: relative;
+    }
+
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    textarea {
+      width: 100%;
+      height: 80px;
+      margin-top: 10px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 15px;
+    }
+
+    .btn-cancel {
+      background: #ccc;
+      color: black;
+      padding: 10px;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .btn-cancel:hover {
+      background: #bbb;
+    }
+
+    .btn-send {
+      background: green;
+      color: white;
+      padding: 10px;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .btn-send:hover {
+      background: darkgreen;
     }
   }
 </style>
