@@ -23,7 +23,6 @@
               class="star"
               :class="{ filled: star <= userTest.rating }"
             >
-              &#9733;
             </span>
           </div>
         </BCol>
@@ -55,14 +54,17 @@
         </BCol>
       </BRow>
 
-      <!--innehåll (dynmasikt)-->
+      <!--Mina annonser-->
       <BRow>
         <BCol>
           <div v-if="activeTab === 'listings'">
             <h5>Mina Annonser</h5>
             <BListGroup>
-              <BListGroupItem v-for="item in myListings" :key="item.id">
-                {{ item.product }} - {{ item.date }}
+              <BListGroupItem
+                v-for="item in getUserProducts"
+                :key="item.productName"
+              >
+                {{ item.productName }} - {{ item.productPrice }} kr
               </BListGroupItem>
             </BListGroup>
           </div>
@@ -80,6 +82,7 @@
       </BRow>
     </BContainer>
   </div>
+  <!-- Om användaren inte är inloggad! -->
   <p v-else>
     <router-link to="/" />'Du måste logga in för att kunna se "Mina sidor"'
   </p>
@@ -88,10 +91,14 @@
 <script setup>
   import MessagesComponent from '../components/MessagesComponent.vue'
   import { ref, onMounted } from 'vue'
-  import { createAccountStore } from '../store'
+  import { useAccountStore } from '../store'
+  import { storeToRefs } from 'pinia'
 
-  const store = createAccountStore()
+  const store = useAccountStore()
   const messages = ref([])
+
+  //Hämta produkter från store (Evelina)
+  const { getUserProducts } = storeToRefs(store)
 
   onMounted(() => {
     messages.value = JSON.parse(localStorage.getItem('chatMessages')) || []
@@ -108,12 +115,6 @@
 
   // styr vilken flik vi är inne på. mina annonser är standard
   const activeTab = ref('listings')
-
-  const myListings = ref([
-    { id: 1, product: 'Produkt 1', date: '2025-02-20' },
-    { id: 2, product: 'Produkt 2', date: '2025-02-15' },
-    { id: 3, product: 'Produkt 3', date: '2024-12-10' }
-  ])
 </script>
 
 <style scoped>

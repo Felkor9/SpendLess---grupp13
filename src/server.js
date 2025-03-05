@@ -6,9 +6,18 @@ import multer from "multer";
 import path from "path";
 import { fileURLToPath } from 'url';
 
+import { customAlphabet } from 'nanoid';
+
+
+
+const nanoid = customAlphabet('0123456789', 4);
+// const newId = Number(customAlphabet('0123456789', 4)());
+
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootPublicPath = path.join(__dirname, '../public');
+
 
 //express ser till att de skapas en server för att ta emot formuläret POST
 const app = express();
@@ -32,7 +41,8 @@ const storage = multer.diskStorage({
     cb(null, uploadDir);
   },
   filename: (req, file, cb) => {
-    cb(null, Date.now() + '-' + file.originalname);
+    const id = Number(nanoid());
+    cb(null, `${id} + '-' + file.originalname`);
   }
 });
 
@@ -55,7 +65,7 @@ app.post("/submit", upload.array('productImages'), (req, res) => {
 // skapar ett ID till annonsen som är datum och tid precis NU! 
     try {
       let jsonData = JSON.parse(data || '[]');
-      const newId = Date.now(); 
+      const newId = Number(nanoid());
 
       const newProductFileName = formData.productName
       ? formData.productName.replace(/[^a-zA-Z0-9åäöÅÄÖ]/g, '_')
@@ -86,7 +96,7 @@ app.post("/submit", upload.array('productImages'), (req, res) => {
     
 // annons infon som ska skickas till json-filen
       const newItem = {
-        id: Date.now(),
+        id: newId,
         namn: formData.productName,
         kategori: formData.selectedCategory,
         skick: formData.selectedCondition,

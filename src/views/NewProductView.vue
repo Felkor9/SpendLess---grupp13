@@ -206,10 +206,27 @@
 	*/
 
   const fileInput = ref(null)
-
-  // Skicka iväg forumuläret (Hampus)
+  //Uppdaterar submitForm för att kunna spara det i localStorage
   const submitForm = async () => {
     try {
+      const product = {
+        productName: formData.value.productName,
+        selectedCategory: formData.value.selectedCategory,
+        selectedCondition: formData.value.selectedCondition,
+        selectedSize: formData.value.selectedSize,
+        productDescription: formData.value.productDescription,
+        productPrice: formData.value.productPrice,
+        productImages: formData.value.productImages,
+        productSeller: 'activeUser.name',
+        productAdress: 'activeUser.adress'
+      }
+      //Anropar addProduct för att spara produkten i localStorage.
+      store.addProduct(product)
+      console.log('Annonsen är sparad i localStorage')
+
+      // Skicka iväg forumuläret och spara lokalt (Hampus)
+      // const submitForm = async () => {
+      //   try {
       const formPayload = new FormData()
       //lägg till formulärvärden i objektet som ska skickas (Hampus)
       formPayload.append('productName', formData.value.productName)
