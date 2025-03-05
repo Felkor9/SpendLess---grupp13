@@ -82,8 +82,8 @@
 
     .footerText {
       color: white;
-      margin-top: 10px;
-      padding: 5px;
+      margin-top: 20px;
+      /* padding: 5px; */
       padding-right: 60px;
     }
 
@@ -95,7 +95,7 @@
     #sectionFooter {
       margin-top: 50px;
       min-height: 5vh;
-      padding-top: 40px;
+      /* padding-top: 40px; */
     }
   }
 </style>
