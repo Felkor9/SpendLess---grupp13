@@ -360,5 +360,33 @@
     ],
     "adress": "activeUser.adress",
     "säljare": "activeUser.name"
+  },
+  {
+    "id": 3711,
+    "namn": "Kastrull",
+    "kategori": "köksutrustning",
+    "skick": "begangnat",
+    "storlek": "null",
+    "beskrivning": "Fin kastrull, har 2 likadana så säljer den gamla.",
+    "pris": 50,
+    "img": [
+      "uploads/Kastrull-3711-1.avif"
+    ],
+    "adress": "activeUser.adress",
+    "säljare": "activeUser.name"
+  },
+  {
+    "id": 4821,
+    "namn": "Pipande gris",
+    "kategori": "djur",
+    "skick": "",
+    "storlek": "null",
+    "beskrivning": "Leksak för hundar, min hund är rädd för den. Inte använt.",
+    "pris": 30,
+    "img": [
+      "uploads/Pipande_gris-4821-1.jpg"
+    ],
+    "adress": "activeUser.adress",
+    "säljare": "activeUser.name"
   }
 ]

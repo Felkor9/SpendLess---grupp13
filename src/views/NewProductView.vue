@@ -226,13 +226,33 @@
           formPayload.append('productImages', fileInput.value.files[i])
         }
       }
+      //Skickar annonsen till backend
       const response = await fetch('http://localhost:3000/submit', {
         method: 'POST',
         body: formPayload
       })
+
       // kolla så att post har funkat annars visa error (Hampus)
       if (!response.ok) throw new Error(result || 'Nåt har gått snett')
       alert('Annonsen är nu tillagt i systemet!')
+
+      //När annonsen är uppladdad i backend så skapas ett objekt för att spara i LocalStorage (Evelina)
+      const newListing = {
+        namn: formData.value.productName,
+        kategori: formData.value.selectedCategory,
+        pris: formData.value.productPrice,
+        beskrivning: formData.value.productDescription,
+        bilder: formData.value.productImages
+      }
+
+      //Hämta annonser från LocalStorage om de finns (Evelina)
+      let storedListings =
+        JSON.parse(localStorage.getItem('userListings')) || []
+      storedListings.push(newListing)
+      localStorage.setItem('userListings', JSON.stringify(storedListings))
+
+      console.log('Annonsen är tillagd i systemet.')
+
       // Nollställ forumuläret och filer efter att varan har skickats iväg (Hampus)
       formData.value = {
         productName: '',

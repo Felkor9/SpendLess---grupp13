@@ -14,15 +14,21 @@ export const createAccountStore = defineStore('auth', () => {
   // hämtar medalanden från local storage, eller skapar en tom lista
   const messages = ref(JSON.parse(localStorage.getItem('chatMessages')) || [])
 
+  //Användarens annonser (Evelina)
+  const listings = ref(JSON.parse(localStorage.getItem('userListings')) || [])
+
+  //Skickar meddelanden och sparar i LocalStorage
   const sendMessage = (message) => {
-    messages.value.push(message) // Lägger till nytt meddelande i listan
+    messages.value.push(message)
     localStorage.setItem('chatMessages', JSON.stringify(messages.value))
   }
 
+  //Ladda meddelanden från localStorage
   const loadMessages = () => {
     messages.value = JSON.parse(localStorage.getItem('chatMessages')) || []
   }
 
+  //Registrerar användare och sparar i localStorage
   const registerUser = () => {
     const newUser = {
       email: email.value,
@@ -47,7 +53,7 @@ export const createAccountStore = defineStore('auth', () => {
     console.log('användare registrerad', users)
   }
 
-  // Hämta användare från localStorage
+  // Hämta användare från localStorage och logga in
   const loginUser = () => {
     const users = JSON.parse(localStorage.getItem('users')) || []
     // profilePicture.value = foundUser.profilePicture || ''
@@ -65,6 +71,9 @@ export const createAccountStore = defineStore('auth', () => {
       console.log('Inloggad användare:', foundUser)
       profilePicture.value = foundUser.profilePicture
 
+      //Hämtar användarens annonser vid inloggning (Evelina)
+      listings.value = JSON.parse(localStorage.getItem('userListings')) || []
+
       loginEmail.value = ''
       loginPassword.value = ''
     } else {
@@ -72,6 +81,8 @@ export const createAccountStore = defineStore('auth', () => {
       console.log('❌ Fel e-post eller lösenord')
     }
   }
+
+  //Uppdatera profilbild
   const updateProfilePicture = (imageData) => {
     if (user.value) {
       user.value.profilePicture = imageData
@@ -88,6 +99,7 @@ export const createAccountStore = defineStore('auth', () => {
     }
   }
 
+  //Logga ut användare
   const logoutUser = () => {
     // Rensa användaren från localStorage
     localStorage.removeItem('loggedInUser')
@@ -99,10 +111,15 @@ export const createAccountStore = defineStore('auth', () => {
     console.log('Användaren har loggats ut')
   }
 
+  //Lägg till en annons (Evelina)
+  const addListing = (listing) => {
+    listings.value.push(listing)
+    localStorage.setItem('userListings', JSON.stringify(listings.value))
+  }
+
   const value = ref('')
   const repeatValue = ref('')
   // const matchedPasswords = ref('')
-
   const passwordsMatch = computed(
     () => newPassword.value === repeatPassword.value
   )
@@ -137,7 +154,9 @@ export const createAccountStore = defineStore('auth', () => {
     sendMessage,
     loadMessages,
     updateProfilePicture,
-    profilePicture
+    profilePicture,
+    listings,
+    addListing
   }
 })
 

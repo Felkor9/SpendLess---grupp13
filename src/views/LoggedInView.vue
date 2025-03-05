@@ -12,7 +12,6 @@
             :src="store.profilePicture"
             class="profile-avatar"
           />
-          <!-- <h3>{{ store.user.name }}</h3> -->
           <p>{{ store.user.name }}</p>
 
           <!-- stjärnan ska vara ifylld baserat på rating-->
@@ -59,10 +58,19 @@
         <BCol>
           <div v-if="activeTab === 'listings'">
             <h5>Mina Annonser</h5>
-            <BListGroup>
-              <BListGroupItem> </BListGroupItem>
-              <p>Varor</p>
+            <BListGroup v-if="userListings.length">
+              <BListGroupItem
+                v-for="listings in userListings"
+                :key="listings.namn"
+                class="d-flex justify-content-between align-items-center"
+              >
+                <div>
+                  <h6>{{ listings.namn }}</h6>
+                  <p>{{ listings.pris }}</p>
+                </div>
+              </BListGroupItem>
             </BListGroup>
+            <p v-else>Du har inga aktiva annonser</p>
           </div>
 
           <!--ingen lista eller liknande skapad för favoriter och meddelanden ännu -->
@@ -78,6 +86,7 @@
       </BRow>
     </BContainer>
   </div>
+
   <!-- Om användaren inte är inloggad! -->
   <p v-else>
     <router-link to="/" />'Du måste logga in för att kunna se "Mina sidor"'
@@ -91,10 +100,9 @@
 
   const messages = ref([])
   const store = createAccountStore()
+  const activeTab = ref('listings')
 
-  onMounted(() => {
-    messages.value = JSON.parse(localStorage.getItem('chatMessages')) || []
-  })
+  const userListings = ref([])
 
   const userTest = ref({
     name: 'Förnamn Efternamn',
@@ -102,11 +110,14 @@
     rating: 3
   })
 
+  onMounted(() => {
+    messages.value = JSON.parse(localStorage.getItem('chatMessages')) || []
+    userListings.value = JSON.parse(localStorage.getItem('userListings')) || []
+    store.user = JSON.parse(localStorage.getItem('loggedInUser')) || null
+  })
+
   // standardbild för användaren
   const profilePicture = ref('/path-to-profile-image.jpg')
-
-  // styr vilken flik vi är inne på. mina annonser är standard
-  const activeTab = ref('listings')
 </script>
 
 <style scoped>
