@@ -41,12 +41,7 @@
   <div id="containerForObject">
     <div v-if="filteredProducts.length > 0" class="cardContainer">
       <!-- Loopar genom filtrerade produkter och visar dem som kort -->
-      <div
-        class="card"
-        v-for="product in filteredProducts"
-        :key="product.id"
-        @click="chosenProduct(product)"
-      >
+      <div class="card" v-for="product in filteredProducts" :key="product.id">
         <router-link :to="`selectedproduct/${product.id}`" class="routerlink">
           <img
             :src="Array.isArray(product.img) ? product.img[0] : product.img"

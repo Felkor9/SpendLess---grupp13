@@ -118,46 +118,6 @@ export const createAccountStore = defineStore('auth', () => {
       localStorage.setItem('loggedInUser', JSON.stringify(user.value))
     }
   })
-
-  // Sparar en användares upplagda varor i localStorage (Evelina)
-
-  const userProducts = ref([])
-
-  const addProduct = (product) => {
-    const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'))
-    if (!loggedInUser) {
-      console.error('Ingen användare är inloggad')
-      return
-    }
-
-    const userEmail = loggedInUser.email
-    const storedUserProducts =
-      JSON.parse(localStorage.getItem('userProducts')) || {}
-
-    if (!storedUserProducts[userEmail]) {
-      storedUserProducts[userEmail] = []
-    }
-
-    // Lägg till produkt
-    storedUserProducts[userEmail].push(product)
-    localStorage.setItem('userProducts', JSON.stringify(storedUserProducts))
-
-    // Uppdatera den reaktiva userProducts ref
-    userProducts.value = storedUserProducts[userEmail] || []
-    console.log('Produkter sparade för användare:', userProducts.value)
-  }
-
-  const getUserProducts = computed(() => {
-    const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'))
-    if (!loggedInUser) return []
-
-    const userEmail = loggedInUser.email
-    const storedUserProducts =
-      JSON.parse(localStorage.getItem('userProducts')) || {}
-
-    return storedUserProducts[userEmail] || []
-  })
-
   return {
     email,
     newPassword,
@@ -173,9 +133,6 @@ export const createAccountStore = defineStore('auth', () => {
     passwordsMatch,
     passwordLongEnough,
     value,
-    addProduct,
-    userProducts,
-    getUserProducts,
     messages,
     sendMessage,
     loadMessages,

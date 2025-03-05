@@ -24,7 +24,7 @@
             <BCol cols="8" class="footerText">Support@spendless.se</BCol>
           </BRow>
         </BCol>
-        <BCol cols="6" class="bg-dark">
+        <BCol cols="6" class="bg-dark containerFooter">
           <h3 class="headingFooter">About the company</h3>
           <p class="footerText">
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus,
@@ -42,27 +42,60 @@
 </script>
 
 <style scoped>
-  .icon {
-    width: 30px;
-    height: 30px;
-    margin-top: 20px;
-  }
+  @media screen and (max-width: 768px) {
+    .icon {
+      width: 30px;
+      height: 30px;
+      margin-top: 20px;
+    }
 
-  .footerText {
-    color: white;
-    margin-top: 10px;
-    padding: 5px;
-    padding-right: 60px;
-  }
+    .footerText {
+      color: white;
+      margin-top: 20px;
+      padding: 5px;
+      margin-left: 15px;
+      font-size: 12px;
+    }
 
-  .headingFooter {
-    color: white;
-    padding-top: 15px;
-  }
+    .headingFooter {
+      color: white;
+      padding-top: 15px;
+      font-size: 15px;
+    }
 
-  #sectionFooter {
-    margin-top: 50px;
-    min-height: 5vh;
-    padding-top: 40px;
+    #sectionFooter {
+      margin-top: 50px;
+      min-height: 5vh;
+      padding-top: 40px;
+    }
+
+    .containerFooter {
+      float: right;
+    }
+  }
+  @media screen and (min-width: 768px) {
+    .icon {
+      width: 30px;
+      height: 30px;
+      margin-top: 20px;
+    }
+
+    .footerText {
+      color: white;
+      margin-top: 20px;
+      /* padding: 5px; */
+      padding-right: 60px;
+    }
+
+    .headingFooter {
+      color: white;
+      padding-top: 15px;
+    }
+
+    #sectionFooter {
+      margin-top: 50px;
+      min-height: 5vh;
+      /* padding-top: 40px; */
+    }
   }
 </style>

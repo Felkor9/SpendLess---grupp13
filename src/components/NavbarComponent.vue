@@ -1,20 +1,22 @@
 <template>
-  <nav>
+  <nav ref="containerRef">
     <!-- Hamburgarmenyn -->
     <img
       src="/assets/hamburgerMeny.svg"
       alt="ikon för hamburgarmeny"
       id="hamburgerIcon"
-      @click="toggleMenu()"
+      @click="toggleMenu"
+      ref="iconRef"
     />
     <router-link to="/">
       <img src="/assets/spendLess-Ikonv1.png" alt="" id="spendLessIcon"
     /></router-link>
     <img
       src="/assets/userIcon.svg"
-      alt=""
+      alt="ikon för profil"
       id="userIcon"
       @click="toggleProfile"
+      ref="iconRef"
     />
   </nav>
   <div>
@@ -63,17 +65,23 @@
     </ul>
   </div>
   <!-- Profilmenyn till höger som visas om användare är inloggad -->
-  <BContainer id="containerForAccounts" v-if="profileMenu" class="bg-light">
+  <BContainer
+    id="containerForAccounts"
+    v-if="profileMenu"
+    ref="containerRef"
+    class="bg-light"
+  >
     <div v-if="store.user" class="wrapper">
       <div id="containerForSettings">
         <BAvatar
-          size="80px"
+          size="110px"
           :src="store.profilePicture"
           class="profile-avatar"
         />
         <p>Välkommen {{ store.user.name }}!</p>
         <BButton variant="secondary" class="settingsButton"
           ><router-link
+            @click="closeProfile"
             to="/settings"
             style="color: white; text-decoration: none"
             >Inställningar</router-link
@@ -123,7 +131,7 @@
       </BForm>
       <p>
         Har du inget konto?
-        <a href="#myaccount" @click="closeProfile"
+        <a href="#myaccount"
           ><router-link to="/myaccount">Skapa Konto</router-link></a
         >
       </p>
@@ -135,8 +143,11 @@
   import { ref } from 'vue'
   import { createAccountStore } from '../store'
   import { BButton, BContainer } from 'bootstrap-vue-next'
+  import { onClickOutside } from '@vueuse/core'
 
   const store = createAccountStore()
+  const containerRef = ref(null)
+  const iconRef = ref(null)
 
   // console.log(store.user.name)
 
@@ -160,6 +171,12 @@
   const closeProfile = () => {
     profileMenu.value = false
   }
+
+  onClickOutside(containerRef, () => {
+    if (iconRef.value && iconRef.value.contains(event.target)) return
+    profileMenu.value = false
+    hamburgerMenu.value = false
+  })
 
   const modal = ref(false)
 
