@@ -132,26 +132,17 @@
     * {
       box-sizing: border-box;
       scroll-snap-type: mandatory;
+      /* padding: 10px; */
 
       /* margin: 20px; */
       /* padding: 10px; */
     }
 
     .containerSearch {
-      /* background-image: url(/assets/coffee-3989866_1280.jpg);
-      background-size: 97%;
-      border-radius: 10px;
-      /* background-position: ; */
-      /* background-repeat: no-repeat; */
-      /* background-position: center;  */
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      /* margin-left: 10px; */
-      /* margin-right: 10px; */
-      /* width: 120%; */
-      /* margin: 0; */
       display: flex;
       z-index: 3;
       position: relative;
@@ -219,7 +210,8 @@
 
     #containerForObject {
       width: 100vw;
-      padding: 5px;
+      /* padding: 5px; */
+      /* padding-left: 5px; */
       /* height: 100px; */
     }
     .cardContainer {
@@ -230,11 +222,28 @@
     }
 
     .card {
-      margin: 30px;
+      margin: 10px;
       height: 450px;
       box-sizing: border-box;
       position: relative;
-      width: 250px;
+      width: 300px;
+    }
+
+    .card-title {
+      font-size: 20px;
+      color: black;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .card-text {
+      font-size: 13px;
+      margin: 0;
+    }
+
+    .routerlink {
+      text-decoration: none;
+      color: black;
     }
 
     .knapp {
@@ -247,8 +256,8 @@
       margin-bottom: 10px;
     }
     .card-img-top {
-      max-width: 250px;
-      max-height: 270px;
+      width: 100%;
+      height: 270px;
     }
   }
 
