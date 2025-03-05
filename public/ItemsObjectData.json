@@ -191,7 +191,7 @@
     "säljare": "Hampus"
   },
   {
-    "id": 1740566856640,
+    "id": 1560,
     "namn": "strutsunge",
     "kategori": "djur",
     "skick": "",
@@ -202,7 +202,7 @@
     "säljare": "activeUser.name"
   },
   {
-    "id": 1740762945655,
+    "id": 1745,
     "namn": "Basenji Selma",
     "kategori": "djur",
     "skick": "",
@@ -218,7 +218,7 @@
     "säljare": "activeUser.name"
   },
   {
-    "id": 1740764067247,
+    "id": 1672,
     "namn": "Test",
     "kategori": "hem & trädgård",
     "skick": "nyskick",
@@ -232,7 +232,7 @@
     "säljare": "Felix Korshavn"
   },
   {
-    "id": 1740763761530,
+    "id": 1737,
     "namn": "Tröja",
     "kategori": "kläder",
     "skick": "nyskick",
@@ -248,7 +248,7 @@
     "säljare": "activeUser.name"
   },
   {
-    "id": 1740862017639,
+    "id": 1740,
     "namn": "Trådhjärta",
     "kategori": "heminredning",
     "skick": "begangnat",
@@ -264,7 +264,7 @@
     "säljare": "activeUser.name"
   },
   {
-    "id": 1741077307894,
+    "id": 1741,
     "namn": "Katt",
     "kategori": "djur",
     "skick": "",
@@ -278,7 +278,7 @@
     "säljare": "activeUser.name"
   },
   {
-    "id": "6tJo",
+    "id": 6582,
     "namn": "snusdosa",
     "kategori": "hobby",
     "skick": "nyskick",
@@ -292,7 +292,7 @@
     "säljare": "activeUser.name"
   },
   {
-    "id": "6301",
+    "id": 6301,
     "namn": "undulaten greg",
     "kategori": "djur",
     "skick": "",
@@ -306,8 +306,8 @@
     "säljare": "activeUser.name"
   },
   {
-    "id": "0542",
-    "namn": "mmmas trehjuling",
+    "id": 7542,
+    "namn": "mammas trehjuling",
     "kategori": "fordon",
     "skick": "begangnat",
     "storlek": "null",
@@ -320,7 +320,7 @@
     "säljare": "activeUser.name"
   },
   {
-    "id": "2746",
+    "id": 2746,
     "namn": "asdhasdk",
     "kategori": "hobby",
     "skick": "nyskick",

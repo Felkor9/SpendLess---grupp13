@@ -1,18 +1,14 @@
 <template>
-  <h1 v-if="products">{{ products.namn }}</h1>
-  <div class="card" v-if="products">
-    <img
-      :src="Array.isArray(products.img) ? products.img[0] : products.img"
-      class="card-img-top"
-      alt="produktkort"
-      style="max-width: 350px"
-    />
+  <ImageGallery :product-id="Number(productId)" />
+  <div v-if="products" class="card">
     <div class="card-body">
-      <h4 class="card-title">{{ products.namn }}</h4>
+      <h1 class="card-title">{{ products.namn }}</h1>
       <p class="card-text">{{ products.beskrivning }}</p>
       <p>Varan finns i {{ products.adress }}</p>
-      <p>Varans skick: {{ products.skick }}</p>
-      <p>Pris: {{ products.pris }} :-</p>
+      <p v-if="products.kategori !== 'djur'">
+        Varans skick: <span :class="conditionClass">{{ products.skick }}</span>
+      </p>
+      <p class="card-price">Pris: {{ products.pris }} kr</p>
       <div class="säljare-info">
         <BAvatar class="avatarPicture" />
         <p>Varan säljs av {{ products.säljare }}</p>
@@ -22,23 +18,20 @@
       </button>
     </div>
   </div>
+  <div v-else>
+    <p>Loading product details or product not found...</p>
+  </div>
 
-  <!-- Modal -->
   <div v-if="showModal" class="modal">
-    <!-- Innehållet i modalen -->
     <div class="modal-content">
-      <span class="close" @click="showModal = false">&times;</span>
+      <span class="close" @click="showModal = false">×</span>
       <h2>Skicka meddelande</h2>
       <label for="message">Meddelande till säljaren:</label>
-
-      <!-- Textrutan -->
       <textarea
         v-model="messageText"
         id="message"
         placeholder="Skriv ditt meddelande..."
       />
-
-      <!-- Knappar till modalen -->
       <div class="buttons">
         <button class="btn-cancel" @click="showModal = false">Avbryt</button>
         <button class="btn-send" @click="sendMessage">Skicka</button>
@@ -48,20 +41,19 @@
 </template>
 
 <script setup>
-  import { ref, onMounted } from 'vue'
+  import { ref, onMounted, computed } from 'vue'
   import { useRoute } from 'vue-router'
-  import { createAccountStore } from '../store'
+  import ImageGallery from '../components/ImageGallery.vue'
 
   const route = useRoute()
   const productId = route.params.id
   const products = ref(null)
-  const showModal = ref(false) // Stängd från start
+  const showModal = ref(false)
   const messageText = ref('')
-  const store = createAccountStore()
 
-  // Funktion för att skicka meddelande
+  console.log('Product ID from route:', productId)
+
   const sendMessage = () => {
-    // Om textfältet är tomt
     if (!messageText.value) {
       alert('För att skicka måste du skriva ett meddelande!')
       return
@@ -72,37 +64,53 @@
       seller: products.value?.säljare,
       message: messageText.value
     }
-    store.sendMessage(newMessage)
-
-    console.log(`Meddelande skickat: "${messageText.value}" till säljaren.`)
-
-    // Rensar textrutan efter att meddelandet har skickats
+    console.log('Message sent:', newMessage)
     messageText.value = ''
-    // Stänger modalen efter att meddelandet har skickats
     showModal.value = false
   }
 
   function fetchProductDetails() {
-    fetch(`/ItemsObjectData.json`) // Se till att filen finns i "public"-mappen
+    console.log('Fetching product details for ID:', productId)
+    fetch('/ItemsObjectData.json')
       .then((response) => {
-        if (!response.ok) {
-          throw new Error('Nätverksfel vid hämtning av JSON')
-        }
+        if (!response.ok) throw new Error('Network error fetching JSON')
+        console.log('Response received:', response)
         return response.json()
       })
       .then((data) => {
         const product = data.find((p) => p.id === Number(productId))
-        products.value = product // Uppdatera refens .value
-        console.log(products.value) // Logga datan EFTER att den har laddats
+        console.log('Found product:', product)
+        products.value = product || null
       })
-      .catch((error) => console.error('Fel vid hämtning:', error))
+      .catch((error) => console.error('Error fetching:', error))
   }
 
-  onMounted(fetchProductDetails)
+  onMounted(() => {
+    console.log('SelectedProductView mounted')
+    fetchProductDetails()
+  })
+
+  const conditionClass = computed(() => {
+    if (!products.value || !products.value.skick) return ''
+    switch (products.value.skick.toLowerCase()) {
+      case 'nyskick':
+        return 'condition-good'
+      case 'begangnat':
+        return 'condition-used'
+      case 'slitet':
+        return 'condition-worn'
+      default:
+        return '' // Fallback for unexpected values
+    }
+  })
 </script>
 
 <style scoped>
+  /* DESKTOP STYLING */
   @media screen and (min-width: 768px) {
+    .card-body {
+      width: 60%;
+    }
     .card {
       margin-left: 25px;
       margin-right: 25px;
@@ -110,8 +118,15 @@
       flex-direction: row;
     }
 
-    h1 {
-      margin-left: 25px;
+    .card-title {
+      font-size: 1.5rem; /* Smaller but visible */
+      font-weight: bolder;
+      margin: 10px 0; /* Spacing */
+    }
+    .card-price {
+      font-size: 1rem; /* Smaller but visible */
+      font-weight: bolder;
+      margin: 10px 0; /* Spacing */
     }
 
     .säljare-info {
@@ -195,6 +210,20 @@
     }
   }
 
+  .condition-good {
+    color: green;
+    font-weight: bolder;
+  }
+  .condition-used {
+    color: orange;
+    font-weight: bolder;
+  }
+  .condition-worn {
+    color: red;
+    font-weight: bolder;
+  }
+
+  /* MOBIL STYLING */
   @media screen and (max-width: 768px) {
     .card {
       /* margin-left: 25px; */
@@ -205,13 +234,10 @@
       width: 100vw;
     }
 
-    .card-img-top {
-      max-height: 200px;
-      width: 300px;
-    }
-
-    h1 {
-      display: none;
+    .card-title {
+      font-size: 1.5rem; /* Smaller but visible */
+      font-weight: bolder;
+      margin: 10px 0; /* Spacing */
     }
 
     .säljare-info {
@@ -292,6 +318,18 @@
 
     .btn-send:hover {
       background: darkgreen;
+    }
+    .condition-good {
+      color: green;
+      font-weight: bolder;
+    }
+    .condition-used {
+      color: orange;
+      font-weight: bolder;
+    }
+    .condition-worn {
+      color: red;
+      font-weight: bolder;
     }
   }
 </style>
