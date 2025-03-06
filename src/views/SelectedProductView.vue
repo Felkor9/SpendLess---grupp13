@@ -5,25 +5,27 @@
     <div class="card-body">
       <h1 class="card-title">{{ products.namn }}</h1>
       <p class="card-text">{{ products.beskrivning }}</p>
+      <p>Produktens ID-nummer: {{ products.id }}</p>
       <p>Varan finns i {{ products.adress }}</p>
       <p v-if="products.kategori !== 'djur'">
         Varans skick: <span :class="conditionClass">{{ products.skick }}</span>
       </p>
       <p class="card-price">Pris: {{ products.pris }} kr</p>
       <div class="säljare-info">
-        <BAvatar class="avatarPicture" />
+        <BAvatar class="avatarPicture" alt="Profilbild" />
         <p>Varan säljs av {{ products.säljare }}</p>
       </div>
-      <button class="btn btn-success" @click="showModal = true">
-        Kontakta säljare
-      </button>
+      <router-link to="/ItemContract" class="btn btn-success"
+        >Köp produkt</router-link
+      >
     </div>
   </div>
   <div v-else>
     <p>Loading product details or product not found...</p>
   </div>
 
-  <div v-if="showModal" class="modal">
+  <!-- Michelles kod -->
+  <!-- <div v-if="showModal" class="modal">
     <div class="modal-content">
       <span class="close" @click="showModal = false">×</span>
       <h2>Skicka meddelande</h2>
@@ -36,9 +38,9 @@
       <div class="buttons">
         <button class="btn-cancel" @click="showModal = false">Avbryt</button>
         <button class="btn-send" @click="sendMessage">Skicka</button>
-      </div>
-    </div>
-  </div>
+      </div> -->
+  <!-- </div> -->
+  <!-- </div> -->
 </template>
 
 <script setup>
@@ -50,25 +52,26 @@
   const productId = route.params.id
   const products = ref(null)
   const showModal = ref(false)
-  const messageText = ref('')
+  // const messageText = ref('')
 
   console.log('Product ID from route:', productId)
 
-  const sendMessage = () => {
-    if (!messageText.value) {
-      alert('För att skicka måste du skriva ett meddelande!')
-      return
-    }
-    const newMessage = {
-      productId: productId,
-      productName: products.value?.namn,
-      seller: products.value?.säljare,
-      message: messageText.value
-    }
-    console.log('Message sent:', newMessage)
-    messageText.value = ''
-    showModal.value = false
-  }
+  //Michelles kod
+  // const sendMessage = () => {
+  //   if (!messageText.value) {
+  //     alert('För att skicka måste du skriva ett meddelande!')
+  //     return
+  //   }
+  //   const newMessage = {
+  //     productId: productId,
+  //     productName: products.value?.namn,
+  //     seller: products.value?.säljare,
+  //     message: messageText.value
+  //   }
+  //   console.log('Message sent:', newMessage)
+  //   messageText.value = ''
+  //   showModal.value = false
+  // }
 
   function fetchProductDetails() {
     console.log('Fetching product details for ID:', productId)
