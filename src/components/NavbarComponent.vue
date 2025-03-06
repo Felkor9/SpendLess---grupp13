@@ -9,7 +9,10 @@
       ref="iconRef"
     />
     <router-link to="/">
-      <img src="/assets/spendLess-Ikonv1.png" alt="" id="spendLessIcon"
+      <img
+        src="/assets/spendLess-Ikonv1.png"
+        alt="företags-logo"
+        id="spendLessIcon"
     /></router-link>
     <img
       src="/assets/userIcon.svg"
@@ -25,7 +28,7 @@
         <router-link to="/" class="routerLink" @click="closeMenu"
           ><img
             src="/assets/home.svg"
-            alt="hem"
+            alt="hem-ikon"
             class="IconForNav"
           />Home</router-link
         >
@@ -35,26 +38,35 @@
           ><img
             src="/assets/about.svg"
             class="IconForNav"
-            alt=""
+            alt="about-ikon"
           />About</router-link
         >
       </li>
       <li class="listItemCategory" v-if="store.user">
         <router-link to="/loggedinview" class="routerLink" @click="closeMenu"
-          ><img src="/assets/account.svg" class="IconForNav" alt="" />Mina
-          sidor</router-link
+          ><img
+            src="/assets/account.svg"
+            class="IconForNav"
+            alt="myaccount-ikon"
+          />Mina sidor</router-link
         >
       </li>
       <li class="listItemCategory" v-else>
         <router-link to="/myaccount" class="routerLink" @click="closeMenu"
-          ><img src="/assets/account.svg" class="IconForNav" alt="" />Mina
-          sidor</router-link
+          ><img
+            src="/assets/account.svg"
+            class="IconForNav"
+            alt="myaccount-ikon"
+          />Mina sidor</router-link
         >
       </li>
       <li class="listItemCategory" v-if="store.user">
         <router-link to="/newproduct" class="routerLink" @click="closeMenu"
-          ><img src="/assets/add-package.svg" class="IconForNav" alt="" />Lägg
-          upp annons</router-link
+          ><img
+            src="/assets/add-package.svg"
+            class="IconForNav"
+            alt="add-product-ikon"
+          />Lägg upp annons</router-link
         >
       </li>
       <!-- <li class="listItemCategory">
@@ -77,6 +89,7 @@
           size="110px"
           :src="store.profilePicture"
           class="profile-avatar"
+          alt="user-avatar"
         />
         <p>Välkommen {{ store.user.name }}!</p>
         <BButton class="settingsButton"
@@ -142,13 +155,14 @@
   //Här importerar vi lite gött
   import { ref } from 'vue'
   import { createAccountStore } from '../store'
-  import { BButton, BContainer } from 'bootstrap-vue-next'
+  import { BButton, BContainer, BModal } from 'bootstrap-vue-next'
   import { onClickOutside } from '@vueuse/core'
 
   const store = createAccountStore()
   const containerRef = ref(null)
   const iconRef = ref(null)
   const modalRef = ref(null)
+  const modal = ref(false)
 
   // console.log(store.user.name)
 
@@ -173,17 +187,19 @@
     profileMenu.value = false
   }
 
-  onClickOutside(containerRef, () => {
-    if (
-      (iconRef.value && iconRef.value.contains(event.target)) ||
-      (modalRef.value && modalRef.value.contains(event.target))
-    )
-      return
+  onClickOutside(containerRef, (event) => {
+    if (iconRef.value && iconRef.value.contains(event.target)) return
+    if (modal.value) return // Om modalen är öppen, gör inget
     profileMenu.value = false
     hamburgerMenu.value = false
   })
 
-  const modal = ref(false)
+  onClickOutside(containerRef, (event) => {
+    if (iconRef.value && iconRef.value.contains(event.target)) return
+    if (modal.value) return // Om modalen är öppen, ignorera klick utanför
+    profileMenu.value = false
+    hamburgerMenu.value = false
+  })
 
   const logout = () => {
     store.logoutUser() // Anropa logoutUser actionen från store
