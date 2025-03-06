@@ -88,6 +88,7 @@
   const selected = ref(null)
   const search = ref('')
   const products = ref([])
+  const searchProduct = ref('')
 
   // Funktion för att hämta produkter från en JSON-fil (Felix)
   const productFetch = async () => {
