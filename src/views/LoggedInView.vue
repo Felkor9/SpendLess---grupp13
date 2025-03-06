@@ -34,16 +34,16 @@
             >Mina Annonser</BButton
           >
         </BCol>
-        <BCol>
+        <!-- <BCol>
           <BButton variant="success" block @click="activeTab = 'wishlist'"
             >Favoriter</BButton
           >
-        </BCol>
-        <BCol>
+        </BCol> -->
+        <!-- <BCol>
           <BButton variant="success" block @click="activeTab = 'messages'"
             >Meddelanden</BButton
           >
-        </BCol>
+        </BCol> -->
         <BCol>
           <router-link to="/newproduct">
             <BButton variant="warning" block
@@ -74,15 +74,15 @@
             <p v-else>Du har inga aktiva annonser</p>
           </div>
 
-          <!--ingen lista eller liknande skapad för favoriter och meddelanden ännu -->
-          <div v-if="activeTab === 'wishlist'">
+          <!--ingen lista eller liknande skapad för favoriter och meddelanden ännu (Michelle)-->
+          <!-- <div v-if="activeTab === 'wishlist'">
             <h5>Favoriter</h5>
             <p>Här visas dina favoriter.</p>
           </div>
 
           <div v-if="activeTab === 'messages'">
             <MessagesComponent />
-          </div>
+          </div> -->
         </BCol>
       </BRow>
     </BContainer>

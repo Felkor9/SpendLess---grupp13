@@ -55,7 +55,7 @@
               <strong>{{ product.pris }} :-</strong>
             </p>
             <button class="btn btn-success knapp" id="productButton">
-              Kontakta säljare
+              Mer info
             </button>
           </div>
         </router-link>
