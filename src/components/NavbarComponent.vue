@@ -155,13 +155,14 @@
   //Här importerar vi lite gött
   import { ref } from 'vue'
   import { createAccountStore } from '../store'
-  import { BButton, BContainer } from 'bootstrap-vue-next'
+  import { BButton, BContainer, BModal } from 'bootstrap-vue-next'
   import { onClickOutside } from '@vueuse/core'
 
   const store = createAccountStore()
   const containerRef = ref(null)
   const iconRef = ref(null)
   const modalRef = ref(null)
+  const modal = ref(false)
 
   // console.log(store.user.name)
 
@@ -186,17 +187,19 @@
     profileMenu.value = false
   }
 
-  onClickOutside(containerRef, () => {
-    if (
-      (iconRef.value && iconRef.value.contains(event.target)) ||
-      (modalRef.value && modalRef.value.contains(event.target))
-    )
-      return
+  onClickOutside(containerRef, (event) => {
+    if (iconRef.value && iconRef.value.contains(event.target)) return
+    if (modal.value) return // Om modalen är öppen, gör inget
     profileMenu.value = false
     hamburgerMenu.value = false
   })
 
-  const modal = ref(false)
+  onClickOutside(containerRef, (event) => {
+    if (iconRef.value && iconRef.value.contains(event.target)) return
+    if (modal.value) return // Om modalen är öppen, ignorera klick utanför
+    profileMenu.value = false
+    hamburgerMenu.value = false
+  })
 
   const logout = () => {
     store.logoutUser() // Anropa logoutUser actionen från store
