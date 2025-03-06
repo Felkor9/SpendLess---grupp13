@@ -15,13 +15,65 @@
         <BAvatar class="avatarPicture" alt="Profilbild" />
         <p>Varan säljs av {{ products.säljare }}</p>
       </div>
-      <router-link to="/ItemContract" class="btn btn-success"
-        >Köp produkt</router-link
-      >
+      <button class="btn btn-success" @click="onClickSign">Köp produkt</button>
     </div>
   </div>
   <div v-else>
     <p>Loading product details or product not found...</p>
+  </div>
+  <div v-if="store.user">
+    <div v-if="signForm">
+      <BContainer class="mt-5" v-if="products">
+        <BCard class="pt-4">
+          <h2 class="text-center mb-3">Kontrakt mellan köpare och säljare</h2>
+
+          <BCard class="mb-3">
+            <BCardBody>
+              <p><strong>Köpare: </strong>{{ buyerName }}</p>
+              <p><strong>Säljare: </strong>{{ products.säljare }}</p>
+              <p><strong>Produkt:</strong> {{ products.namn }}</p>
+              <p><strong>Pris:</strong> {{ products.pris }} :-</p>
+              <p><strong>Datum:</strong> {{ contractDate }}</p>
+            </BCardBody>
+          </BCard>
+          <div v-if="!isSigned">
+            <BFormGroup label="Köparens namn" label-for="buyerName">
+              <BFormInput
+                v-model="buyerName"
+                id="buyerName"
+                placeholder="Ange ditt namn"
+              />
+            </BFormGroup>
+            <BButton
+              variant="success"
+              class="w-100"
+              :disabled="!buyerName"
+              @click="signContract"
+              >Signera Kontrakt</BButton
+            >
+          </div>
+          <div v-if="isSigned" class="text-center">
+            <BAlert show variant="success"
+              >✅ Kontraktet har signerats av <strong>{{ buyerName }}</strong
+              >!</BAlert
+            >
+          </div>
+        </BCard>
+
+        <BModal v-model="showModal" title="Kontrakt Signerat">
+          <p>
+            Kontraktet har signerats av <strong>{{ buyerName }}</strong
+            >!
+          </p>
+          <template #footer>
+            <BButton variant="primary" @click="showModal = false">OK</BButton>
+          </template>
+        </BModal>
+      </BContainer>
+    </div>
+  </div>
+  <div v-else>
+    <p>Du måste vara inloggad för att signera kontrakt</p>
   </div>
 
   <!-- Michelles kod -->
@@ -47,6 +99,9 @@
   import { ref, onMounted, computed } from 'vue'
   import { useRoute } from 'vue-router'
   import ImageGallery from '../components/ImageGallery.vue'
+  import { createAccountStore } from '../store'
+
+  const store = createAccountStore()
 
   const route = useRoute()
   const productId = route.params.id
@@ -56,22 +111,33 @@
 
   console.log('Product ID from route:', productId)
 
-  //Michelles kod
-  // const sendMessage = () => {
-  //   if (!messageText.value) {
-  //     alert('För att skicka måste du skriva ett meddelande!')
-  //     return
-  //   }
-  //   const newMessage = {
-  //     productId: productId,
-  //     productName: products.value?.namn,
-  //     seller: products.value?.säljare,
-  //     message: messageText.value
-  //   }
-  //   console.log('Message sent:', newMessage)
-  //   messageText.value = ''
-  //   showModal.value = false
-  // }
+  import {
+    BContainer,
+    BCard,
+    BCardBody,
+    BButton,
+    BFormGroup,
+    BFormInput,
+    BAlert,
+    BModal
+  } from 'bootstrap-vue-next'
+
+  const signForm = ref(false)
+
+  const contractDate = ref(new Date().toLocaleDateString())
+
+  // Köparens information
+  // const buyerName = ref('')
+  const isSigned = ref(false)
+  const buyerName = ref('')
+  const objects = ref([])
+  const userListings = ref([])
+
+  // Funktion för att signera kontraktet
+  const signContract = () => {
+    isSigned.value = true
+    showModal.value = true
+  }
 
   function fetchProductDetails() {
     console.log('Fetching product details for ID:', productId)
@@ -89,10 +155,26 @@
       .catch((error) => console.error('Error fetching:', error))
   }
 
+  // Anropa funktionen automatiskt när komponenten laddas
   onMounted(() => {
-    console.log('SelectedProductView mounted')
     fetchProductDetails()
+    userListings.value = JSON.parse(localStorage.getItem('userListings')) || []
+    console.log(userListings)
+    console.log(objects)
   })
+
+  const computedItemsList = computed(() => [
+    { value: null, text: 'Välj annons med rätt id' },
+    ...products.value.map((object) => ({
+      value: object.id,
+      // Check your JSON structure and adjust these property names accordingly
+      text: `${object.namn} (ID: ${object.id})`
+    }))
+  ])
+
+  function onClickSign() {
+    signForm.value = true
+  }
 
   const conditionClass = computed(() => {
     if (!products.value || !products.value.skick) return ''
