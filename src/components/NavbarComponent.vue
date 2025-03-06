@@ -137,7 +137,7 @@
               placeholder="E-post"
               class="inputMail"
           /></BModal>
-          <BButton variant="primary" size="sm" class="buttonLogIn" type="submit"
+          <BButton variant="success" size="sm" class="buttonLogIn" type="submit"
             >LOGGA IN</BButton
           >
         </div>

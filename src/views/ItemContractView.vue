@@ -1,60 +1,80 @@
 <template>
-  <div class="contractWrapper">
-    <h1>Kontrakt Signering</h1>
-    <BRow>
-      <BCol cols="12">
-        <BFormGroup label-for="input-2">
-          <div class="contractSelector">
-            <BFormSelect
-              v-model="selectedContract"
-              :options="computedItemsList"
-            />
-          </div>
+  <BContainer class="mt-5">
+    <BCard class="pt-4">
+      <h2 class="text-center mb-3">Kontrakt mellan köpare och säljare</h2>
+
+      <BCard class="mb-3">
+        <BCardBody>
+          <p><strong>Säljare:</strong></p>
+          <p><strong>Produkt:</strong></p>
+          <p><strong>Pris:</strong></p>
+          <p><strong>Datum:</strong></p>
+        </BCardBody>
+      </BCard>
+      <div v-if="!isSigned">
+        <BFormGroup label="Köparens namn" label-for="buyerName">
+          <BFormInput
+            v-model="buyerName"
+            id="buyerName"
+            placeholder="Ange ditt namn"
+          />
         </BFormGroup>
-      </BCol>
-    </BRow>
-    <div>
-      <BFormCheckbox
-        id="checkbox-1"
-        v-model="buyerVerification"
-        name="checkbox-1"
-        value="signerat"
-        unchecked-value="inte signerat"
-      >
-        Jag, 'user.name.1' som är köpare signerar detta kontrakt.
-      </BFormCheckbox>
+        <BButton
+          variant="success"
+          class="w-100"
+          :disabeld="!buyerName"
+          @click="signContract"
+          >Signera Kontrakt</BButton
+        >
+      </div>
+      <div v-if="isSigned" class="text-center">
+        <BAlert show variant="success"
+          >✅ Kontraktet har signerats av <strong>{{ buyerName }}</strong
+          >!</BAlert
+        >
+      </div>
+    </BCard>
 
-      <BFormCheckbox
-        id="checkbox-2"
-        v-model="sellerVerification"
-        name="checkbox-2"
-        value="signerat"
-        unchecked-value="inte signerat"
-      >
-        Jag 'user.name.2' som är säljare signerar detta kontrakt.
-      </BFormCheckbox>
-    </div>
-
-    <div class="verification" v-if="verificationStatus">
-      <h1>Detta kontraktet är nu signerat av båda parter.</h1>
-      <h5>Tänk på att din rating kan sänkas om du häver detta.</h5>
-    </div>
-  </div>
+    <BModal v-model="showModal" title="Kontrakt Signerat">
+      <p>
+        Kontraktet har signerats av <strong>{{ buyerName }}</strong
+        >!
+      </p>
+      <template #footer>
+        <BButton variant="primary" @click="showModal = false">OK</BButton>
+      </template>
+    </BModal>
+  </BContainer>
 </template>
 <script setup>
-  import { ref, computed, onMounted } from 'vue'
+  import { ref, onMounted, computed } from 'vue'
+  import {
+    BContainer,
+    BCard,
+    BCardBody,
+    BButton,
+    BFormGroup,
+    BFormInput,
+    BAlert,
+    BModal
+  } from 'bootstrap-vue-next'
 
-  const selectedContract = ref(null)
-  const sellerVerification = ref('inte signerat')
-  const buyerVerification = ref('inte signerat')
-  const objects = ref([])
+  // Säljarens info (simulerad)
+  const sellerName = ref('Sven Karlsson')
+  const productName = ref('Begagnad cykel')
+  const price = ref(1500)
+  const contractDate = ref(new Date().toLocaleDateString())
 
-  const verificationStatus = computed(() => {
-    return (
-      sellerVerification.value === 'signerat' &&
-      buyerVerification.value === 'signerat'
-    )
-  })
+  // Köparens information
+  const buyerName = ref('')
+  const isSigned = ref(false)
+  const showModal = ref(false)
+
+  // Funktion för att signera kontraktet
+  const signContract = () => {
+    isSigned.value = true
+    showModal.value = true
+  }
 
   function fetchJsonData() {
     fetch('/ItemsObjectData.json')
@@ -85,34 +105,24 @@
 
 <style scoped>
   @media screen and (min-width: 768px) {
-    .contractWrapper {
-      height: auto;
-      width: 100dvw;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-      /* margin: 10px; */
-      margin-right: 30px;
-      padding: 8px;
-      background-color: rgb(135, 135, 195);
+    .BCard {
+      max-width: 500px;
+      margin: auto;
+    }
+
+    .BAlert {
+      font-size: 18px;
     }
   }
 
   @media screen and (max-width: 768px) {
-    .contractWrapper {
-      height: auto;
-      width: 100dvw;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-      /* margin: 10px; */
-      margin-right: 30px;
-      padding: 8px;
-      background-color: rgb(135, 135, 195);
+    .BCard {
+      max-width: 500px;
+      margin: auto;
+    }
+
+    .BAlert {
+      font-size: 18px;
     }
   }
 </style>
