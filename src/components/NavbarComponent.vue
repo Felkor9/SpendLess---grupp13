@@ -9,7 +9,10 @@
       ref="iconRef"
     />
     <router-link to="/">
-      <img src="/assets/spendLess-Ikonv1.png" alt="" id="spendLessIcon"
+      <img
+        src="/assets/spendLess-Ikonv1.png"
+        alt="företags-logo"
+        id="spendLessIcon"
     /></router-link>
     <img
       src="/assets/userIcon.svg"
@@ -25,7 +28,7 @@
         <router-link to="/" class="routerLink" @click="closeMenu"
           ><img
             src="/assets/home.svg"
-            alt="hem"
+            alt="hem-ikon"
             class="IconForNav"
           />Home</router-link
         >
@@ -35,26 +38,35 @@
           ><img
             src="/assets/about.svg"
             class="IconForNav"
-            alt=""
+            alt="about-ikon"
           />About</router-link
         >
       </li>
       <li class="listItemCategory" v-if="store.user">
         <router-link to="/loggedinview" class="routerLink" @click="closeMenu"
-          ><img src="/assets/account.svg" class="IconForNav" alt="" />Mina
-          sidor</router-link
+          ><img
+            src="/assets/account.svg"
+            class="IconForNav"
+            alt="myaccount-ikon"
+          />Mina sidor</router-link
         >
       </li>
       <li class="listItemCategory" v-else>
         <router-link to="/myaccount" class="routerLink" @click="closeMenu"
-          ><img src="/assets/account.svg" class="IconForNav" alt="" />Mina
-          sidor</router-link
+          ><img
+            src="/assets/account.svg"
+            class="IconForNav"
+            alt="myaccount-ikon"
+          />Mina sidor</router-link
         >
       </li>
       <li class="listItemCategory" v-if="store.user">
         <router-link to="/newproduct" class="routerLink" @click="closeMenu"
-          ><img src="/assets/add-package.svg" class="IconForNav" alt="" />Lägg
-          upp annons</router-link
+          ><img
+            src="/assets/add-package.svg"
+            class="IconForNav"
+            alt="add-product-ikon"
+          />Lägg upp annons</router-link
         >
       </li>
       <!-- <li class="listItemCategory">
@@ -77,6 +89,7 @@
           size="110px"
           :src="store.profilePicture"
           class="profile-avatar"
+          alt="user-avatar"
         />
         <p>Välkommen {{ store.user.name }}!</p>
         <BButton class="settingsButton"

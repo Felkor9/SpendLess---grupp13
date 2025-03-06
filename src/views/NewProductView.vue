@@ -63,7 +63,7 @@
                 <BFormRadio
                   v-model="formData.selectedCondition"
                   name="condition-radios"
-                  value="begangnat"
+                  value="begagnat"
                   class="radioButton"
                   >Begangnat
                 </BFormRadio>
