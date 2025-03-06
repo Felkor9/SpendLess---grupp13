@@ -79,7 +79,7 @@
           class="profile-avatar"
         />
         <p>Välkommen {{ store.user.name }}!</p>
-        <BButton variant="secondary" class="settingsButton"
+        <BButton class="settingsButton"
           ><router-link
             @click="closeProfile"
             to="/settings"
@@ -90,7 +90,7 @@
       </div>
       <div>
         <BButton
-          variant="primary"
+          variant="success"
           size="sm"
           class="buttonLogIn"
           type="submit"
@@ -118,7 +118,7 @@
             href=""
             >Glömt lösenord?</a
           >
-          <BModal v-model="modal" title="Glömt lösenord?"
+          <BModal v-model="modal" title="Glömt lösenord?" ref="modalRef"
             >Fyll i din e-post och tryck sedan på "OK".<input
               type="text"
               placeholder="E-post"
@@ -148,6 +148,7 @@
   const store = createAccountStore()
   const containerRef = ref(null)
   const iconRef = ref(null)
+  const modalRef = ref(null)
 
   // console.log(store.user.name)
 
@@ -173,7 +174,11 @@
   }
 
   onClickOutside(containerRef, () => {
-    if (iconRef.value && iconRef.value.contains(event.target)) return
+    if (
+      (iconRef.value && iconRef.value.contains(event.target)) ||
+      (modalRef.value && modalRef.value.contains(event.target))
+    )
+      return
     profileMenu.value = false
     hamburgerMenu.value = false
   })
@@ -405,7 +410,7 @@
     }
 
     .buttonLogIn {
-      margin: 5px;
+      margin: 15px;
       width: 15rem;
       height: 40px;
       font-size: 20px;
@@ -517,6 +522,7 @@
     .settingsButton {
       width: 40%;
       font-size: small;
+      background-color: rgba(0, 0, 0, 0.555);
     }
     .profile-avatar {
       border: 3px solid white;
