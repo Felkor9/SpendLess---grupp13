@@ -18,10 +18,10 @@ export const createAccountStore = defineStore('auth', () => {
   const listings = ref(JSON.parse(localStorage.getItem('userListings')) || [])
 
   //Skickar meddelanden och sparar i LocalStorage
-  const sendMessage = (message) => {
-    messages.value.push(message)
-    localStorage.setItem('chatMessages', JSON.stringify(messages.value))
-  }
+  // const sendMessage = (message) => {
+  //   messages.value.push(message)
+  //   localStorage.setItem('chatMessages', JSON.stringify(messages.value))
+  // }
 
   //Ladda meddelanden från localStorage
   const loadMessages = () => {
