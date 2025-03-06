@@ -1,5 +1,5 @@
 <template>
-  <!-- Bilder visas utanför product-card då det behöver en annan layout -->
+  <!-- Bilder visas utanför product-card då det behöver en annan layout /Hj-->
   <ImageGallery :product-id="Number(productId)" />
   <div v-if="products" class="card">
     <div class="card-body">
@@ -96,7 +96,7 @@
     switch (products.value.skick.toLowerCase()) {
       case 'nyskick':
         return 'condition-good'
-      case 'begangnat':
+      case 'begagnat':
         return 'condition-used'
       case 'slitet':
         return 'condition-worn'

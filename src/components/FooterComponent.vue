@@ -5,7 +5,11 @@
         <BCol cols="6" class="bg-dark" style="padding: 10px">
           <BRow>
             <BCol cols="2" class="text-end">
-              <img src="/assets/location.png" alt="" class="icon" />
+              <img
+                src="/assets/location.png"
+                alt="location-ikon"
+                class="icon"
+              />
             </BCol>
             <BCol cols="8" class="footerText"
               >Hagen 1, 458 32, Göteborg, Sweden</BCol
@@ -13,13 +17,13 @@
           </BRow>
           <BRow>
             <BCol cols="2" class="text-end">
-              <img src="/assets/phone.png" alt="" class="icon" />
+              <img src="/assets/phone.png" alt="telefon-ikon" class="icon" />
             </BCol>
             <BCol cols="8" class="footerText">+46112</BCol>
           </BRow>
           <BRow>
             <BCol cols="2" class="text-end">
-              <img src="/assets/email.png" alt="" class="icon" />
+              <img src="/assets/email.png" alt="email-ikon" class="icon" />
             </BCol>
             <BCol cols="8" class="footerText">Support@spendless.se</BCol>
           </BRow>
