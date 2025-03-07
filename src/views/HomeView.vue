@@ -50,7 +50,7 @@
           />
           <div class="card-body">
             <h5 class="card-title">{{ product.namn }}</h5>
-            <p class="card-text">{{ product.adress }}</p>
+
             <p id="lastText">
               <strong>{{ product.pris }} :-</strong>
             </p>
