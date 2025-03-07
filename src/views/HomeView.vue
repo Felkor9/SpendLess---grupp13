@@ -1,7 +1,7 @@
 <template>
   <!-- Välkomstmeddelande och sökfunktion -->
   <BContainer fluid class="containerSearch">
-    <video src="/assets/unboxing.mp4" autoplay loop muted class="video"></video>
+    <video src="/assets/unboxing.mp4" autoplay loop muted class="video" />
     <BRow class="my-1">
       <BCol cols="12">
         <label for="search" class="labelForSearch"

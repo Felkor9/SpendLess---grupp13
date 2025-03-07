@@ -95,7 +95,7 @@
 </template>
 
 <script setup>
-  import MessagesComponent from '../components/MessagesComponent.vue'
+  // import MessagesComponent from '../components/MessagesComponent.vue'
   import { ref, onMounted } from 'vue'
   import { createAccountStore } from '../store'
 
