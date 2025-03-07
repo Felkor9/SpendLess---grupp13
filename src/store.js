@@ -12,7 +12,7 @@ export const createAccountStore = defineStore('auth', () => {
   const profilePicture = ref('')
 
   // hämtar medalanden från local storage, eller skapar en tom lista
-  const messages = ref(JSON.parse(localStorage.getItem('chatMessages')) || [])
+
 
   //Användarens annonser (Evelina)
   const listings = ref(JSON.parse(localStorage.getItem('userListings')) || [])
@@ -24,9 +24,7 @@ export const createAccountStore = defineStore('auth', () => {
   // }
 
   //Ladda meddelanden från localStorage
-  const loadMessages = () => {
-    messages.value = JSON.parse(localStorage.getItem('chatMessages')) || []
-  }
+
 
   //Registrerar användare och sparar i localStorage
   const registerUser = () => {
@@ -150,9 +148,6 @@ export const createAccountStore = defineStore('auth', () => {
     passwordsMatch,
     passwordLongEnough,
     value,
-    messages,
-    sendMessage,
-    loadMessages,
     updateProfilePicture,
     profilePicture,
     listings,
