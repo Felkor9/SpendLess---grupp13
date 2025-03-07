@@ -151,6 +151,7 @@
   let name = store.user.namn
   console.log(name)
   console.log(store.user)
+  console.log(store.user.adress)
 
   const productCategory = [
     { value: null, text: 'Välj en kategori' },
@@ -181,7 +182,7 @@
     productPrice: '',
     productImages: '',
     productSeller: store.user.name,
-    productAdress: '',
+    productAdress: store.user.adress,
     selectedSize: 'null'
   })
   // Kollar så att allt är i fyllt, annars är knappen disabled (Hampus)
@@ -224,7 +225,7 @@
       )
       formPayload.append('productPrice', formData.value.productPrice)
       formPayload.append('productSeller', formData.value.productSeller)
-      formPayload.append('productAdress', 'actuveUser.adress')
+      formPayload.append('productAdress', formData.value.productAdress)
       // lägg till filer i objektet (Hampus)
       if (fileInput.value?.files) {
         for (let i = 0; i < fileInput.value.files.length; i++) {

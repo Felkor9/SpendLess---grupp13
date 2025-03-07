@@ -9,6 +9,7 @@
       <h1 class="card-title">{{ products.namn }}</h1>
       <p class="card-text">{{ products.beskrivning }}</p>
       <p>Produktens ID-nummer: {{ products.id }}</p>
+      <p>Produkten finns i: {{ products.adress }}</p>
 
       <p v-if="products.kategori !== 'djur'">
         Varans skick: <span :class="conditionClass">{{ products.skick }}</span>
