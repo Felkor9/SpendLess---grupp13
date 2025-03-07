@@ -67,7 +67,6 @@
                 <div>
                   <h5>{{ listings.namn }}</h5>
                   <p>{{ listings.pris }}:-</p>
-                  <img :src="listings.bilder[1]" alt="Produktbild" />
                 </div>
               </BListGroupItem>
             </BListGroup>
