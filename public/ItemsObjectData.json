@@ -466,5 +466,20 @@
     ],
     "adress": "activeUser.adress",
     "säljare": "Evelina J"
+  },
+  {
+    "id": 6280,
+    "namn": "Pokemonkort och Pikachu ",
+    "kategori": "hobby",
+    "skick": "begagnat",
+    "storlek": "null",
+    "beskrivning": "Pokemonkort säljes. Pikachu år 2003. Rare ",
+    "pris": 680,
+    "img": [
+      "uploads/Pokemonkort_och_Pikachu_-6280-1.jpg",
+      "uploads/Pokemonkort_och_Pikachu_-6280-2.jpg"
+    ],
+    "adress": "activeUser.adress",
+    "säljare": "Felix Korshavn"
   }
 ]
