@@ -147,6 +147,11 @@
   import { useAccountStore } from '../store'
   import { storeToRefs } from 'pinia'
   const store = useAccountStore()
+
+  let name = store.user.namn
+  console.log(name)
+  console.log(store.user)
+
   const productCategory = [
     { value: null, text: 'Välj en kategori' },
     { value: 'hem & trädgård', text: 'Hem & Trädgård' },
@@ -175,7 +180,7 @@
     productDescription: '',
     productPrice: '',
     productImages: '',
-    productSeller: '',
+    productSeller: store.user.name,
     productAdress: '',
     selectedSize: 'null'
   })
@@ -218,7 +223,7 @@
         formData.value.productDescription
       )
       formPayload.append('productPrice', formData.value.productPrice)
-      formPayload.append('productSeller', 'activeUser.name')
+      formPayload.append('productSeller', formData.value.productSeller)
       formPayload.append('productAdress', 'actuveUser.adress')
       // lägg till filer i objektet (Hampus)
       if (fileInput.value?.files) {

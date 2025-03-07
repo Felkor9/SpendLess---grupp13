@@ -438,5 +438,33 @@
     ],
     "adress": "activeUser.adress",
     "säljare": "activeUser.name"
+  },
+  {
+    "id": 9489,
+    "namn": "Adidas skor",
+    "kategori": "kläder",
+    "skick": "nyskick",
+    "storlek": "other",
+    "beskrivning": "Nya skor i storlek 37, oöppnade kvar i kartongen.",
+    "pris": 1500,
+    "img": [
+      "uploads/Adidas_skor-9489-1.jpg"
+    ],
+    "adress": "activeUser.adress",
+    "säljare": "undefined"
+  },
+  {
+    "id": 3038,
+    "namn": "Adidas",
+    "kategori": "kläder",
+    "skick": "begagnat",
+    "storlek": "other",
+    "beskrivning": "Adidasskor för barn, storlek 34.",
+    "pris": 300,
+    "img": [
+      "uploads/Adidas-3038-1.jpg"
+    ],
+    "adress": "activeUser.adress",
+    "säljare": "Evelina J"
   }
 ]
