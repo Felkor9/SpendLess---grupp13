@@ -10,6 +10,7 @@ export const createAccountStore = defineStore('auth', () => {
   const name = ref('')
   const repeatPassword = ref('')
   const profilePicture = ref('')
+  const adress = ref('')
 
   // hämtar medalanden från local storage, eller skapar en tom lista
 
@@ -32,7 +33,8 @@ export const createAccountStore = defineStore('auth', () => {
       email: email.value,
       password: newPassword.value, // Använd "password" istället för "newPassword"
       name: name.value,
-      profilePicture: profilePicture.value || '' //lägger till profilbild om det är valt
+      profilePicture: profilePicture.value || '' , //lägger till profilbild om det är valt
+      adress: adress.value,
     }
 
     // Funktion för att spara lösenord och email i localStorage (Evelina & Felix)
@@ -47,6 +49,7 @@ export const createAccountStore = defineStore('auth', () => {
     name.value = ''
     repeatPassword.value = ''
     profilePicture.value = ''
+    adress.value = ''
 
     console.log('användare registrerad', users)
   }
@@ -68,6 +71,7 @@ export const createAccountStore = defineStore('auth', () => {
       user.value = foundUser // Sätt den inloggade användaren i reaktiv variabel
       console.log('Inloggad användare:', foundUser)
       profilePicture.value = foundUser.profilePicture
+      adress.value = foundUser.adress
 
       //Hämtar användarens annonser vid inloggning (Evelina)
       listings.value = JSON.parse(localStorage.getItem('userListings')) || []
@@ -140,6 +144,7 @@ export const createAccountStore = defineStore('auth', () => {
     loginPassword,
     user,
     name,
+    adress,
     registerUser,
     loginUser,
     logoutUser,

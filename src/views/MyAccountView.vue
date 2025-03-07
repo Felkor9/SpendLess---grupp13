@@ -52,6 +52,7 @@
               type="text"
               placeholder="Vart bor du?"
               required
+              v-model="store.adress"
             />
           </BFormGroup>
           <BButton variant="danger" type="submit" class="buttons"

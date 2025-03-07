@@ -102,7 +102,7 @@ app.post('/submit', upload.array('productImages'), (req, res) => {
         beskrivning: formData.productDescription,
         pris: Number(formData.productPrice) || 0,
         img: imgArray.length > 0 ? imgArray : ['../assets/fox.jpeg'],
-        adress: 'activeUser.adress',
+        adress: formData.productAdress,
         säljare: formData.productSeller
       }
 
