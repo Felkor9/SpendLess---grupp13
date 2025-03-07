@@ -1,6 +1,9 @@
 <template>
   <!-- Bilder visas utanför product-card då det behöver en annan layout /Hj-->
-  <ImageGallery :product-id="Number(productId)" />
+  <div class="image-container">
+    <ImageGallery :product-id="Number(productId)" />
+    <h1 v-if="boughtProduct" class="köptVara">KÖPT!</h1>
+  </div>
   <div v-if="products" class="card">
     <div class="card-body">
       <h1 class="card-title">{{ products.namn }}</h1>
@@ -66,7 +69,11 @@
             >!
           </p>
           <template #footer>
-            <BButton variant="primary" @click="showModal = false">OK</BButton>
+            <BButton
+              variant="primary"
+              @click=";(showModal = false), onClickBought"
+              >OK</BButton
+            >
           </template>
         </BModal>
       </BContainer>
@@ -107,6 +114,7 @@
   const productId = route.params.id
   const products = ref(null)
   const showModal = ref(false)
+  const boughtProduct = ref(false)
   // const messageText = ref('')
 
   console.log('Product ID from route:', productId)
@@ -137,6 +145,7 @@
   const signContract = () => {
     isSigned.value = true
     showModal.value = true
+    boughtProduct.value = true
   }
 
   function fetchProductDetails() {
@@ -209,6 +218,26 @@
 
   /* DESKTOP STYLING */
   @media screen and (min-width: 768px) {
+    .image-container {
+      position: relative;
+
+      display: flex;
+    }
+
+    .köptVara {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: red;
+      color: white;
+      padding: 10px 20px;
+      font-size: 32px;
+      font-weight: bold;
+      text-transform: uppercase;
+      border-radius: 8px;
+      z-index: 4;
+    }
     .card-body {
       width: 60%;
     }
