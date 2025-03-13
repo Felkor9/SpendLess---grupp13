@@ -5,7 +5,7 @@ import cors from 'cors'
 import multer from 'multer'
 import path from 'path'
 import { fileURLToPath } from 'url'
-// import { createAccountStore } from 'pinia'
+
 import { customAlphabet } from 'nanoid'
 
 // const store = createAccountStore()
@@ -30,7 +30,7 @@ app.use(
 )
 app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')))
 
-// Multer tar hand om filen som läggs in i formuläret, den mellanlandar i multers famn innan den skickas vidare
+// Multer tar hand om filer som läggs in i formuläret, den mellanlandar i multers famn innan den skickas vidare
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     const uploadDir = path.join(rootPublicPath, 'uploads')
@@ -60,14 +60,14 @@ app.post('/submit', upload.array('productImages'), (req, res) => {
       console.error('Read error:', err)
       return res.status(500).send('Error reading data')
     }
-    // skapar ett ID till annonsen som är datum och tid precis NU!
+    // skapar ett ID till annonsen som är 4 siffror långt
     try {
       let jsonData = JSON.parse(data || '[]')
       const newId = Number(nanoid())
 
       const newProductFileName = formData.productName
         ? formData.productName.replace(/[^a-zA-Z0-9åäöÅÄÖ]/g, '_')
-        : 'product'
+        : 'product' ;
 
       const uploadDir = path.join(rootPublicPath, 'uploads')
       const imgArray = [] // länkar till bilderna ska in i arrayen
@@ -92,7 +92,7 @@ app.post('/submit', upload.array('productImages'), (req, res) => {
         })
       }
 
-      // annons infon som ska skickas till json-filen
+      // annonsinfon som ska skickas till json-filen
       const newItem = {
         id: newId,
         namn: formData.productName,
@@ -111,9 +111,9 @@ app.post('/submit', upload.array('productImages'), (req, res) => {
       fs.writeFile(FILE_PATH, JSON.stringify(jsonData, null, 2), (writeErr) => {
         if (writeErr) {
           console.error('Write error:', writeErr)
-          return res.status(500).send('Error saving data')
+          return res.status(500).send('Kan inte spara infon')
         }
-        res.status(200).send('Data saved successfully')
+        res.status(200).send('Annons info sparad')
       })
     } catch (parseErr) {
       console.error('JSON parse error:', parseErr)

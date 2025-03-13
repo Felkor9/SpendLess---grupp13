@@ -42,20 +42,19 @@
 
   //hämtar info från valt produkt-ID
   function fetchProductDetails() {
-    console.log('Fetching images for product ID:', props.productId)
+    console.log('Hämtar bider för:', props.productId)
     fetch('/ItemsObjectData.json')
       .then((response) => {
-        if (!response.ok) throw new Error('Network error fetching JSON')
+        if (!response.ok) throw new Error('kan inte hämta från JSON')
         return response.json()
       })
       .then((data) => {
         const product = data.find((p) => p.id === props.productId)
-        console.log('Product found:', product)
+        console.log('Hämtad annons:', product)
         if (product?.img) {
           images.value = Array.isArray(product.img)
             ? product.img
             : [product.img]
-          console.log('Images set:', images.value)
         } else {
           console.warn('Kunde inte hitta bild till produkt')
           images.value = ['../assets/fox.jpeg']

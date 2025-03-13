@@ -200,11 +200,7 @@
         formData.value.selectedCondition.trim() !== '')
     )
   })
-  /* formData.value.productImages.trim() !== "" &&
-  formData.value.productSeller.trim() !== "" &&
-  formData.value.productAdress.trim() !== "" &&
-  lägg till dom här i computed ovanför när konton och bilder funkar.
-  */
+
   const fileInput = ref(null)
   // Skicka iväg forumuläret (Hampus)
   const submitForm = async () => {
@@ -232,7 +228,7 @@
           formPayload.append('productImages', fileInput.value.files[i])
         }
       }
-      //Skickar annonsen till backend
+      //Skickar annonsen till backend (Hampus)
       const response = await fetch('http://localhost:3000/submit', {
         method: 'POST',
         body: formPayload
