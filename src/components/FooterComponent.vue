@@ -12,20 +12,20 @@
               />
             </BCol>
             <BCol cols="8" class="footerText"
-              >Hagen 1, 458 32, Göteborg, Sweden</BCol
+              >Hagen 1B, 458 32, Göteborg, Sweden</BCol
             >
           </BRow>
           <BRow>
             <BCol cols="2" class="text-end">
               <img src="/assets/phone.png" alt="telefon-ikon" class="icon" />
             </BCol>
-            <BCol cols="8" class="footerText">+46112</BCol>
+            <BCol cols="8" class="footerText">+46 123 45 67 89</BCol>
           </BRow>
           <BRow>
             <BCol cols="2" class="text-end">
               <img src="/assets/email.png" alt="email-ikon" class="icon" />
             </BCol>
-            <BCol cols="8" class="footerText">Support@spendless.se</BCol>
+            <BCol cols="8" class="footerText">hello@spendless.se</BCol>
           </BRow>
         </BCol>
         <BCol cols="6" class="bg-dark containerFooter">
@@ -34,6 +34,9 @@
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus,
             quisquam eveniet consequuntur consectetur vitae odit officia
             perspiciatis sed libero quos labore ad atque neque
+          </p>
+          <p class="footerText">
+            © 2025 Evelina, Felix och Hampus. Alla rättigheter förbehållna
           </p>
         </BCol>
       </BRow>

@@ -178,5 +178,121 @@
     "pris": 7999,
     "beskrivning": "Storslagen TV med 4K-upplösning.",
     "säljare": "Karin"
+  },
+  {
+    "id": 3409,
+    "namn": "hund",
+    "kategori": "djur",
+    "skick": "",
+    "storlek": "null",
+    "beskrivning": "köpte den för 1500",
+    "pris": 2000,
+    "img": [
+      "uploads/hund-3409-1.jpg"
+    ],
+    "adress": "det ska du skit i",
+    "säljare": "Felix"
+  },
+  {
+    "id": 4838,
+    "namn": "Spindelmannens elvisp",
+    "kategori": "elektronik",
+    "skick": "slitet",
+    "storlek": "null",
+    "beskrivning": "Funkar felfritt",
+    "pris": 789,
+    "img": [
+      "uploads/Spindelmannens_elvisp-4838-1.jpg",
+      "uploads/Spindelmannens_elvisp-4838-2.jpg"
+    ],
+    "adress": "new york",
+    "säljare": "Spindel Mann"
+  },
+  {
+    "id": 5334,
+    "namn": "Skateboard",
+    "kategori": "sport",
+    "skick": "begagnat",
+    "storlek": "null",
+    "beskrivning": "Fin bräda man kan göra många trix på",
+    "pris": 200,
+    "img": [
+      "uploads/Skateboard-5334-1.jpg",
+      "uploads/Skateboard-5334-2.jpg",
+      "uploads/Skateboard-5334-3.jpg"
+    ],
+    "adress": "det ska du skit i",
+    "säljare": "Felix"
+  },
+  {
+    "id": 6344,
+    "namn": "fif",
+    "kategori": "sport",
+    "skick": "begagnat",
+    "storlek": "null",
+    "beskrivning": "hvvj",
+    "pris": 7,
+    "img": [
+      "uploads/fif-6344-1.jpg"
+    ],
+    "adress": "undefined",
+    "säljare": "undefined"
+  },
+  {
+    "id": 43,
+    "namn": "bomb",
+    "kategori": "elektronik",
+    "skick": "begagnat",
+    "storlek": "null",
+    "beskrivning": "använd lätt, mindre detonationsskada på skrov",
+    "pris": 69000,
+    "img": [
+      "uploads/bomb-43-1.jpg"
+    ],
+    "adress": "baghdad",
+    "säljare": "hassan bilbomb"
+  },
+  {
+    "id": 6501,
+    "namn": "bomb ",
+    "kategori": "hem & trädgård",
+    "skick": "slitet",
+    "storlek": "null",
+    "beskrivning": "begagnad, använd max 2 gånger",
+    "pris": 71000,
+    "img": [
+      "../assets/fox.jpeg"
+    ],
+    "adress": "det ska du skit i",
+    "säljare": "Morin"
+  },
+  {
+    "id": 5877,
+    "namn": "Skateboard Jerry",
+    "kategori": "sport",
+    "skick": "begagnat",
+    "storlek": "null",
+    "beskrivning": "Ganska använd men fin.",
+    "pris": 500,
+    "img": [
+      "uploads/Skateboard_Jerry-5877-1.jpg"
+    ],
+    "adress": "Göteborg",
+    "säljare": "Jerry"
+  },
+  {
+    "id": 5546,
+    "namn": "Lampa",
+    "kategori": "elektronik",
+    "skick": "begagnat",
+    "storlek": "null",
+    "beskrivning": "Inköpspris: 1kr",
+    "pris": 30000,
+    "img": [
+      "uploads/Lampa-5546-1.jpg",
+      "uploads/Lampa-5546-2.jpg"
+    ],
+    "adress": "Göteborg",
+    "säljare": "Josefine Luther"
   }
 ]
